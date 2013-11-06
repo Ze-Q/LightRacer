@@ -1,13 +1,13 @@
-package game;
+package gameplay;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import game.controllers.Keyboard;
-import game.levels.Level;
-import game.player.Player;
+import gameplay.Keyboard;
+import gameplay.Level;
+import gameplay.Player;
 
 import javax.swing.JFrame;
 

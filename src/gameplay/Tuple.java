@@ -1,4 +1,4 @@
-package game.datastructures;
+package gameplay;
 
 public class Tuple {
 

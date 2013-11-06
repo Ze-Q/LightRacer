@@ -1,7 +1,7 @@
-package game.player;
+package gameplay;
 
-import game.datastructures.Tuple;
-import game.levels.Level;
+import gameplay.Tuple;
+import gameplay.Level;
 
 public class Player {
 
