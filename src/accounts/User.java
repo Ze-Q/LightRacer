@@ -46,4 +46,14 @@ public class User {
 	public void increaseVersusWins() {
 		this.versusWins++;
 	}
+	
+	public void printUser() {
+		System.out.println("The user " + this.getUsername() + " has a total win of " + this.getTotalWins() +" !");
+	}
+	
+	public void printUserList(User[] users) {
+		for(int i=0; i<users.length; i++) {
+			users[i].printUser();
+		}
+	}
 }

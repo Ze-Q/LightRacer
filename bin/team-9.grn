@@ -32,8 +32,8 @@
       <name="=team-9/src<crud{CSVHandler.java[CSVHandler"/>
       <height="-1"/>
       <width="-1"/>
-      <x="803"/>
-      <y="1"/>
+      <x="919"/>
+      <y="48"/>
    </type>
    <type>
       <name="=team-9/src<gameplay{Game.java[Game"/>
@@ -53,8 +53,8 @@
       <name="=team-9/src<gameplay{Keyboard.java[Keyboard"/>
       <height="-1"/>
       <width="-1"/>
-      <x="736"/>
-      <y="230"/>
+      <x="835"/>
+      <y="285"/>
    </type>
    <type>
       <name="=team-9/src<gameplay{Level.java[Level"/>
@@ -87,14 +87,14 @@
    <relationship>
       <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
       <sourceType="=team-9/src<gameplay{Game.java[Game"/>
-      <targetType="=team-9/src<gameplay{Level.java[Level"/>
+      <targetType="=team-9/src<gameplay{Player.java[Player"/>
       <bendpoints>
       </bendpoints>
    </relationship>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
       <sourceType="=team-9/src<gameplay{Game.java[Game"/>
-      <targetType="=team-9/src<gameplay{Player.java[Player"/>
+      <targetType="=team-9/src<gameplay{Level.java[Level"/>
       <bendpoints>
       </bendpoints>
    </relationship>
