@@ -73,24 +73,37 @@ public class StatsTests {
 		
 		StatsFileSystem.readStatsFromFile(4);
 		StatsFileSystem.printStatsArray(20);
-		Statistics.updateVersusRecord(user1, user2);
+		Statistics.readVersusFromFile(user1, user2);
 		
 		System.out.println(user1.getUsername() +" won "+user1.getVersusWins() + " times against " + user2.getUsername());
 		System.out.println(user2.getUsername() +" won "+user2.getVersusWins() + " times against " + user1.getUsername());
 	}
 	
-	@Test
+	//@Test
 	public void testUpdateStatsFile() {
 		User user1 = new User("A");
 		User user2 = new User("D");
 		
 		StatsFileSystem.readStatsFromFile(4);
 		StatsFileSystem.printStatsArray(20);
-		Statistics.updateVersusRecord(user1, user2);
+		Statistics.readVersusFromFile(user1, user2);
 		user1.increaseVersusWins();
 		user2.increaseVersusWins();
 		
 		Statistics.updateStatsFile(user1, user2);
+		StatsFileSystem.readStatsFromFile(4);
+		StatsFileSystem.printStatsArray(20);
+	}
+	
+	
+	@Test
+	public void testAddNewUser() {
+		User user1 = new User("L");
+		StatsFileSystem.readStatsFromFile(4);
+		StatsFileSystem.printStatsArray(20);
+		Statistics.addNewUser(user1);
+		Statistics.updateStatsFile();
+		
 		StatsFileSystem.readStatsFromFile(4);
 		StatsFileSystem.printStatsArray(20);
 	}

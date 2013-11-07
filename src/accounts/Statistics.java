@@ -11,7 +11,7 @@ public class Statistics {
 	}
 
 	//read from stats.csv from versus records, and update the user objects' corresponding fields
-	public static void updateVersusRecord(User user1, User user2) {
+	public static void readVersusFromFile(User user1, User user2) {
 		
 		String oneOverTwo = StatsFileSystem.searchForVersus(user1.getUsername(), user2.getUsername());
 		String twoOverOne = StatsFileSystem.searchForVersus(user2.getUsername(), user1.getUsername());
@@ -27,5 +27,13 @@ public class Statistics {
 		StatsFileSystem.updateRecords(user1.getUsername(), user1.getVersusWins(), user2.getUsername(), user2.getVersusWins());
 		StatsFileSystem.writeStatsToFile();
 		
+	}
+	
+	public static void updateStatsFile() {
+		StatsFileSystem.writeStatsToFile();
+	}
+	
+	public static void addNewUser(User user) {
+		StatsFileSystem.addNewUserToArray (user.getUsername());
 	}
 }

@@ -166,4 +166,33 @@ public class StatsFileSystem {
 		}
 		return columnPosition;
 	}
+	
+	public static void addNewUserToArray (String username) {
+		int rowPosition=0;
+		for(int row = 1; row<statsArray.length; row++) {
+			if(statsArray[row][0]==null){
+				rowPosition=row;
+				break;
+			}
+		}
+		statsArray[rowPosition][0] = username;
+		
+		int columnPosition=0;
+		for(int column=1; column<statsArray.length; column++) {
+			if(statsArray[0][column]==null) {
+				columnPosition=column;
+				break;
+			}
+		}
+		statsArray[0][columnPosition] = username;
+		
+		for (int column = 1; column<= columnPosition; column++) {
+			statsArray[rowPosition][column]="0";
+		}
+		
+		for (int row = 1; row<= rowPosition; row++) {
+			statsArray[row][columnPosition]="0";
+		}
+		
+	}
 }
