@@ -6,6 +6,8 @@ import java.io.IOException;
 import org.junit.Test;
 
 import crud.StatsFileSystem;
+import accounts.Statistics;
+import accounts.User;
 
 
 public class StatsTests {
@@ -44,7 +46,7 @@ public class StatsTests {
 	}
 	
 	
-	@Test
+	//@Test
 	public void readFile() throws IOException {
 		boolean successful = StatsFileSystem.readStatsFromFile(4);
 		StatsFileSystem.printStatsArray(20);
@@ -61,6 +63,35 @@ public class StatsTests {
 	//@Test
 	public void testStatsArray() {
 		generateTestArray();
+		StatsFileSystem.printStatsArray(20);
+	}
+	
+	//@Test
+	public void testUpdateVersusRecords() {
+		User user1 = new User("A");
+		User user2 = new User("D");
+		
+		StatsFileSystem.readStatsFromFile(4);
+		StatsFileSystem.printStatsArray(20);
+		Statistics.updateVersusRecord(user1, user2);
+		
+		System.out.println(user1.getUsername() +" won "+user1.getVersusWins() + " times against " + user2.getUsername());
+		System.out.println(user2.getUsername() +" won "+user2.getVersusWins() + " times against " + user1.getUsername());
+	}
+	
+	@Test
+	public void testUpdateStatsFile() {
+		User user1 = new User("A");
+		User user2 = new User("D");
+		
+		StatsFileSystem.readStatsFromFile(4);
+		StatsFileSystem.printStatsArray(20);
+		Statistics.updateVersusRecord(user1, user2);
+		user1.increaseVersusWins();
+		user2.increaseVersusWins();
+		
+		Statistics.updateStatsFile(user1, user2);
+		StatsFileSystem.readStatsFromFile(4);
 		StatsFileSystem.printStatsArray(20);
 	}
 }

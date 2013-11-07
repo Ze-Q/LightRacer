@@ -4,6 +4,7 @@ import java.io.*;
 public class StatsFileSystem {
 	
 	public static String statsArray[][];
+	public static boolean alreadyRead=false;
 	
 	public static void generateNewStatsArray(int size) {
 		statsArray = new String[size][size];
@@ -45,6 +46,7 @@ public class StatsFileSystem {
 	             readOneLine(temporary, row);
 	             row++;
 	        }
+	        alreadyRead=true;
 			return true;
 			
 		}catch(IOException e){
@@ -105,5 +107,63 @@ public class StatsFileSystem {
     		return false;
     	}
 		
+	}
+	
+	public static String searchForVersus (String user1, String user2) {
+		int rowPosition = 0;
+		int columnPosition = 0;
+		
+		for(int row = 1; row<statsArray.length; row++) {
+			if(statsArray[row][0].equals(user1)){
+				rowPosition=row;
+				break;
+			}
+		}
+		
+		for(int column=1; column<statsArray.length; column++) {
+			if(statsArray[0][column].equals(user2)) {
+				columnPosition=column;
+				break;
+			}
+		}
+		return statsArray[rowPosition][columnPosition];
+	}
+	
+	public static void updateRecords (String user1, int user1Wins, String user2, int user2Wins) {
+		int rowPosition;
+		int columnPosition;
+		
+		//look for the spot to write user1's wins against user2
+		rowPosition = findRow (user1);
+		columnPosition = findColumn (user2);
+		statsArray[rowPosition][columnPosition] = String.valueOf(user1Wins);
+		
+		//look for the spot to write user2's wins against user1
+		rowPosition = findRow (user2);
+		columnPosition = findColumn (user1);
+		statsArray[rowPosition][columnPosition] = String.valueOf(user2Wins);
+		
+	}
+	
+	private static int findRow (String user) {
+		int rowPosition=0;
+		for(int row = 1; row<statsArray.length; row++) {
+			if(statsArray[row][0].equals(user)){
+				rowPosition=row;
+				break;
+			}
+		}
+		return rowPosition;
+	}
+	
+	private static int findColumn (String user) {
+		int columnPosition=0;
+		for(int column=1; column<statsArray.length; column++) {
+			if(statsArray[0][column].equals(user)) {
+				columnPosition=column;
+				break;
+			}
+		}
+		return columnPosition;
 	}
 }

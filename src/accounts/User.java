@@ -24,7 +24,7 @@ public class User {
 	}
 	
 	public int getVersusWins() {
-		return this.totalWins;
+		return this.versusWins;
 	}
 	
 	public void setUsername(String newUsername) {
@@ -36,6 +36,14 @@ public class User {
 	}
 	
 	public void setVersusWins(int newVersusWins) {
-		this.totalWins=newVersusWins;
+		this.versusWins=newVersusWins;
+	}
+	
+	public void increaseTotalWins() {
+		this.totalWins++;
+	}
+	
+	public void increaseVersusWins() {
+		this.versusWins++;
 	}
 }
