@@ -11,14 +11,14 @@
       <name="=team-9/src<accounts{CreateAccount.java[CreateAccount"/>
       <height="-1"/>
       <width="-1"/>
-      <x="200"/>
-      <y="0"/>
+      <x="0"/>
+      <y="84"/>
    </type>
    <type>
       <name="=team-9/src<accounts{Statistics.java[Statistics"/>
       <height="-1"/>
       <width="-1"/>
-      <x="400"/>
+      <x="368"/>
       <y="0"/>
    </type>
    <type>
@@ -32,57 +32,57 @@
       <name="=team-9/src<crud{CSVHandler.java[CSVHandler"/>
       <height="-1"/>
       <width="-1"/>
-      <x="919"/>
-      <y="48"/>
+      <x="2"/>
+      <y="185"/>
    </type>
    <type>
       <name="=team-9/src<gameplay{Game.java[Game"/>
       <height="-1"/>
       <width="-1"/>
-      <x="407"/>
-      <y="339"/>
+      <x="411"/>
+      <y="522"/>
    </type>
    <type>
       <name="=team-9/src<gameplay{Tuple.java[Tuple"/>
       <height="-1"/>
       <width="-1"/>
-      <x="405"/>
-      <y="195"/>
+      <x="409"/>
+      <y="404"/>
    </type>
    <type>
       <name="=team-9/src<gameplay{Keyboard.java[Keyboard"/>
       <height="-1"/>
       <width="-1"/>
-      <x="835"/>
-      <y="285"/>
+      <x="670"/>
+      <y="599"/>
    </type>
    <type>
       <name="=team-9/src<gameplay{Level.java[Level"/>
       <height="-1"/>
       <width="-1"/>
-      <x="41"/>
-      <y="276"/>
+      <x="76"/>
+      <y="483"/>
    </type>
    <type>
       <name="=team-9/src<gameplay{Player.java[Player"/>
       <height="-1"/>
       <width="-1"/>
-      <x="55"/>
-      <y="542"/>
+      <x="64"/>
+      <y="729"/>
    </type>
    <type>
       <name="=team-9/src<preferences{Settings.java[Settings"/>
       <height="-1"/>
       <width="-1"/>
-      <x="626"/>
-      <y="621"/>
+      <x="569"/>
+      <y="962"/>
    </type>
    <type>
       <name="=team-9/src<preferences{Map.java[Map"/>
       <height="-1"/>
       <width="-1"/>
-      <x="626"/>
-      <y="523"/>
+      <x="357"/>
+      <y="960"/>
    </type>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>

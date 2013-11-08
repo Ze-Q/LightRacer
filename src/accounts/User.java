@@ -52,7 +52,7 @@ public class User {
 	}
 	
 	public void printUserList(User[] users) {
-		for(int i=0; i<users.length; i++) {
+		for(int i=0; i<users.length&&users[i]!=null; i++) {
 			users[i].printUser();
 		}
 	}
