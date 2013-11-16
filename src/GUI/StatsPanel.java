@@ -1,127 +1,93 @@
-package accounts;
+package GUI;
 
-import crud.StatsFileSystem;
+import java.awt.*;
+import java.awt.event.*;
 
-public class Statistics {
-	private static final Statistics INSTANCE = new Statistics();
-	private static StatsFileSystem statsFileSystem = StatsFileSystem.getInstance();
+import javax.swing.*;
+
+import accounts.Statistics;
+import accounts.User;
+
+class StatsPanel {
+	private JPanel mainPanel = new JPanel();
+
+	private JLabel title = new JLabel("Statistics");
+	private JLabel topTenTitle;
+	private JLabel versusTitle;
+	private JButton back;
+	private JTable topTenTable;
+	private JTable versusTable;
 	
-	private Statistics() {
-	}
+	User user1 = new User ("A");
+	User user2 = new User ("B");
 	
-	public static Statistics getInstance() { 
-        return INSTANCE;
-    }
-	
-	//read stats.csv to prepare for stats inquiries
-	public void readStatsFile() {
-		statsFileSystem.readStatsFromFile();
-	}
-	
-	//must write to file before closing the game
-	public void updateStatsFile() {
-		statsFileSystem.writeStatsToFile();
-	}
+	public StatsPanel() {
 		
-	
-	//read from stats.csv for versus records, and update the user objects' corresponding fields
-	public void readVersusFromFile(User user1, User user2) {
-		String oneOverTwo = statsFileSystem.searchForVersus(user1.getUsername(), user2.getUsername());
-		String twoOverOne = statsFileSystem.searchForVersus(user2.getUsername(), user1.getUsername());
-		user1.setVersusWins(Integer.parseInt(oneOverTwo));
-		user2.setVersusWins(Integer.parseInt(twoOverOne));
-	}
-	
-	//update the statsArray, where all the info is still temporarily stored in memory
-	public void updateStats (User user1, User user2) {
-		statsFileSystem.updateRecords(user1.getUsername(), user1.getVersusWins(), user2.getUsername(), user2.getVersusWins());
-	}
-	
-	//add a new user to the statsArray with the corresponding 0's
-	public void addNewUser(User user) {
-		statsFileSystem.addNewUserToArray (user.getUsername());
-	}
-	
-	//get the top ten players as a list of User
-	public User[] getTopTen() {
-		String[] usernames = getUsernamesAsArray();
-		int[] totalWins = getTotalWinsAsArray();
-		User[] users = generateUserArray(usernames, totalWins);
+		mainPanel.setLayout(null);
+		topTenTitle = new JLabel("Top Ten Records");
+		versusTitle = new JLabel("Versus Records");
+		back = new JButton("Return to Main Menu");
+		topTenTable = generateTopTenTable();
+		versusTable = generateVersusTable();
 		
-		sortUsers(users);
+		mainPanel.add(title);
+		mainPanel.add(topTenTitle);
+		mainPanel.add(topTenTable);
+		mainPanel.add(versusTitle);
+		mainPanel.add(versusTable);
+		mainPanel.add(back);
 		
-		User[] results = new User[10];
-		for(int i=0; i<10; i++) {
-			results[i]=users[i];
-		}
-	
-		return results;
+		Dimension size = new Dimension(100,25);
+		topTenTitle.setBounds(150, 140, 200,25);
+		topTenTable.setBounds(150, 160, 150, 175);
+		topTenTable.setBackground(Color.LIGHT_GRAY);
+		versusTitle.setBounds(600, 140, 200, 25);
+		versusTable.setBounds(600, 160, 150, 45);
+		versusTable.setBackground(Color.LIGHT_GRAY);
+		back.setBounds(350, 450, 200, size.height);
+		title.setBounds(415, 50, size.width, size.height);
 	}
 	
-	private String[] getUsernamesAsArray() {
-		String[] usernames = new String [statsFileSystem.getStatsArray().length];
-		for(int row=1; row<statsFileSystem.getStatsArray().length; row++) {
-			if (statsFileSystem.getStatsArray()[row][0]!=null){
-				usernames[row]=statsFileSystem.getStatsArray()[row][0];
-			}
-			else{
-				break;
-			}
-		}
-		return usernames;
-	}
-	
-	private int[] getTotalWinsAsArray() {
-		int[] totalWins = new int [statsFileSystem.getStatsArray().length];
-		int temporarySum=0;
+	private JTable generateTopTenTable () {
+		Statistics statistics = Statistics.getInstance();
+		User[] results = statistics.getTopTen();
 		
-		for(int row=1; row<statsFileSystem.getStatsArray().length; row++) {
-			if (statsFileSystem.getStatsArray()[row][0]!=null){
-				for(int column=1; column<statsFileSystem.getStatsArray().length; column++) {
-					if (statsFileSystem.getStatsArray()[row][column]!=null){
-						temporarySum += Integer.parseInt(statsFileSystem.getStatsArray()[row][column]);
-					}
-					else{
-						break;
-					}
-				}
-				totalWins[row]=temporarySum;
-				temporarySum=0;
-			}
-			else{
-				break;
-			}
-		}
-		return totalWins;
-	}
-	
-	private User[] generateUserArray(String[] usernames, int[] totalWins) {
-		User[] users = new User[usernames.length];
-		for(int i=1; i<usernames.length&&usernames[i]!=null; i++) {
-			users[i-1]=new User(usernames[i],totalWins[i]);
-		}
-		return users;
-	}
-	
-	private void sortUsers(User[] users) {
-		int lastUserAt=0;
-		for(int i=0; i<users.length; i++) {
-			if(users[i]!=null){
-				lastUserAt=i;
-			}
-			else{
-				break;
-			}
+		String[] columnNames = {"Username", "Total Wins"};
+		Object[][] data = new String[11][2];
+		data[0][0] = "Username";
+		data[0][1] = "Total Wins";
+		for(int i=0; i<10&&results[i]!=null; i++) {
+			data[i+1][0] = results[i].getUsername();
+			data[i+1][1] = Integer.toString(results[i].getTotalWins());
 		}
 		
-		for(int i=0; i<=lastUserAt; i++) {
-			for(int j=lastUserAt; j>i; j--){
-				if(users[j].getTotalWins()>users[j-1].getTotalWins()){
-					User temp = users[j-1];
-					users[j-1] = users[j];
-					users[j] = temp;
-				}
-			}
-		}
+		JTable topTenTable = new JTable(data, columnNames);
+		return topTenTable;
+	}
+	
+	private JTable generateVersusTable() {
+		Statistics statistics = Statistics.getInstance();
+		statistics.readVersusFromFile(user1, user2);;
+		
+		String[] columnNames = {"Username", "Versus Wins"};
+		Object[][] data = new String[3][2];
+		
+		data[0][0] = "Username";
+		data[0][1] = "Total Wins";
+		data[1][0] = user1.getUsername();
+		data[1][1] = Integer.toString(user1.getVersusWins());
+		data[2][0] = user2.getUsername();
+		data[2][1] = Integer.toString(user2.getVersusWins());;
+		
+		JTable versusTable = new JTable(data, columnNames);
+		return versusTable;
+	}
+
+	public void addBackBtnActionListener(ActionListener listener) {
+		   back.addActionListener(listener);
+	}
+	
+	public JComponent getMainComponent() {
+	   return mainPanel;
 	}
 }
