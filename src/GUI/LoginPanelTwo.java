@@ -53,7 +53,7 @@ public class LoginPanelTwo {
 		Dimension size = new Dimension(100,25);
 		title.setBounds(415, 50, 100, size.height);
 		login.setBounds(400, 350, size.width, size.height);
-		back.setBounds(400, 450, size.width, size.height);
+		back.setBounds(400, 400, size.width, size.height);
 		cont.setBounds(400, 450, size.width, size.height);
 		usernameLabel.setBounds(375, 150, size.width, size.height);
 		passwordLabel.setBounds(375, 200, size.width, size.height);
