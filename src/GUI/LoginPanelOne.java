@@ -1,5 +1,8 @@
 package GUI;
 
+import accounts.Login;
+import accounts.User;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -26,6 +29,8 @@ public class LoginPanelOne {
     private JButton back;
     private JLabel usernameLabel;
     private JLabel passwordLabel;
+    
+    private Login loginObject = Login.getInstance(); 
 	
     public LoginPanelOne() {
 
@@ -65,15 +70,24 @@ public class LoginPanelOne {
 		login.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				boolean success = true;
+				
 				
 				String enteredUsername = username1.getText();
-				
+				String enteredPassword = new String (password1.getPassword());
+				boolean success = loginObject.login(enteredUsername, enteredPassword);
+				boolean loggedIn = loginObject.checkLogedin(enteredUsername);
 				if(!success){
-					actionLabel.setText("Unsuccessful Account Creation.");
+					actionLabel.setText("Unsuccessful Login.");
+				}
+				else if(loggedIn){
+					actionLabel.setText(enteredUsername + ", you are already logged in!");
 				}
 				else{
-					actionLabel.setText(enteredUsername);
+					
+					User newUser = new User(enteredUsername);
+					loginObject.setUserOne(newUser);
+					actionLabel.setText("Welcome! " + loginObject.getUserNameOne());
+					
 				}
 			}
 		});

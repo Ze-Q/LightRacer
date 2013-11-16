@@ -5,40 +5,45 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import accounts.Login;
+import accounts.User;
+
 public class LoginPanelTwo {
 	private JPanel mainPanel = new JPanel();
 	private JLabel title = new JLabel("Login Player 2");
-	
-    protected static final String usernameField = "username1";
-    protected static final String passwordField = "password1";
-    protected static final String loginString = "Login";
-    
-    public final int WIDTH = 900;
-    public final int HEIGHT = WIDTH * 9 / 16;
-    public final int SCALE = 1;
 
-    public static JPasswordField password2 = new JPasswordField(10);
-    public static JTextField username2 = new JTextField(10);
-    protected JLabel actionLabel;
-    private JButton login;
-    private JButton back;
-    private JButton cont;
-    private JLabel usernameLabel;
-    private JLabel passwordLabel;
-	
-    public LoginPanelTwo() {
+	protected static final String usernameField = "username1";
+	protected static final String passwordField = "password2";
+	protected static final String loginString = "Login";
 
-        mainPanel.setLayout(null);
-        
-        login = new JButton("Login");
-        back = new JButton("Back");
-        cont = new JButton("Continue");
-        usernameLabel = new JLabel(usernameField + ": ");
-        usernameLabel.setLabelFor(username2);
-        passwordLabel = new JLabel(passwordField + ": ");
-        passwordLabel.setLabelFor(password2);
-        actionLabel = new JLabel("");
-        
+	public final int WIDTH = 900;
+	public final int HEIGHT = WIDTH * 9 / 16;
+	public final int SCALE = 1;
+
+	public static JPasswordField password2 = new JPasswordField(10);
+	public static JTextField username2 = new JTextField(10);
+	protected JLabel actionLabel;
+	private JButton login;
+	private JButton back;
+	private JButton cont;
+	private JLabel usernameLabel;
+	private JLabel passwordLabel;
+	
+	  private Login loginObject = Login.getInstance(); 
+
+	public LoginPanelTwo() {
+
+		mainPanel.setLayout(null);
+
+		login = new JButton("Login");
+		back = new JButton("Back");
+		cont = new JButton("Continue");
+		usernameLabel = new JLabel(usernameField + ": ");
+		usernameLabel.setLabelFor(username2);
+		passwordLabel = new JLabel(passwordField + ": ");
+		passwordLabel.setLabelFor(password2);
+		actionLabel = new JLabel("");
+
 		mainPanel.add(title);
 		mainPanel.add(login);
 		mainPanel.add(back);
@@ -50,7 +55,7 @@ public class LoginPanelTwo {
 		mainPanel.add(actionLabel);
 		mainPanel.add(cont);
 
-		Dimension size = new Dimension(100,25);
+		Dimension size = new Dimension(100, 25);
 		title.setBounds(415, 50, 100, size.height);
 		login.setBounds(400, 350, size.width, size.height);
 		back.setBounds(400, 400, size.width, size.height);
@@ -60,32 +65,40 @@ public class LoginPanelTwo {
 		username2.setBounds(450, 150, size.width, size.height);
 		password2.setBounds(450, 200, size.width, size.height);
 		actionLabel.setBounds(380, 250, 200, size.height);
-		
+
 		login.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				boolean success = true;
-				
+
 				String enteredUsername = username2.getText();
-				
-				if(!success){
-					actionLabel.setText("Unsuccessful Account Creation.");
+				String enteredPassword = new String(password2.getPassword());
+				boolean success = loginObject.login(enteredUsername,
+						enteredPassword);
+				boolean loggedIn = loginObject.checkLogedin(enteredUsername);
+				if (!success) {
+					actionLabel.setText("Unsuccessful Login.");
+				} 
+				else if(loggedIn){
+					actionLabel.setText(enteredUsername + ", you are already logged in!");
 				}
-				else{
-					actionLabel.setText(enteredUsername);
+				else {
+					User newUser = new User(enteredUsername);
+					loginObject.serUseTwo(newUser);
+					actionLabel.setText("Welcome! "
+							+ loginObject.getUserNameTwo());
+
 				}
 			}
 		});
 
-    }
-	
+	}
+
 	public void addContinueBtnActionListener(ActionListener listener) {
 		boolean success = true;
-		if(success){
+		if (success) {
 			cont.addActionListener(listener);
-		}
-		else{
-			cont.addActionListener( new ActionListener() {
+		} else {
+			cont.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					actionLabel.setText("Unsuccessful Login Attempt");
@@ -93,9 +106,9 @@ public class LoginPanelTwo {
 			});
 		}
 	}
-	
+
 	public void addBackBtnActionListener(ActionListener listener) {
-		   back.addActionListener(listener);
+		back.addActionListener(listener);
 	}
 
 	public JComponent getMainComponent() {

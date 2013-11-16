@@ -9,6 +9,7 @@ public class User {
 		this.username=username;
 	}
 	
+	
 	//constructor used for top ten rank
 	public User (String username, int totalWins) {
 		this.username=username;

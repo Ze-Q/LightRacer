@@ -3,7 +3,14 @@ package crud;
 import java.io.*;
 
 public class CSVHandler {
-
+	private static final CSVHandler INSTANCE = new CSVHandler();
+	
+	private CSVHandler() {
+		
+	}
+	public static CSVHandler getInstance() { 
+        return INSTANCE;
+    }
 	// Login
 	public static boolean isValidCredential(String username, String password)
 			throws IOException {
