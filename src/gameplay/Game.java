@@ -3,8 +3,6 @@ package gameplay;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
@@ -12,8 +10,8 @@ import gameplay.Keyboard;
 import gameplay.Level;
 import gameplay.Player;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
+
 
 //TODO Game Over screens displaying who won round/game and handle new round
 
@@ -28,7 +26,6 @@ public class Game extends Canvas implements Runnable {
         private final static String TITLE = "Light Racer Prototype";
 
         private JFrame frame;
-        private JButton back;
         private Thread thread;
         private Keyboard key;
 
@@ -38,16 +35,28 @@ public class Game extends Canvas implements Runnable {
 
         public Level level;
         public Player player1, player2;
-        public int[] score = new int[]{0, 0};
+        
+        public int player1Color;
+        public int player2Color;
+        public int speedSetting;
+        public int mapNumber;
+        public Score curScore;
 
-        public Game() {
-                //set window size
+        public Game(Score score, int player1Color, int player2Color, int speed, int mapNumber) {
+                
+        		this.player1Color = player1Color;
+                this.player2Color = player2Color;
+                this.speedSetting = speed;
+                this.mapNumber = mapNumber;
+                this.curScore = score;
+        	
+        		//set window size
                 Dimension screenSize = new Dimension(WIDTH*SCALE, HEIGHT*SCALE);
                 setPreferredSize(screenSize);
 
                 //create 2 players
-                player1 = new Player(100, 450, 5, "UP", Player.YELLOW);
-                player2 = new Player(800, 56, 5, "DOWN", Player.GREEN);
+                player1 = new Player(100, 450, speedSetting, "UP", this.player1Color);
+                player2 = new Player(800, 56, speedSetting, "DOWN", this.player2Color);
 
                 level = new Level(WIDTH, HEIGHT);
                 frame = new JFrame();
@@ -62,6 +71,7 @@ public class Game extends Canvas implements Runnable {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
+                frame.setResizable(false);
                 start();
 
         }
@@ -70,46 +80,36 @@ public class Game extends Canvas implements Runnable {
         public synchronized void start() {
                 running = true;
                 level.clear();
-                level.setLevel(1); //CHANGE THIS VALUE TO SET MAP LAYOUT
+                level.setLevel(mapNumber); //CHANGE THIS VALUE TO SET MAP LAYOUT
                 thread = new Thread(this, "Display");
                 thread.start();
         }
         
         
         public synchronized void stop() {
-        		displayBackButton();                
+        	frame.setVisible(false);
+    		frame.dispose();
+        	running = false;
+            try {
+                    thread.join();
+            } catch (InterruptedException ie) {
+                    ie.printStackTrace();
+            }          
         }
 
-        public synchronized void displayBackButton(){
-        		back = new JButton("Back");
-        		frame.add(back);
-        		back.setBounds(400,200,100,100);
-        		back.addActionListener(new ActionListener() {
-        			@Override
-        			public void actionPerformed(ActionEvent e) {
-                		frame.setVisible(false);
-                		frame.dispose();
-                        running = false;
-                        try {
-                                thread.join();
-                        } catch (InterruptedException ie) {
-                                ie.printStackTrace();
-                        }
-        			};
-        		});
-        }
+
 
         //Main game loop
         public void run() {
                 int frames = 0;
                 int updates = 0;
                 double deltaTime = 0.0;
-                final double nanoSecondsPerUpdate = 1000000000.0 / 20.0;
+                final double nanoSecondsPerUpdate = 1000000000.0 / 25.0;
                 long lastTime = System.nanoTime();
                 long timer = System.currentTimeMillis();
                 requestFocus();
                 while (running) {
-                        long currentTime = System.nanoTime();
+                		long currentTime = System.nanoTime();
                         deltaTime += (currentTime - lastTime) / nanoSecondsPerUpdate;
                         lastTime = currentTime;
 
@@ -122,9 +122,7 @@ public class Game extends Canvas implements Runnable {
                                 deltaTime--;
                         }
 
-                        // Don't put limit on rendering yet
-                        render();
-                        frames++;
+                  
 
                         // Display FPS and UPS once per second
                         if (System.currentTimeMillis() - timer > 1000) {
@@ -133,6 +131,7 @@ public class Game extends Canvas implements Runnable {
                                 frames = 0;
                                 updates = 0;
                         }
+           
                 }
         }
 
@@ -143,13 +142,13 @@ public class Game extends Canvas implements Runnable {
                 //update player direction
                 key.update();
                 if (key.up && player2.direction != "DOWN") { player2.direction = "UP"; }
-                if (key.down && player2.direction != "UP") { player2.direction = "DOWN"; }
-                if (key.left && player2.direction != "RIGHT") { player2.direction = "LEFT"; }
-                if (key.right && player2.direction != "LEFT") { player2.direction = "RIGHT"; }
+                else if (key.down && player2.direction != "UP") { player2.direction = "DOWN"; }
+                else if (key.left && player2.direction != "RIGHT") { player2.direction = "LEFT"; }
+                else if (key.right && player2.direction != "LEFT") { player2.direction = "RIGHT"; }
                 if (key.w && player1.direction != "DOWN") { player1.direction = "UP"; }
-                if (key.s && player1.direction != "UP") { player1.direction = "DOWN"; }
-                if (key.a && player1.direction != "RIGHT") { player1.direction = "LEFT"; }
-                if (key.d && player1.direction != "LEFT") { player1.direction = "RIGHT"; }
+                else if (key.s && player1.direction != "UP") { player1.direction = "DOWN"; }
+                else if (key.a && player1.direction != "RIGHT") { player1.direction = "LEFT"; }
+                else if (key.d && player1.direction != "LEFT") { player1.direction = "RIGHT"; }
         }
 
         //Called unlimited times a second

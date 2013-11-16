@@ -58,11 +58,16 @@ public class CrAccPanel {
 		passwordFieldLabel.setBounds(350, 200, size.width, size.height);
 		username.setBounds(450, 150, size.width, size.height);
 		password.setBounds(450, 200, size.width, size.height);
+<<<<<<< HEAD
 		actionLabel.setBounds(350, 220, 500, size.height+100);
+=======
+		actionLabel.setBounds(350, 250, 200, size.height);
+>>>>>>> ca1294b4af86390388cd4021c252b885efc85b03
 		
 		crAcc.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 
 					String enteredUsername = username.getText();
 					String enteredPassword = new String(password.getPassword());
@@ -83,6 +88,17 @@ public class CrAccPanel {
 					}
 					else{
 						actionLabel.setText("Your Account Has Been Created.");
+=======
+					boolean success = true;
+					
+					String enteredUsername = username.getText();
+					
+					if(!success){
+						actionLabel.setText("Unsuccessful Account Creation.");
+					}
+					else{
+						actionLabel.setText(enteredUsername);
+>>>>>>> ca1294b4af86390388cd4021c252b885efc85b03
 					}
 				}
 		});
