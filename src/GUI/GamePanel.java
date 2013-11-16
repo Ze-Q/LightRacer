@@ -67,6 +67,7 @@ class GamePanel {
 		player2Color = new JComboBox(color2);
 		speed = new JTextField(10);
 		start = new JButton("Start Game");
+		start.setVisible(false);
 		abort = new JButton("Abort Game");
 		set = new JButton("Set");
 		actionLabel = new JLabel("");
@@ -103,7 +104,6 @@ class GamePanel {
 		set.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				boolean success = true;
 				String colorPlayer1 = player1Color.getSelectedItem().toString();
 				String colorPlayer2 = player2Color.getSelectedItem().toString();
 				String chosenMap = maps.getSelectedItem().toString();
@@ -115,9 +115,11 @@ class GamePanel {
 				}
 				if(colorPlayer1.equals(colorPlayer2)){
 					actionLabel.setText("Choose different colors.");
+					start.setVisible(false);
 				}
-				else if(spd > 10 || spd < 2){
+				else if(spd > 7 || spd < 1){
 					actionLabel.setText("Invalid speed.");
+					start.setVisible(false);
 				}
 				else { 
 					if(colorPlayer1.equals("Red")){
@@ -147,6 +149,7 @@ class GamePanel {
 					sp = spd;
 					mapNumber = Character.getNumericValue((chosenMap.charAt(3)));
 					actionLabel.setText("<html>" + "Map: " + chosenMap + "<br>" +  "Speed: " + sp + "<br>" + "Player 1:" + colorPlayer1 + "<br>" + "Player 2:" + colorPlayer2 + "</html>");
+					start.setVisible(true);
 				}
 			}
 		});
