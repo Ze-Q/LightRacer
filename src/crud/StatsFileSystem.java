@@ -3,20 +3,37 @@ import java.io.*;
 
 public class StatsFileSystem {
 	
-	public static String statsArray[][];
-	public static boolean alreadyRead=false;
+	private static final StatsFileSystem INSTANCE = new StatsFileSystem();
+	private int maxNumOfUsers = 50;
+	private String statsArray[][];
 	
-	public static void generateNewStatsArray(int size) {
+	private StatsFileSystem() {
+		readStatsFromFile();
+	}
+	
+	public static StatsFileSystem getInstance() { 
+        return INSTANCE;
+    }
+	
+	public void generateNewStatsArray(int size) {
 		statsArray = new String[size][size];
 		statsArray[0][0]="0";
 	}
 	
+	public String[][] getStatsArray() {
+		return statsArray;
+	}
+	
+	public void setMaxNumOfUsers(int newMaxNumOfUsers) {
+		maxNumOfUsers=newMaxNumOfUsers;
+	}
+	
 	//print the array to stdout, for testing purpose only
-	public static void printStatsArray(int limit) {
-		for(int row=0; row<limit; row++){
-			for(int column=0; column<limit; column++){
+	public void printStatsArray() {
+		for(int row=0; row<maxNumOfUsers; row++){
+			for(int column=0; column<maxNumOfUsers; column++){
 				if(statsArray[row][column]!=null){
-					System.out.print(statsArray[row][column]);
+					System.out.print(statsArray[row][column]+" | ");
 				}
 				else{
 					System.out.print(" ");
@@ -26,16 +43,18 @@ public class StatsFileSystem {
 		}
 	}
 	
-	public static boolean readStatsFromFile(int numberOfUsers) {
+	public boolean readStatsFromFile() {
 		try{
-			generateNewStatsArray(numberOfUsers+20);
+			generateNewStatsArray(maxNumOfUsers);
 			File dir = new File ("./res");
 			File statsCSV = new File(dir, "stats.csv");
 		
-			//check whether userCSV already exists, if not then create userCSV.csv
+			//check whether userCSV already exists, if not then do not read anything
 			if(!statsCSV.exists()){
 				return false;
 			}
+			
+			@SuppressWarnings("resource")
 			BufferedReader bufferedReader = new BufferedReader(new FileReader(statsCSV));
 	        
 			String oneLine;
@@ -46,7 +65,6 @@ public class StatsFileSystem {
 	             readOneLine(temporary, row);
 	             row++;
 	        }
-	        alreadyRead=true;
 			return true;
 			
 		}catch(IOException e){
@@ -56,14 +74,14 @@ public class StatsFileSystem {
 		
 	}
 	
-	private static void readOneLine(String[] inputs, int row) {
+	private void readOneLine(String[] inputs, int row) {
 		int numberOfinputs = inputs.length;
 		for(int column = 0; column<numberOfinputs; column++) {
 			statsArray[row][column]=inputs[column];
 		}
 	}
 	
-	public static boolean writeStatsToFile() {
+	public boolean writeStatsToFile() {
 		try{
 			
 			File dir = new File ("./res");
@@ -109,7 +127,7 @@ public class StatsFileSystem {
 		
 	}
 	
-	public static String searchForVersus (String user1, String user2) {
+	public String searchForVersus (String user1, String user2) {
 		int rowPosition = 0;
 		int columnPosition = 0;
 		
@@ -129,7 +147,7 @@ public class StatsFileSystem {
 		return statsArray[rowPosition][columnPosition];
 	}
 	
-	public static void updateRecords (String user1, int user1Wins, String user2, int user2Wins) {
+	public void updateRecords (String user1, int user1Wins, String user2, int user2Wins) {
 		int rowPosition;
 		int columnPosition;
 		
@@ -145,7 +163,7 @@ public class StatsFileSystem {
 		
 	}
 	
-	private static int findRow (String user) {
+	private int findRow (String user) {
 		int rowPosition=0;
 		for(int row = 1; row<statsArray.length; row++) {
 			if(statsArray[row][0].equals(user)){
@@ -156,7 +174,7 @@ public class StatsFileSystem {
 		return rowPosition;
 	}
 	
-	private static int findColumn (String user) {
+	private int findColumn (String user) {
 		int columnPosition=0;
 		for(int column=1; column<statsArray.length; column++) {
 			if(statsArray[0][column].equals(user)) {
@@ -167,7 +185,7 @@ public class StatsFileSystem {
 		return columnPosition;
 	}
 	
-	public static void addNewUserToArray (String username) {
+	public void addNewUserToArray (String username) {
 		int rowPosition=0;
 		for(int row = 1; row<statsArray.length; row++) {
 			if(statsArray[row][0]==null){
