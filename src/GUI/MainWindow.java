@@ -2,6 +2,7 @@ package GUI;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 
 public class MainWindow {
@@ -17,6 +18,7 @@ public class MainWindow {
 	private static final String STATS = "stats";
 	private static final String HELP = "help";
 	private static final String SETT = "setting";
+	private static final String STARTGAME = "startGame";
 	
 	private CardLayout cardlayout = new CardLayout();
 	private JPanel mainWindow = new JPanel(cardlayout);
@@ -30,7 +32,7 @@ public class MainWindow {
 	private StatsPanel statsPanel = new StatsPanel();
 	private HelpPanel helpPanel = new HelpPanel();
 	private SettingsPanel settPanel = new SettingsPanel();
-
+	
 	public MainWindow() {
 		
 		mainWindow.add(introPanel.getMainComponent(), INTRO);
@@ -42,6 +44,7 @@ public class MainWindow {
 		mainWindow.add(statsPanel.getMainComponent(), STATS);
 		mainWindow.add(helpPanel.getMainComponent(), HELP);
 		mainWindow.add(settPanel.getMainComponent(), SETT);
+
 		
 		introPanel.addLoginBtnActionListener(new ActionListener() {
 			@Override
@@ -131,6 +134,13 @@ public class MainWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(mainWindow, INTRO);
+			}
+		});
+		
+		gamePanel.addStartBtnActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gameplay.Game startGame = new gameplay.Game();
 			}
 		});
 

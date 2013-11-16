@@ -13,57 +13,59 @@ import accounts.User;
 public class StatsTests {
 
 	public void generateTestArray() {
-		StatsFileSystem.generateNewStatsArray(25);
-		StatsFileSystem.statsArray[0][1]="Z";
-		StatsFileSystem.statsArray[0][2]="A";
-		StatsFileSystem.statsArray[0][3]="C";
-		StatsFileSystem.statsArray[0][4]="D";
+		StatsFileSystem statsFileSystem = StatsFileSystem.getInstance();	
+		statsFileSystem.getStatsArray()[0][1]="Z";
+		statsFileSystem.getStatsArray()[0][2]="A";
+		statsFileSystem.getStatsArray()[0][3]="C";
+		statsFileSystem.getStatsArray()[0][4]="D";
 		
-		StatsFileSystem.statsArray[1][0]="Z";
-		StatsFileSystem.statsArray[2][0]="A";
-		StatsFileSystem.statsArray[3][0]="C";
-		StatsFileSystem.statsArray[4][0]="D";
+		statsFileSystem.getStatsArray()[1][0]="Z";
+		statsFileSystem.getStatsArray()[2][0]="A";
+		statsFileSystem.getStatsArray()[3][0]="C";
+		statsFileSystem.getStatsArray()[4][0]="D";
 		
-		StatsFileSystem.statsArray[1][1]="0";
-		StatsFileSystem.statsArray[1][2]="2";
-		StatsFileSystem.statsArray[1][3]="3";
-		StatsFileSystem.statsArray[1][4]="4";
+		statsFileSystem.getStatsArray()[1][1]="0";
+		statsFileSystem.getStatsArray()[1][2]="2";
+		statsFileSystem.getStatsArray()[1][3]="3";
+		statsFileSystem.getStatsArray()[1][4]="4";
 		
-		StatsFileSystem.statsArray[2][1]="5";
-		StatsFileSystem.statsArray[2][2]="0";
-		StatsFileSystem.statsArray[2][3]="7";
-		StatsFileSystem.statsArray[2][4]="8";
+		statsFileSystem.getStatsArray()[2][1]="5";
+		statsFileSystem.getStatsArray()[2][2]="0";
+		statsFileSystem.getStatsArray()[2][3]="7";
+		statsFileSystem.getStatsArray()[2][4]="8";
 		
-		StatsFileSystem.statsArray[3][1]="9";
-		StatsFileSystem.statsArray[3][2]="8";
-		StatsFileSystem.statsArray[3][3]="0";
-		StatsFileSystem.statsArray[3][4]="6";
+		statsFileSystem.getStatsArray()[3][1]="9";
+		statsFileSystem.getStatsArray()[3][2]="8";
+		statsFileSystem.getStatsArray()[3][3]="0";
+		statsFileSystem.getStatsArray()[3][4]="6";
 		
-		StatsFileSystem.statsArray[4][1]="5";
-		StatsFileSystem.statsArray[4][2]="4";
-		StatsFileSystem.statsArray[4][3]="3";
-		StatsFileSystem.statsArray[4][4]="0";
+		statsFileSystem.getStatsArray()[4][1]="5";
+		statsFileSystem.getStatsArray()[4][2]="4";
+		statsFileSystem.getStatsArray()[4][3]="3";
+		statsFileSystem.getStatsArray()[4][4]="0";
 	}
 	
+	StatsFileSystem statsFileSystem = StatsFileSystem.getInstance();
+	Statistics statistics = Statistics.getInstance();
 	
+	//Tests for StatsFileSystem
 	//@Test
 	public void readFile() throws IOException {
-		boolean successful = StatsFileSystem.readStatsFromFile(4);
-		StatsFileSystem.printStatsArray(20);
-		assertTrue("The file does not exist!", successful);		
+		statsFileSystem.readStatsFromFile();
+		statsFileSystem.printStatsArray();
 	}
 	
 	//@Test
 	public void writeTest() throws IOException {
 		generateTestArray();
-		boolean doesStatsExist = StatsFileSystem.writeStatsToFile();
+		boolean doesStatsExist = statsFileSystem.writeStatsToFile();
 		assertTrue("Created the file!", doesStatsExist);
 	}
 	
 	//@Test
 	public void testStatsArray() {
 		generateTestArray();
-		StatsFileSystem.printStatsArray(20);
+		statsFileSystem.printStatsArray();
 	}
 	
 	//@Test
@@ -71,63 +73,69 @@ public class StatsTests {
 		User user1 = new User("A");
 		User user2 = new User("D");
 		
-		StatsFileSystem.readStatsFromFile(4);
-		StatsFileSystem.printStatsArray(20);
-		Statistics.readVersusFromFile(user1, user2);
+		statsFileSystem.readStatsFromFile();
+		statsFileSystem.printStatsArray();
+		statistics.readVersusFromFile(user1, user2);
 		
 		System.out.println(user1.getUsername() +" won "+user1.getVersusWins() + " times against " + user2.getUsername());
 		System.out.println(user2.getUsername() +" won "+user2.getVersusWins() + " times against " + user1.getUsername());
 	}
 	
+	//Tests for Statistics
 	//@Test
 	public void testUpdateStatsFile() {
 		User user1 = new User("A");
 		User user2 = new User("D");
 		
-		StatsFileSystem.readStatsFromFile(4);
-		StatsFileSystem.printStatsArray(20);
-		Statistics.readVersusFromFile(user1, user2);
+		statistics.readStatsFile();
+		statsFileSystem.printStatsArray();
+		statistics.readVersusFromFile(user1, user2);
 		user1.increaseVersusWins();
 		user2.increaseVersusWins();
 		
-		Statistics.updateStats(user1, user2);
-		StatsFileSystem.readStatsFromFile(4);
-		StatsFileSystem.printStatsArray(20);
+		statistics.updateStats(user1, user2);
+		statistics.updateStatsFile();
+		statistics.readStatsFile();
+		statsFileSystem.printStatsArray();
 	}
 	
 	
 	//@Test
 	public void testAddNewUser() {
-		User user1 = new User("L");
-		StatsFileSystem.readStatsFromFile(4);
-		StatsFileSystem.printStatsArray(20);
-		Statistics.addNewUser(user1);
-		Statistics.updateStatsFile();
+		User user1 = new User("F");
+		statistics.readStatsFile();
+		statsFileSystem.printStatsArray();
+		statistics.addNewUser(user1);
+		statistics.updateStatsFile();
 		
-		StatsFileSystem.readStatsFromFile(4);
-		StatsFileSystem.printStatsArray(20);
+		statsFileSystem.readStatsFromFile();
+		statsFileSystem.printStatsArray();
 	}
 	
 	//@Test
 	public void testAddNewUserToBlankFile() {
-		User user1 = new User("L");
-		User user2 = new User("O");
-		User user3 = new User("P");
-		StatsFileSystem.readStatsFromFile(4);
-		StatsFileSystem.printStatsArray(20);
-		Statistics.addNewUser(user1);
-		Statistics.addNewUser(user2);
-		Statistics.addNewUser(user3);
-		Statistics.updateStatsFile();
+		User user1 = new User("J");
+		User user2 = new User("K");
+		User user3 = new User("L");
+		statistics.readStatsFile();
+		statsFileSystem.printStatsArray();
+		statistics.addNewUser(user1);
+		statistics.addNewUser(user2);
+		statistics.addNewUser(user3);
+		statistics.updateStatsFile();
 		
-		StatsFileSystem.readStatsFromFile(4);
-		StatsFileSystem.printStatsArray(20);
+		statistics.readStatsFile();
+		statsFileSystem.printStatsArray();
 	}
 	
-	@Test
+	//@Test
 	public void testTopTen() {
-		Statistics.readStatsFile(20);
-		Statistics.getTopTen();
+		statistics.readStatsFile();
+		statsFileSystem.printStatsArray();
+		
+		User temp = new User("test");
+		temp.printUserList(statistics.getTopTen());
+		
 	}
 	
 }

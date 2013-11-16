@@ -18,8 +18,8 @@
       <name="=team-9/src<accounts{Statistics.java[Statistics"/>
       <height="-1"/>
       <width="-1"/>
-      <x="368"/>
-      <y="0"/>
+      <x="312"/>
+      <y="1"/>
    </type>
    <type>
       <name="=team-9/src<crud{StatsFileSystem.java[StatsFileSystem"/>
@@ -87,14 +87,14 @@
    <relationship>
       <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
       <sourceType="=team-9/src<gameplay{Game.java[Game"/>
-      <targetType="=team-9/src<gameplay{Player.java[Player"/>
+      <targetType="=team-9/src<gameplay{Level.java[Level"/>
       <bendpoints>
       </bendpoints>
    </relationship>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
       <sourceType="=team-9/src<gameplay{Game.java[Game"/>
-      <targetType="=team-9/src<gameplay{Level.java[Level"/>
+      <targetType="=team-9/src<gameplay{Player.java[Player"/>
       <bendpoints>
       </bendpoints>
    </relationship>

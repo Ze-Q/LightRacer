@@ -3,6 +3,8 @@ package gameplay;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
@@ -10,179 +12,184 @@ import gameplay.Keyboard;
 import gameplay.Level;
 import gameplay.Player;
 
-import javax.swing.JComponent;
+import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 //TODO Game Over screens displaying who won round/game and handle new round
 
 public class Game extends Canvas implements Runnable {
 
-	private static final long serialVersionUID = 1L;
+        private static final long serialVersionUID = 1L;
 
-	public final static int WIDTH = 900;
-	public final static int HEIGHT = WIDTH * 9 / 16 ;  
-	public final static Dimension SIZE = new Dimension(WIDTH, HEIGHT);
-	public final int SCALE = 1;
+        public final int WIDTH = 900;
+        public final int HEIGHT = WIDTH * 9 / 16 ;
+        public final int SCALE = 1;
 
-	//private final static String TITLE = "Light Racer Prototype";
+        private final static String TITLE = "Light Racer Prototype";
 
-	private JPanel mainPanel;
-	private Thread thread;
-	private Keyboard key;
+        private JFrame frame;
+        private JButton back;
+        private Thread thread;
+        private Keyboard key;
 
-	public boolean running = false;
+        public boolean running = false;
 
-	private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);	
+        private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);        
 
-	public Level level;
-	public Player player1, player2;
-	public int[] score = new int[]{0, 0};
+        public Level level;
+        public Player player1, player2;
+        public int[] score = new int[]{0, 0};
 
-	public Game() {
-		//set window size
-		Dimension screenSize = new Dimension(WIDTH*SCALE, HEIGHT*SCALE);
-		setPreferredSize(screenSize);
+        public Game() {
+                //set window size
+                Dimension screenSize = new Dimension(WIDTH*SCALE, HEIGHT*SCALE);
+                setPreferredSize(screenSize);
 
-		//create 2 players
-		player1 = new Player(100, 450, 5, "UP", Player.YELLOW);
-		player2 = new Player(800, 56, 5, "DOWN", Player.GREEN);
+                //create 2 players
+                player1 = new Player(100, 450, 5, "UP", Player.YELLOW);
+                player2 = new Player(800, 56, 5, "DOWN", Player.GREEN);
 
-		level = new Level(WIDTH, HEIGHT);
-		mainPanel = new JPanel();
-		
-		key = new Keyboard();
-		addKeyListener(key);
-		//game.frame.setResizable(false);
-		//game.frame.setTitle(TITLE);
-		mainPanel.add(this);
-		//game.frame.pack();
-		//game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//game.mainPanel.setPreferredSize(SIZE);
-		mainPanel.setLayout(null);
-		//game.mainPanel.setLocationRelativeTo(null);
-		//game.frame.setVisible(true);
-		start();
+                level = new Level(WIDTH, HEIGHT);
+                frame = new JFrame();
+                
+                key = new Keyboard();
+                addKeyListener(key);
+                
+                frame.setResizable(false);
+                frame.setTitle(TITLE);
+                frame.add(this);
+                frame.pack();
+                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setLocationRelativeTo(null);
+                frame.setVisible(true);
+                start();
 
-	}
-
-
-	public synchronized void start() {
-		running = true;
-		level.clear();
-		level.setLevel(1); //CHANGE THIS VALUE TO SET MAP LAYOUT
-		thread = new Thread(this, "Display");
-		thread.start();
-	}
-	
-	
-	public synchronized void stop() {
-		running = false;
-		try {
-			thread.join();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	}
+        }
 
 
-	//Main game loop
-	public void run() {
-		int frames = 0;
-		int updates = 0;
-		double deltaTime = 0.0;
-		final double nanoSecondsPerUpdate = 1000000000.0 / 20.0;
-		long lastTime = System.nanoTime();
-		long timer = System.currentTimeMillis();
-		requestFocus();
-		while (running) {
-			long currentTime = System.nanoTime();
-			deltaTime += (currentTime - lastTime) / nanoSecondsPerUpdate;
-			lastTime = currentTime;
+        public synchronized void start() {
+                running = true;
+                level.clear();
+                level.setLevel(1); //CHANGE THIS VALUE TO SET MAP LAYOUT
+                thread = new Thread(this, "Display");
+                thread.start();
+        }
+        
+        
+        public synchronized void stop() {
+        		displayBackButton();                
+        }
 
-			// Limit to 20 updates per second
-			while (deltaTime >= 1.0) {
-				update();
-				render();
-				frames++;
-				updates++;
-				deltaTime--;
-			}
+        public synchronized void displayBackButton(){
+        		back = new JButton("Back");
+        		frame.add(back);
+        		back.setBounds(400,200,100,100);
+        		back.addActionListener(new ActionListener() {
+        			@Override
+        			public void actionPerformed(ActionEvent e) {
+                		frame.setVisible(false);
+                		frame.dispose();
+                        running = false;
+                        try {
+                                thread.join();
+                        } catch (InterruptedException ie) {
+                                ie.printStackTrace();
+                        }
+        			};
+        		});
+        }
 
-			// Don't put limit on rendering yet
-			render();
-			frames++;
+        //Main game loop
+        public void run() {
+                int frames = 0;
+                int updates = 0;
+                double deltaTime = 0.0;
+                final double nanoSecondsPerUpdate = 1000000000.0 / 20.0;
+                long lastTime = System.nanoTime();
+                long timer = System.currentTimeMillis();
+                requestFocus();
+                while (running) {
+                        long currentTime = System.nanoTime();
+                        deltaTime += (currentTime - lastTime) / nanoSecondsPerUpdate;
+                        lastTime = currentTime;
 
-			// Display FPS and UPS once per second
-			/*if (System.currentTimeMillis() - timer > 1000) {
-				timer += 1000;
-				frame.setTitle(TITLE + " | FPS " + frames + " | UPS " + updates); 
-				frames = 0;
-				updates = 0;
-			}*/
-		}
-	}
+                        // Limit to 20 updates per second
+                        while (deltaTime >= 1.0) {
+                                update();
+                                render();
+                                frames++;
+                                updates++;
+                                deltaTime--;
+                        }
 
-	//Called a set number of times per second
-	public void update() {
-		//update player position
-		level.update(this, player1, player2);
-		//update player direction
-		key.update();
-		if (key.up && player2.direction != "DOWN") { player2.direction = "UP"; }
-		if (key.down && player2.direction != "UP") { player2.direction = "DOWN"; }
-		if (key.left && player2.direction != "RIGHT") { player2.direction = "LEFT"; }
-		if (key.right && player2.direction != "LEFT") { player2.direction = "RIGHT"; }
-		if (key.w && player1.direction != "DOWN") { player1.direction = "UP"; }
-		if (key.s && player1.direction != "UP") { player1.direction = "DOWN"; }
-		if (key.a && player1.direction != "RIGHT") { player1.direction = "LEFT"; }
-		if (key.d && player1.direction != "LEFT") { player1.direction = "RIGHT"; }
-	}
+                        // Don't put limit on rendering yet
+                        render();
+                        frames++;
 
-	//Called unlimited times a second
-	public void render() {
-		BufferStrategy strategy = getBufferStrategy();
-		if (strategy == null) {
-			//use 2 buffer frames
-			createBufferStrategy(3);
-			return;
-		}
+                        // Display FPS and UPS once per second
+                        if (System.currentTimeMillis() - timer > 1000) {
+                                timer += 1000;
+                                frame.setTitle(TITLE + " | FPS " + frames + " | UPS " + updates);
+                                frames = 0;
+                                updates = 0;
+                        }
+                }
+        }
 
-		player1.update(level);
-		player2.update(level);
+        //Called a set number of times per second
+        public void update() {
+                //update player position
+                level.update(this, player1, player2);
+                //update player direction
+                key.update();
+                if (key.up && player2.direction != "DOWN") { player2.direction = "UP"; }
+                if (key.down && player2.direction != "UP") { player2.direction = "DOWN"; }
+                if (key.left && player2.direction != "RIGHT") { player2.direction = "LEFT"; }
+                if (key.right && player2.direction != "LEFT") { player2.direction = "RIGHT"; }
+                if (key.w && player1.direction != "DOWN") { player1.direction = "UP"; }
+                if (key.s && player1.direction != "UP") { player1.direction = "DOWN"; }
+                if (key.a && player1.direction != "RIGHT") { player1.direction = "LEFT"; }
+                if (key.d && player1.direction != "LEFT") { player1.direction = "RIGHT"; }
+        }
 
-		//convert level's int[][] values to BufferedImage
-		for (int y = 0; y < HEIGHT; y++) {
-			for (int x = 0; x < WIDTH; x++) {
-				image.setRGB(x, y, level.pixels[x][y]);
-			}
-		}
-		
-		Graphics g = strategy.getDrawGraphics();
-		
-		g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
-		g.dispose();
-		
-		strategy.show();
-	}
-	
-	//Called when collision is detected
-	public void endRound(String result) {
-		String roundResult;
-		if (result.equals("Draw")) {
-			roundResult = result;
-		}
-		else {
-			roundResult = result + " has won this round!";
-		}
-		//frame.setTitle(TITLE + " | " + roundResult);
-		System.out.println(roundResult);
-		stop();
-	}
-	
-	public JComponent getMainComponent() {
-		return this.mainPanel;
-	}
+        //Called unlimited times a second
+        public void render() {
+                BufferStrategy strategy = getBufferStrategy();
+                if (strategy == null) {
+                        //use 2 buffer frames
+                        createBufferStrategy(3);
+                        return;
+                }
 
+                player1.update(level);
+                player2.update(level);
 
+                //convert level's int[][] values to BufferedImage
+                for (int y = 0; y < HEIGHT; y++) {
+                        for (int x = 0; x < WIDTH; x++) {
+                                image.setRGB(x, y, level.pixels[x][y]);
+                        }
+                }
+                
+                Graphics g = strategy.getDrawGraphics();
+                
+                g.drawImage(image, 0, 0, getWidth(), getHeight(), null);
+                g.dispose();
+                
+                strategy.show();
+        }
+        
+        //Called when collision is detected
+        public void endRound(String result) {
+                String roundResult;
+                if (result.equals("Draw")) {
+                        roundResult = result;
+                }
+                else {
+                        roundResult = result + " has won this round!";
+                }
+                frame.setTitle(TITLE + " | " + roundResult);
+                System.out.println(roundResult);
+                stop();
+        }
 }
