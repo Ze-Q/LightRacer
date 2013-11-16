@@ -10,7 +10,9 @@ import gameplay.Keyboard;
 import gameplay.Level;
 import gameplay.Player;
 
+import javax.swing.JComponent;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 //TODO Game Over screens displaying who won round/game and handle new round
 
@@ -18,13 +20,14 @@ public class Game extends Canvas implements Runnable {
 
 	private static final long serialVersionUID = 1L;
 
-	public final int WIDTH = 900;
-	public final int HEIGHT = WIDTH * 9 / 16 ;  
+	public final static int WIDTH = 900;
+	public final static int HEIGHT = WIDTH * 9 / 16 ;  
+	public final static Dimension SIZE = new Dimension(WIDTH, HEIGHT);
 	public final int SCALE = 1;
 
-	private final static String TITLE = "Light Racer Prototype";
+	//private final static String TITLE = "Light Racer Prototype";
 
-	private JFrame frame;
+	private JPanel mainPanel;
 	private Thread thread;
 	private Keyboard key;
 
@@ -46,10 +49,20 @@ public class Game extends Canvas implements Runnable {
 		player2 = new Player(800, 56, 5, "DOWN", Player.GREEN);
 
 		level = new Level(WIDTH, HEIGHT);
-		frame = new JFrame();
+		mainPanel = new JPanel();
 		
 		key = new Keyboard();
 		addKeyListener(key);
+		//game.frame.setResizable(false);
+		//game.frame.setTitle(TITLE);
+		mainPanel.add(this);
+		//game.frame.pack();
+		//game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//game.mainPanel.setPreferredSize(SIZE);
+		mainPanel.setLayout(null);
+		//game.mainPanel.setLocationRelativeTo(null);
+		//game.frame.setVisible(true);
+		start();
 
 	}
 
@@ -101,12 +114,12 @@ public class Game extends Canvas implements Runnable {
 			frames++;
 
 			// Display FPS and UPS once per second
-			if (System.currentTimeMillis() - timer > 1000) {
+			/*if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
 				frame.setTitle(TITLE + " | FPS " + frames + " | UPS " + updates); 
 				frames = 0;
 				updates = 0;
-			}
+			}*/
 		}
 	}
 
@@ -162,21 +175,28 @@ public class Game extends Canvas implements Runnable {
 		else {
 			roundResult = result + " has won this round!";
 		}
-		frame.setTitle(TITLE + " | " + roundResult);
+		//frame.setTitle(TITLE + " | " + roundResult);
 		System.out.println(roundResult);
 		stop();
 	}
 	
+	public JComponent getMainComponent() {
+		return this.mainPanel;
+	}
+	
+	
 
 	public static void main(String[] args) {
 		Game game = new Game();
-		game.frame.setResizable(false);
-		game.frame.setTitle(TITLE);
-		game.frame.add(game);
-		game.frame.pack();
-		game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		game.frame.setLocationRelativeTo(null);
-		game.frame.setVisible(true);
+		//game.frame.setResizable(false);
+		//game.frame.setTitle(TITLE);
+		game.mainPanel.add(game);
+		//game.frame.pack();
+		//game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//game.mainPanel.setPreferredSize(SIZE);
+		game.mainPanel.setLayout(null);
+		//game.mainPanel.setLocationRelativeTo(null);
+		//game.frame.setVisible(true);
 		game.start();
 	}
 
