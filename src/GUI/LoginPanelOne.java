@@ -39,6 +39,7 @@ public class LoginPanelOne {
         login = new JButton("Login");
         back = new JButton("Back");
         cont = new JButton("Continue");
+        cont.setVisible(false);
         usernameLabel = new JLabel(usernameField + ": ");
         usernameLabel.setLabelFor(username1);
         passwordLabel = new JLabel(passwordField + ": ");
@@ -80,10 +81,12 @@ public class LoginPanelOne {
 					actionLabel.setText("Unsuccessful Login.");
 				}
 				else if(loggedIn){
+					
 					actionLabel.setText(enteredUsername + ", you are already logged in!");
+				
 				}
 				else{
-					
+					cont.setVisible(true);
 					User newUser = new User(enteredUsername);
 					loginObject.setUserOne(newUser);
 					actionLabel.setText("Welcome! " + loginObject.getUserNameOne());
@@ -94,19 +97,9 @@ public class LoginPanelOne {
     }
 	
 	public void addContinueBtnActionListener(ActionListener listener) {
-		boolean success = true;
-		if(success){
-			cont.addActionListener(listener);
-		}
-		else{
-			cont.addActionListener( new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					actionLabel.setText("Unsuccessful Login Attempt");
-				}
-			});
-		}
+		cont.addActionListener(listener);
 	}
+
 	
 	public void addBackBtnActionListener(ActionListener listener) {
 		   back.addActionListener(listener);

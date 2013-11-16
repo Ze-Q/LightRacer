@@ -12,8 +12,8 @@ public class LoginPanelTwo {
 	private JPanel mainPanel = new JPanel();
 	private JLabel title = new JLabel("Login Player 2");
 
-	protected static final String usernameField = "username1";
-	protected static final String passwordField = "password2";
+	protected static final String usernameField = "username";
+	protected static final String passwordField = "password";
 	protected static final String loginString = "Login";
 
 	public final int WIDTH = 900;
@@ -28,8 +28,8 @@ public class LoginPanelTwo {
 	private JButton cont;
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
-	
-	  private Login loginObject = Login.getInstance(); 
+
+	private Login loginObject = Login.getInstance();
 
 	public LoginPanelTwo() {
 
@@ -38,6 +38,7 @@ public class LoginPanelTwo {
 		login = new JButton("Login");
 		back = new JButton("Back");
 		cont = new JButton("Continue");
+		cont.setVisible(false);
 		usernameLabel = new JLabel(usernameField + ": ");
 		usernameLabel.setLabelFor(username2);
 		passwordLabel = new JLabel(passwordField + ": ");
@@ -77,11 +78,11 @@ public class LoginPanelTwo {
 				boolean loggedIn = loginObject.checkLogedin(enteredUsername);
 				if (!success) {
 					actionLabel.setText("Unsuccessful Login.");
-				} 
-				else if(loggedIn){
-					actionLabel.setText(enteredUsername + ", you are already logged in!");
-				}
-				else {
+				} else if (loggedIn) {
+					actionLabel.setText(enteredUsername
+							+ ", you are already logged in!");
+				} else {
+					cont.setVisible(true);
 					User newUser = new User(enteredUsername);
 					loginObject.serUseTwo(newUser);
 					actionLabel.setText("Welcome! "
@@ -94,17 +95,7 @@ public class LoginPanelTwo {
 	}
 
 	public void addContinueBtnActionListener(ActionListener listener) {
-		boolean success = true;
-		if (success) {
-			cont.addActionListener(listener);
-		} else {
-			cont.addActionListener(new ActionListener() {
-				@Override
-				public void actionPerformed(ActionEvent e) {
-					actionLabel.setText("Unsuccessful Login Attempt");
-				}
-			});
-		}
+		cont.addActionListener(listener);
 	}
 
 	public void addBackBtnActionListener(ActionListener listener) {
