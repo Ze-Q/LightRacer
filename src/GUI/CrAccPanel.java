@@ -2,7 +2,10 @@ package GUI;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
+
+import accounts.CreateAccount;
 
 public class CrAccPanel {
 	private JPanel mainPanel = new JPanel();
@@ -58,9 +61,13 @@ public class CrAccPanel {
     }
 	
 	public void addCrtAccBtnActionListener(ActionListener listener) {
+		String thisUsername = username.getText();
+		String thisPassword = new String (password.getPassword());
+		
 		boolean success = true;
 		if(success){
 			crAcc.addActionListener(listener);
+			crud.CSVHandler.addUser(thisUsername, thisPassword);
 		}
 		else{
 			crAcc.addActionListener( new ActionListener() {
