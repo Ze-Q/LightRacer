@@ -93,17 +93,59 @@ public class Player {
 	
 	/*TODO Update the method to make the color on the inside darker - glow effect*/
 	public void update(Level level) {
+		//move
+		this.xPos = this.getNextPos()[0];
+		this.yPos = this.getNextPos()[1];
 		//set colors
 		level.pixels[xPos][yPos] = tColor.color;
-		level.pixels[xPos][yPos - 1] = tColor.glow; 
-		level.pixels[xPos][yPos + 1] = tColor.glow; 
-		level.pixels[xPos + 1][yPos] = tColor.glow; 
-		level.pixels[xPos - 1][yPos] = tColor.glow;
-		level.pixels[xPos + 1][yPos - 1] = tColor.glow; 
-		level.pixels[xPos - 1][yPos - 1] = tColor.glow; 
-		level.pixels[xPos + 1][yPos + 1] = tColor.glow; 
-		level.pixels[xPos - 1][yPos + 1] = tColor.glow; 
+		/*level.pixels[xPos][yPos - 1] = tColor.color; 
+		level.pixels[xPos][yPos + 1] = tColor.color; 
+		level.pixels[xPos + 1][yPos] = tColor.color;  
+		level.pixels[xPos - 1][yPos] = tColor.color; 
+		level.pixels[xPos + 1][yPos - 1] = tColor.color;  
+		level.pixels[xPos - 1][yPos - 1] = tColor.color; 
+		level.pixels[xPos + 1][yPos + 1] = tColor.color; 
+		level.pixels[xPos - 1][yPos + 1] = tColor.color; */
 		//set collisions
-		level.collisions[xPos][yPos] = true;		
+		//level.collisions[xPos][yPos] = true;		
 	}
+	
+	public String getColor() {
+		String color;
+		if (this.color == Player.RED) {
+			color = "Red";
+		}
+		else if (this.color == Player.BLUE) {
+			color = "Blue";
+		}
+		else if (this.color == Player.YELLOW) {
+			color = "Yellow";
+		}
+		else {
+			color = "Green";
+		}
+		return color;
+	}
+	
+	public int[] getNextPos() {
+		int[] nextPos = new int[2];
+		nextPos[0] = this.xPos;
+		nextPos[1] = this.yPos;
+		
+		if (this.direction == "UP") {
+			nextPos[1]--;
+		}
+		else if (this.direction == "DOWN") {
+			nextPos[1]++;
+		}
+		else if (this.direction == "LEFT") {
+			nextPos[0]--;
+		}
+		else if (this.direction == "RIGHT") {
+			nextPos[0]++;
+		}
+
+		return nextPos;
+	}
+	
 }

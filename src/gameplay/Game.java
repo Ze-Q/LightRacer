@@ -12,8 +12,7 @@ import gameplay.Player;
 
 import javax.swing.JFrame;
 
-//TODO Game Over screen displaying who won
-//TODO DRAW detection
+//TODO Game Over screens displaying who won round/game and handle new round
 
 public class Game extends Canvas implements Runnable {
 
@@ -35,6 +34,7 @@ public class Game extends Canvas implements Runnable {
 
 	public Level level;
 	public Player player1, player2;
+	public int[] score = new int[]{0, 0};
 
 	public Game() {
 		//set window size
@@ -154,25 +154,19 @@ public class Game extends Canvas implements Runnable {
 	}
 	
 	//Called when collision is detected
-	public void collision(Player winningPlayer) {
-		String result;
-		if (winningPlayer.color == Player.RED) {
-			result = "Red Player won!";
-		}
-		else if (winningPlayer.color == Player.BLUE) {
-			result = "Blue Player won!";
-		}
-		else if (winningPlayer.color == Player.YELLOW) {
-			result = "Yellow Player won!";
+	public void endRound(String result) {
+		String roundResult;
+		if (result.equals("Draw")) {
+			roundResult = result;
 		}
 		else {
-			result = "Green Player won!";
+			roundResult = result + " has won this round!";
 		}
-		frame.setTitle(TITLE + " | " + result);
-		System.out.println(result);
+		frame.setTitle(TITLE + " | " + roundResult);
+		System.out.println(roundResult);
 		stop();
 	}
-
+	
 
 	public static void main(String[] args) {
 		Game game = new Game();

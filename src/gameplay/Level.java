@@ -3,8 +3,10 @@ package gameplay;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
+import java.util.Arrays;
+
 import javax.imageio.ImageIO;
+
 import gameplay.*;
 
 
@@ -13,14 +15,14 @@ public class Level {
 
 	public int width, height;
 	public int[][] pixels; 
-	public boolean[][] collisions;
+	//public boolean[][] collisions;
 	public BufferedImage[] maps;
 
 	public Level (int w, int h) {
 		this.width = w;
 		this.height = h;
 		pixels = new int[width][height];
-		collisions = new boolean[width][height];
+		//collisions = new boolean[width][height];
 		File[] mapFiles;
 		File dir;
 		try {
@@ -48,12 +50,12 @@ public class Level {
 				//background 
 				pixels[x][y] = 0x131717;
 				//background does not cause collisions
-				collisions[x][y] = false;
+				//collisions[x][y] = false;
 				//border
 				if (x == 0 || x == width - 1 || y == 0 || y == height - 1) {
 					pixels[x][y] = 0xFFFFFF;
 					//border causes collisions
-					collisions[x][y] = true;
+					//collisions[x][y] = true;
 				}
 			}
 		}
@@ -66,13 +68,13 @@ public class Level {
 			for (int x = 0; x < width; x++){
 				pixels[x][y] = image.getRGB(x, y);
 				if (image.getRGB(x, y) != -16777216) {
-					collisions[x][y] = true;
+					//collisions[x][y] = true;
 				}
 				else {
-					collisions[x][y] = false;
+					//collisions[x][y] = false;
 				}
 				if (x == 0 || x == width - 1 || y == 0 || y == height - 1) {
-					collisions[x][y] = true;
+					//collisions[x][y] = true;
 				}
 			}
 		}
@@ -90,43 +92,31 @@ public class Level {
 	/* Update player positions and check for collisions */
 	public void update(Game game, Player player1, Player player2) {
 		for (int i = 1; i <= player1.velocity; i++) {
-			if (player1.direction == "UP") {
-				if (collisions[player1.xPos][player1.yPos - 1]) {
-					game.collision(player2); 
-				}
-				else { 
-					player1.yPos--; 
-					player1.update(this); 
-				}
+			//Next position for both players is same => draw
+			if (Arrays.equals(player1.getNextPos(), player2.getNextPos())) {
+				game.endRound("Draw");
 			}
-			else if (player1.direction == "DOWN") {
-				if (collisions[player1.xPos][player1.yPos + 1]) { 
-					game.collision(player2);
-				}
-				else { 
-					player1.yPos++; 
-					player1.update(this);  
-				}
+			//Next position for both players is a collision => draw
+			else if (pixels[player1.getNextPos()[0]][player1.getNextPos()[1]] != -16777216 
+						&& pixels[player2.getNextPos()[0]][player2.getNextPos()[1]] != -16777216) {
+				game.endRound("Draw");
 			}
-			else if (player1.direction == "LEFT") {
-				if (collisions[player1.xPos - 1][player1.yPos]) {
-					game.collision(player2);
-				}
-				else { 
-					player1.xPos--; 
-					player1.update(this); 
-				}
+			//Next position for player1 is a collision => player2 wins
+			else if (pixels[player1.getNextPos()[0]][player1.getNextPos()[1]] != -16777216) {
+				game.endRound(player2.getColor());
+				game.score[1]++;
 			}
-			else if (player1.direction == "RIGHT") {
-				if (collisions[player1.xPos + 1][player1.yPos]) {
-					game.collision(player2);
-				}
-				else { 
-					player1.xPos++; 
-					player1.update(this);  
-				}
+			//Next position for player2 is a collision => player1 wins
+			else if (pixels[player2.getNextPos()[0]][player2.getNextPos()[1]] != -16777216) {
+				game.endRound(player1.getColor());
+				game.score[0]++;
+			}
+			else {
+				player1.update(this);
+				player2.update(this);
 			}
 		}
+		/*	
 		for (int i = 1; i <= player2.velocity; i++) {
 			if (player2.direction == "UP") {
 				if (collisions[player2.xPos][player2.yPos - 1]) { 
@@ -164,8 +154,11 @@ public class Level {
 					player2.update(this);  
 				}
 			}
-		}
+		}*/
+		
+
 	}
+	
 
 
 }
