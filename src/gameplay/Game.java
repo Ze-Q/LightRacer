@@ -77,27 +77,17 @@ public class Game extends Canvas implements Runnable {
         
         
         public synchronized void stop() {
-        		displayBackButton();                
+        	frame.setVisible(false);
+    		frame.dispose();
+        	running = false;
+            try {
+                    thread.join();
+            } catch (InterruptedException ie) {
+                    ie.printStackTrace();
+            }          
         }
 
-        public synchronized void displayBackButton(){
-        		back = new JButton("Back");
-        		frame.add(back);
-        		back.setBounds(400,200,100,100);
-        		back.addActionListener(new ActionListener() {
-        			@Override
-        			public void actionPerformed(ActionEvent e) {
-                		frame.setVisible(false);
-                		frame.dispose();
-                        running = false;
-                        try {
-                                thread.join();
-                        } catch (InterruptedException ie) {
-                                ie.printStackTrace();
-                        }
-        			};
-        		});
-        }
+
 
         //Main game loop
         public void run() {
@@ -109,7 +99,7 @@ public class Game extends Canvas implements Runnable {
                 long timer = System.currentTimeMillis();
                 requestFocus();
                 while (running) {
-                        long currentTime = System.nanoTime();
+                		long currentTime = System.nanoTime();
                         deltaTime += (currentTime - lastTime) / nanoSecondsPerUpdate;
                         lastTime = currentTime;
 
@@ -133,6 +123,7 @@ public class Game extends Canvas implements Runnable {
                                 frames = 0;
                                 updates = 0;
                         }
+           
                 }
         }
 
