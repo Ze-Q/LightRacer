@@ -30,7 +30,7 @@ public class MainWindow {
 	private LoginPanelOne loginPanel1 = new LoginPanelOne();
 	private LoginPanelTwo loginPanel2 = new LoginPanelTwo();
 	private MainPanel mainPanel = new MainPanel();
-	private GamePanel gamePanel = new GamePanel();
+	public GamePanel gamePanel = new GamePanel();
 	private StatsPanel statsPanel = new StatsPanel();
 	private HelpPanel helpPanel = new HelpPanel();
 	private SettingsPanel settPanel = new SettingsPanel();
@@ -135,12 +135,8 @@ public class MainWindow {
 		gamePanel.addStartBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				int player1Color = 0xFFD407; //1 of 4 predefined in Player.java
-				int player2Color = 0x2164FF; //1 of 4 predefined in Player.java
-				int speed = 5; //1 to 10
-				int mapNumber = 0; //from 0 to 2, since we have 3 maps
 				Score score = new Score();
-				gameplay.Game startGame = new gameplay.Game(score, player1Color, player2Color, speed, mapNumber);
+				gameplay.Game startGame = new gameplay.Game(score, gamePanel.p1color, gamePanel.p2color, gamePanel.sp, gamePanel.mapNumber);
 			}
 		});
 
