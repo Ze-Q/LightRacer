@@ -1,11 +1,13 @@
 package GUI;
 
+import accounts.*;
+import crud.CSVHandler;
+
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 
 import javax.swing.*;
-
-import accounts.CreateAccount;
 
 public class CrAccPanel {
 	private JPanel mainPanel = new JPanel();
@@ -56,28 +58,36 @@ public class CrAccPanel {
 		passwordFieldLabel.setBounds(350, 200, size.width, size.height);
 		username.setBounds(450, 150, size.width, size.height);
 		password.setBounds(450, 200, size.width, size.height);
-		actionLabel.setBounds(350, 250, 200, size.height);
-  
-    }
-	
-	public void addCrtAccBtnActionListener(ActionListener listener) {
-		String thisUsername = username.getText();
-		String thisPassword = new String (password.getPassword());
+		actionLabel.setBounds(350, 220, 500, size.height+100);
 		
-		boolean success = true;
-		if(success){
-			crAcc.addActionListener(listener);
-			crud.CSVHandler.addUser(thisUsername, thisPassword);
-		}
-		else{
-			crAcc.addActionListener( new ActionListener() {
+		crAcc.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					actionLabel.setText("Unsuccessful Account Creation.");
+
+					String enteredUsername = username.getText();
+					String enteredPassword = new String(password.getPassword());
+					
+					boolean success = CreateAccount.addUser(enteredUsername, enteredPassword);
+					
+					if(!success){
+						String errorMessage = "";
+						try {
+							if(CSVHandler.isExist(enteredUsername)) errorMessage = errorMessage + "Username Already Exists.<br>";
+							errorMessage = errorMessage + CSVHandler.isValidUsername(enteredUsername);
+							errorMessage = errorMessage + CSVHandler.isValidPassword(enteredPassword);
+							actionLabel.setText("<html>"+ errorMessage+"</html>");
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+					else{
+						actionLabel.setText("Your Account Has Been Created.");
+					}
 				}
-			});
-		}
-	}
+		});
+  
+    }
 	
 	public void addBackBtnActionListener(ActionListener listener) {
 		back.addActionListener(listener);

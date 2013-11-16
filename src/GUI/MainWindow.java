@@ -59,14 +59,7 @@ public class MainWindow {
 				cardlayout.show(mainWindow, CRACC);
 			}
 		});
-		
-		crAccPanel.addCrtAccBtnActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(mainWindow, INTRO);
-			}
-		});
-		
+				
 		crAccPanel.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
