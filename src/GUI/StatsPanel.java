@@ -5,6 +5,7 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import accounts.Login;
 import accounts.Statistics;
 import accounts.User;
 
@@ -18,8 +19,8 @@ class StatsPanel {
 	private JTable topTenTable;
 	private JTable versusTable;
 	
-	User user1 = new User ("A");
-	User user2 = new User ("B");
+	User user1;
+	User user2;
 	
 	public StatsPanel() {
 		
@@ -28,13 +29,11 @@ class StatsPanel {
 		versusTitle = new JLabel("Versus Records");
 		back = new JButton("Return to Main Menu");
 		topTenTable = generateTopTenTable();
-		versusTable = generateVersusTable();
 		
 		mainPanel.add(title);
 		mainPanel.add(topTenTitle);
 		mainPanel.add(topTenTable);
 		mainPanel.add(versusTitle);
-		mainPanel.add(versusTable);
 		mainPanel.add(back);
 		
 		Dimension size = new Dimension(100,25);
@@ -42,10 +41,18 @@ class StatsPanel {
 		topTenTable.setBounds(150, 160, 150, 175);
 		topTenTable.setBackground(Color.LIGHT_GRAY);
 		versusTitle.setBounds(600, 140, 200, 25);
-		versusTable.setBounds(600, 160, 150, 45);
-		versusTable.setBackground(Color.LIGHT_GRAY);
 		back.setBounds(350, 450, 200, size.height);
 		title.setBounds(415, 50, size.width, size.height);
+	}
+	
+	public void updateStatsPanel() {
+		user1 = Login.getInstance().getUserOne();
+		user2 = Login.getInstance().getUserTwo();
+		versusTable = generateVersusTable();
+		mainPanel.add(versusTable);
+		versusTable.setBounds(600, 160, 150, 45);
+		versusTable.setBackground(Color.LIGHT_GRAY);
+		
 	}
 	
 	private JTable generateTopTenTable () {
