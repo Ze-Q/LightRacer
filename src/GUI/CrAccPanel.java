@@ -5,8 +5,6 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-import accounts.CreateAccount;
-
 public class CrAccPanel {
 	private JPanel mainPanel = new JPanel();
 	private JLabel title = new JLabel("Create Account");
@@ -57,27 +55,24 @@ public class CrAccPanel {
 		username.setBounds(450, 150, size.width, size.height);
 		password.setBounds(450, 200, size.width, size.height);
 		actionLabel.setBounds(350, 250, 200, size.height);
-  
-    }
-	
-	public void addCrtAccBtnActionListener(ActionListener listener) {
-		String thisUsername = username.getText();
-		String thisPassword = new String (password.getPassword());
 		
-		boolean success = true;
-		if(success){
-			crAcc.addActionListener(listener);
-			crud.CSVHandler.addUser(thisUsername, thisPassword);
-		}
-		else{
-			crAcc.addActionListener( new ActionListener() {
+		crAcc.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					actionLabel.setText("Unsuccessful Account Creation.");
+					boolean success = true;
+					
+					String enteredUsername = username.getText();
+					
+					if(!success){
+						actionLabel.setText("Unsuccessful Account Creation.");
+					}
+					else{
+						actionLabel.setText(enteredUsername);
+					}
 				}
-			});
-		}
-	}
+		});
+  
+    }
 	
 	public void addBackBtnActionListener(ActionListener listener) {
 		back.addActionListener(listener);
