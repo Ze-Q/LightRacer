@@ -57,12 +57,15 @@ public class Level {
 	
 	public void setLevel(int mapIndex) {
 		BufferedImage image = maps[mapIndex];
-		System.out.println(image.getRGB(1, 1));	//Get background color for debugging
 		for(int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++){
 				pixels[x][y] = image.getRGB(x, y);
+				if (x < 1 || x > width - 2 || y < 1 || y > height - 2) {
+					pixels[x][y] = 0xFFFFFF;
+				}
 			}
 		}
+		
 	}
 
 	/* Clear the map by filling it with black color */
@@ -87,20 +90,33 @@ public class Level {
 				game.endRound("Draw");
 			}
 			//Next position for player1 is a collision => player2 wins
-			else if (pixels[player1.getNextPos()[0]][player1.getNextPos()[1]] != -16777216) {
+			else if (pixels[player1.getNextPos()[0]][player1.getNextPos()[1]] != -16777216
+						|| isOutOfBounds(player1)) {
 				game.endRound(player2.getColor());
-				game.score[1]++;
+				game.curScore.p2Won();	
 			}
 			//Next position for player2 is a collision => player1 wins
-			else if (pixels[player2.getNextPos()[0]][player2.getNextPos()[1]] != -16777216) {
+			else if (pixels[player2.getNextPos()[0]][player2.getNextPos()[1]] != -16777216
+						|| isOutOfBounds(player2)) {
 				game.endRound(player1.getColor());
-				game.score[0]++;
+				game.curScore.p1Won();
 			}
 			else {
 				player1.update(this);
 				player2.update(this);
 			}
 		}
+	}
+	
+	public boolean isOutOfBounds(Player player) {
+		boolean outOfBounds = false;
+		if (player.getNextPos()[0] < 2 || player.getNextPos()[0] > this.width - 2) {
+			outOfBounds = true;
+		}
+		else if(player.getNextPos()[1] < 2 || player.getNextPos()[1] > this.height - 2) {
+			outOfBounds = true;
+		}
+		return outOfBounds;
 	}
 	
 
