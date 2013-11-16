@@ -69,7 +69,7 @@ public class MainWindow {
 			}
 		});
 		
-		loginPanel1.addLoginBtnActionListener(new ActionListener() {
+		loginPanel1.addContinueBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(mainWindow, LOGIN2);
@@ -83,17 +83,17 @@ public class MainWindow {
 			}
 		});
 		
+		loginPanel2.addContinueBtnActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardlayout.show(mainWindow, MAIN);
+			}
+		});
+		
 		loginPanel2.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(mainWindow, LOGIN);
-			}
-		});
-		
-		loginPanel2.addLoginBtnActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(mainWindow, MAIN);
 			}
 		});
 
