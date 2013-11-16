@@ -5,13 +5,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+
 import gameplay.Keyboard;
 import gameplay.Level;
 import gameplay.Player;
 
 import javax.swing.JFrame;
 
-//TODO optimize for more FPS, preferably through SCALE
+//TODO Game Over screen displaying who won
+//TODO DRAW detection
 
 public class Game extends Canvas implements Runnable {
 
@@ -54,10 +56,10 @@ public class Game extends Canvas implements Runnable {
 
 	public synchronized void start() {
 		running = true;
+		level.clear();
+		level.setLevel(1); //CHANGE THIS VALUE TO SET MAP LAYOUT
 		thread = new Thread(this, "Display");
 		thread.start();
-		level.clear();
-		level.loadLevel();
 	}
 	
 	
@@ -151,8 +153,6 @@ public class Game extends Canvas implements Runnable {
 		strategy.show();
 	}
 	
-	//TODO Game Over screen displaying who won
-	//TODO Collision explosion effect
 	//Called when collision is detected
 	public void collision(Player winningPlayer) {
 		String result;

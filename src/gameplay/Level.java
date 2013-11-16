@@ -1,12 +1,11 @@
 package gameplay;
 
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
-
+import java.net.URL;
 import javax.imageio.ImageIO;
-
 import gameplay.*;
-import gameplay.Player;
 
 
 public class Level {
@@ -15,13 +14,28 @@ public class Level {
 	public int width, height;
 	public int[][] pixels; 
 	public boolean[][] collisions;
-	public String path = "/map.png";
+	public BufferedImage[] maps;
 
 	public Level (int w, int h) {
 		this.width = w;
 		this.height = h;
 		pixels = new int[width][height];
 		collisions = new boolean[width][height];
+		File[] mapFiles;
+		File dir;
+		try {
+			dir = new File("./src/res");
+			mapFiles = dir.listFiles();
+			int mapsFound = mapFiles.length;
+			System.out.println("Found " + mapsFound + " maps in " + dir.toString() + " directory");
+			//preload all maps
+			maps = new BufferedImage[mapsFound];
+			for (int i = 0; i < mapsFound; i++) {
+				maps[i] = ImageIO.read(mapFiles[i]);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 
@@ -45,26 +59,22 @@ public class Level {
 		}
 	}
 	
-	public void loadLevel() {
-		try {
-			BufferedImage image = ImageIO.read(Level.class.getResource(path));
-			System.out.println(image.getRGB(1, 1));
-			for(int y = 0; y < height; y++) {
-				for (int x = 0; x < width; x++){
-					pixels[x][y] = image.getRGB(x, y);
-					if (image.getRGB(x, y) != -16777216) {
-						collisions[x][y] = true;
-					}
-					else {
-						collisions[x][y] = false;
-					}
-					if (x == 0 || x == width - 1 || y == 0 || y == height - 1) {
-						collisions[x][y] = true;
-					}
+	public void setLevel(int mapIndex) {
+		BufferedImage image = maps[mapIndex];
+		System.out.println(image.getRGB(1, 1));	//Get background color for debugging
+		for(int y = 0; y < height; y++) {
+			for (int x = 0; x < width; x++){
+				pixels[x][y] = image.getRGB(x, y);
+				if (image.getRGB(x, y) != -16777216) {
+					collisions[x][y] = true;
+				}
+				else {
+					collisions[x][y] = false;
+				}
+				if (x == 0 || x == width - 1 || y == 0 || y == height - 1) {
+					collisions[x][y] = true;
 				}
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 	}
 
