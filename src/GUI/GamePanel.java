@@ -69,7 +69,7 @@ class GamePanel {
 		start = new JButton("Start Game");
 		abort = new JButton("Abort Game");
 		set = new JButton("Set");
-		actionLabel = new JLabel("THIS IS THE ACTION LABEL");
+		actionLabel = new JLabel("");
 
 		mainPanel.add(title);
 		mainPanel.add(start);
