@@ -183,22 +183,6 @@ public class Game extends Canvas implements Runnable {
 	public JComponent getMainComponent() {
 		return this.mainPanel;
 	}
-	
-	
-
-	public static void main(String[] args) {
-		Game game = new Game();
-		//game.frame.setResizable(false);
-		//game.frame.setTitle(TITLE);
-		game.mainPanel.add(game);
-		//game.frame.pack();
-		//game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		//game.mainPanel.setPreferredSize(SIZE);
-		game.mainPanel.setLayout(null);
-		//game.mainPanel.setLocationRelativeTo(null);
-		//game.frame.setVisible(true);
-		game.start();
-	}
 
 
 }
