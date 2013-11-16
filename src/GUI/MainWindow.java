@@ -108,6 +108,7 @@ public class MainWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(mainWindow, STATS);
+				statsPanel.updateStatsPanel();
 			}
 		});
 		
