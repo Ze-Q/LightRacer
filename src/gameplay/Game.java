@@ -28,7 +28,6 @@ public class Game extends Canvas implements Runnable {
 	//private final static String TITLE = "Light Racer Prototype";
 
 	private JPanel mainPanel;
-	private Thread thread;
 	private Keyboard key;
 
 	public boolean running = false;
@@ -40,10 +39,6 @@ public class Game extends Canvas implements Runnable {
 	public int[] score = new int[]{0, 0};
 
 	public Game() {
-		//set window size
-		Dimension screenSize = new Dimension(WIDTH*SCALE, HEIGHT*SCALE);
-		setPreferredSize(screenSize);
-
 		//create 2 players
 		player1 = new Player(100, 450, 5, "UP", Player.YELLOW);
 		player2 = new Player(800, 56, 5, "DOWN", Player.GREEN);
@@ -56,6 +51,9 @@ public class Game extends Canvas implements Runnable {
 		//game.frame.setResizable(false);
 		//game.frame.setTitle(TITLE);
 		mainPanel.add(this);
+		//set window size
+		Dimension screenSize = new Dimension(WIDTH*SCALE, HEIGHT*SCALE);
+		setPreferredSize(screenSize);
 		//game.frame.pack();
 		//game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		//game.mainPanel.setPreferredSize(SIZE);
@@ -71,18 +69,16 @@ public class Game extends Canvas implements Runnable {
 		running = true;
 		level.clear();
 		level.setLevel(1); //CHANGE THIS VALUE TO SET MAP LAYOUT
-		thread = new Thread(this, "Display");
-		thread.start();
 	}
 	
 	
 	public synchronized void stop() {
 		running = false;
-		try {
-			thread.join();
+		/*try {
+		//	thread.join();
 		} catch (InterruptedException e) {
 			e.printStackTrace();
-		}
+		}*/
 	}
 
 
