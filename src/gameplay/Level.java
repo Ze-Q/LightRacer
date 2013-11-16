@@ -15,14 +15,12 @@ public class Level {
 
 	public int width, height;
 	public int[][] pixels; 
-	//public boolean[][] collisions;
 	public BufferedImage[] maps;
 
 	public Level (int w, int h) {
 		this.width = w;
 		this.height = h;
 		pixels = new int[width][height];
-		//collisions = new boolean[width][height];
 		File[] mapFiles;
 		File dir;
 		try {
@@ -49,13 +47,9 @@ public class Level {
 			for (int x = 0; x < width; x++){
 				//background 
 				pixels[x][y] = 0x131717;
-				//background does not cause collisions
-				//collisions[x][y] = false;
 				//border
 				if (x == 0 || x == width - 1 || y == 0 || y == height - 1) {
 					pixels[x][y] = 0xFFFFFF;
-					//border causes collisions
-					//collisions[x][y] = true;
 				}
 			}
 		}
@@ -67,15 +61,6 @@ public class Level {
 		for(int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++){
 				pixels[x][y] = image.getRGB(x, y);
-				if (image.getRGB(x, y) != -16777216) {
-					//collisions[x][y] = true;
-				}
-				else {
-					//collisions[x][y] = false;
-				}
-				if (x == 0 || x == width - 1 || y == 0 || y == height - 1) {
-					//collisions[x][y] = true;
-				}
 			}
 		}
 	}
@@ -116,47 +101,6 @@ public class Level {
 				player2.update(this);
 			}
 		}
-		/*	
-		for (int i = 1; i <= player2.velocity; i++) {
-			if (player2.direction == "UP") {
-				if (collisions[player2.xPos][player2.yPos - 1]) { 
-					game.collision(player1); 
-				}
-				else { 
-					player2.yPos--; 
-					player2.update(this);  
-				}
-			}
-			else if (player2.direction == "DOWN") {
-				if (collisions[player2.xPos][player2.yPos + 1]) { 
-					game.collision(player1); 
-				}
-				else { 
-					player2.yPos++; 
-					player2.update(this); 
-				}
-			}
-			else if (player2.direction == "LEFT") {
-				if (collisions[player2.xPos - 1][player2.yPos]) { 
-					game.collision(player1); 
-				}
-				else { 
-					player2.xPos--; 
-					player2.update(this); 
-				}
-			}
-			else if (player2.direction == "RIGHT") {
-				if (collisions[player2.xPos + 1][player2.yPos]) { 
-					game.collision(player1); 
-				}
-				else { 
-					player2.xPos++; 
-					player2.update(this);  
-				}
-			}
-		}*/
-		
-
 	}
 	
 
