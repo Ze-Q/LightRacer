@@ -45,6 +45,10 @@ class GamePanel {
 		   abort.addActionListener(listener);
 	}
 	
+	public void addStartBtnActionListener(ActionListener listener) {
+		   start.addActionListener(listener);
+	}
+	
 	public JComponent getMainComponent() {
 	   return mainPanel;
 	}
