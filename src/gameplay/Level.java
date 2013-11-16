@@ -7,8 +7,6 @@ import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 
-import gameplay.*;
-
 
 public class Level {
 
@@ -60,7 +58,7 @@ public class Level {
 		for(int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++){
 				pixels[x][y] = image.getRGB(x, y);
-				if (x < 1 || x > width - 2 || y < 1 || y > height - 2) {
+				if (x < 3 || x > width - 4 || y < 3 || y > height - 4) {
 					pixels[x][y] = 0xFFFFFF;
 				}
 			}
