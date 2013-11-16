@@ -98,7 +98,7 @@ class GamePanel {
 		speedLabel.setBounds(350, 150, size.width, size.height);
 		speed.setBounds(450, 150, size.width, size.height);
 		set.setBounds(400, 350, size.width, size.height);
-		actionLabel.setBounds(250, 250, 400, size.height);
+		actionLabel.setBounds(400, 250, 400, 75);
 		
 		set.addActionListener(new ActionListener() {
 			@Override
@@ -146,7 +146,7 @@ class GamePanel {
 					}
 					sp = spd;
 					mapNumber = Character.getNumericValue((chosenMap.charAt(3)));
-					actionLabel.setText("" + mapNumber);
+					actionLabel.setText("<html>" + "Map: " + chosenMap + "<br>" +  "Speed: " + sp + "<br>" + "Player 1:" + colorPlayer1 + "<br>" + "Player 2:" + colorPlayer2 + "</html>");
 				}
 			}
 		});
