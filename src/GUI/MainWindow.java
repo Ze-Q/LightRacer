@@ -1,5 +1,7 @@
 package GUI;
 
+import gameplay.Score;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -59,14 +61,7 @@ public class MainWindow {
 				cardlayout.show(mainWindow, CRACC);
 			}
 		});
-		
-		crAccPanel.addCrtAccBtnActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(mainWindow, INTRO);
-			}
-		});
-		
+				
 		crAccPanel.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -74,7 +69,7 @@ public class MainWindow {
 			}
 		});
 		
-		loginPanel1.addLoginBtnActionListener(new ActionListener() {
+		loginPanel1.addContinueBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(mainWindow, LOGIN2);
@@ -88,17 +83,17 @@ public class MainWindow {
 			}
 		});
 		
+		loginPanel2.addContinueBtnActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardlayout.show(mainWindow, MAIN);
+			}
+		});
+		
 		loginPanel2.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(mainWindow, LOGIN);
-			}
-		});
-		
-		loginPanel2.addLoginBtnActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(mainWindow, MAIN);
 			}
 		});
 
@@ -140,7 +135,12 @@ public class MainWindow {
 		gamePanel.addStartBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				gameplay.Game startGame = new gameplay.Game();
+				int player1Color = 0xFFD407; //1 of 4 predefined in Player.java
+				int player2Color = 0x2164FF; //1 of 4 predefined in Player.java
+				int speed = 5; //1 to 10
+				int mapNumber = 0; //from 0 to 2, since we have 3 maps
+				Score score = new Score();
+				gameplay.Game startGame = new gameplay.Game(score, player1Color, player2Color, speed, mapNumber);
 			}
 		});
 
