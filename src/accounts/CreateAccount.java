@@ -13,6 +13,9 @@ public class CreateAccount {
 		if(isValid) {
 			CSVHandler.addUser(username, password);
 		}
+		Statistics statistics = Statistics.getInstance();
+		statistics.addNewUser(new User(username));
+		statistics.updateStatsFile();
 		return isValid;
 	}
 }
