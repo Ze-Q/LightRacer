@@ -222,7 +222,7 @@ public class Game extends Canvas implements Runnable {
                 	curPanel.ret.setVisible(true);
                 	curPanel.start.setVisible(false);
                 	
-                	Login.getInstance().getUserOne().increaseVersusWins();
+                	Login.getInstance().getUserTwo().increaseVersusWins();
                 	Statistics.getInstance().updateStats(Login.getInstance().getUserOne(), Login.getInstance().getUserTwo());
                 	Statistics.getInstance().updateStatsFile();
                 }
@@ -230,6 +230,8 @@ public class Game extends Canvas implements Runnable {
                 	curPanel.title.setText("Current Score: " + MainWindow.score.getP1() + " - " +  MainWindow.score.getP2());
                 	curPanel.title.setVisible(false);
                 	curPanel.title.setVisible(true);
+                	curPanel.mainPanel.remove(curPanel.title);
+                	curPanel.mainPanel.add(curPanel.title);
                 }
                 stop();
         }

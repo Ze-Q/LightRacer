@@ -10,7 +10,7 @@ import java.io.IOException;
 import javax.swing.*;
 
 public class GamePanel {
-	private JPanel mainPanel = new JPanel();
+	public JPanel mainPanel = new JPanel();
 
 	public int p1color;
 	public int p2color;
