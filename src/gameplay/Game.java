@@ -13,6 +13,8 @@ import gameplay.Player;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import accounts.Login;
+import accounts.Statistics;
 import GUI.GamePanel;
 import GUI.MainWindow;
 
@@ -208,6 +210,10 @@ public class Game extends Canvas implements Runnable {
                 	curPanel.abort.setVisible(false);
                 	curPanel.ret.setVisible(true);
                 	curPanel.start.setVisible(false);
+                	
+                	Login.getInstance().getUserOne().increaseVersusWins();
+                	Statistics.getInstance().updateStats(Login.getInstance().getUserOne(), Login.getInstance().getUserTwo());
+                	Statistics.getInstance().updateStatsFile();
                 }
                 else if (MainWindow.score.getP2() == 2){
                 	curPanel.title.setText("Player 2 has won!");
@@ -215,6 +221,10 @@ public class Game extends Canvas implements Runnable {
                 	curPanel.abort.setVisible(false);
                 	curPanel.ret.setVisible(true);
                 	curPanel.start.setVisible(false);
+                	
+                	Login.getInstance().getUserOne().increaseVersusWins();
+                	Statistics.getInstance().updateStats(Login.getInstance().getUserOne(), Login.getInstance().getUserTwo());
+                	Statistics.getInstance().updateStatsFile();
                 }
                 else{
                 	curPanel.title.setText("Current Score: " + MainWindow.score.getP1() + " - " +  MainWindow.score.getP2());
