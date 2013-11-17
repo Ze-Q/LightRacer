@@ -218,7 +218,6 @@ public class MainWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				gameplay.Game startGame = new gameplay.Game(gamePanel,score, gamePanel.p1color, gamePanel.p2color, gamePanel.sp, gamePanel.mapNumber);
-				System.out.println("Out: Player1: "+score.p1+ "   Player2: "+score.p2);
 			}
 		});
 

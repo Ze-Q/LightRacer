@@ -12,10 +12,10 @@ public class CreateAccount {
 		boolean isValid = CSVHandler.validateCredential(username,password);
 		if(isValid) {
 			CSVHandler.addUser(username, password);
+			Statistics statistics = Statistics.getInstance();
+			statistics.addNewUser(new User(username));
+			statistics.updateStatsFile();
 		}
-		Statistics statistics = Statistics.getInstance();
-		statistics.addNewUser(new User(username));
-		statistics.updateStatsFile();
 		return isValid;
 	}
 }

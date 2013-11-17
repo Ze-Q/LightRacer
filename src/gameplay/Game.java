@@ -194,7 +194,7 @@ public class Game extends Canvas implements Runnable {
         
         //Called when collision is detected
         public void endRound(String result) {
-        		System.out.println("In: Player1: "+curScore.p1+ "   Player2: "+curScore.p2);
+        		System.out.println("Player1: "+curScore.p1+ "   Player2: "+curScore.p2);
                 String roundResult;
                 if (result.equals("Draw")) {
                         roundResult = result;
@@ -228,6 +228,8 @@ public class Game extends Canvas implements Runnable {
                 }
                 else{
                 	curPanel.title.setText("Current Score: " + MainWindow.score.getP1() + " - " +  MainWindow.score.getP2());
+                	curPanel.title.setVisible(false);
+                	curPanel.title.setVisible(true);
                 }
                 stop();
         }
