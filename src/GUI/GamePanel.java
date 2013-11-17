@@ -100,7 +100,7 @@ public class GamePanel {
 		player1Color.setBounds(325, 200, size.width, size.height);
 		color2Label.setBounds(450, 200, 75, size.height);
 		player2Color.setBounds(550, 200, size.width, size.height);
-		speedLabel.setBounds(325, 150, size.width, size.height);
+		speedLabel.setBounds(335, 150, size.width+10, size.height);
 		speed.setBounds(450, 150, size.width, size.height);
 		set.setBounds(400, 350, size.width, size.height);
 		actionLabel.setBounds(400, 250, 400, 75);
