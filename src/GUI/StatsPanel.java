@@ -18,6 +18,7 @@ class StatsPanel {
 	private JButton back;
 	private JTable topTenTable;
 	private JTable versusTable;
+	private boolean isVersusTableInitialized=false;
 	
 	User user1;
 	User user2;
@@ -49,10 +50,12 @@ class StatsPanel {
 		user1 = Login.getInstance().getUserOne();
 		user2 = Login.getInstance().getUserTwo();
 		versusTable = generateVersusTable();
-		mainPanel.add(versusTable);
+		if(isVersusTableInitialized==false){
+			mainPanel.add(versusTable);
+		}
 		versusTable.setBounds(600, 160, 150, 45);
 		versusTable.setBackground(Color.LIGHT_GRAY);
-		
+		isVersusTableInitialized=true;
 	}
 	
 	private JTable generateTopTenTable () {
