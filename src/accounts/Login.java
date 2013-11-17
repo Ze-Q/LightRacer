@@ -33,7 +33,7 @@ public class Login {
 		this.userOne = user;
 	}
 
-	public void serUseTwo(User user) {
+	public void setUserTwo(User user) {
 		this.userTwo = user;
 	}
 
@@ -58,6 +58,14 @@ public class Login {
 			return userOne;
 		else
 			return userTwo;
+	}
+	
+	public boolean userTwoLogin(){
+		return !(userTwo==null);
+	}
+	
+	public boolean userOneLogin(){
+		return !(userOne==null);
 	}
 	
 	public boolean checkLogedin (String username){
