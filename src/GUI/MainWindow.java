@@ -36,13 +36,13 @@ public class MainWindow {
 	private LoginPanelOne loginPanel1 = new LoginPanelOne();
 	private LoginPanelTwo loginPanel2 = new LoginPanelTwo();
 	private MainPanel mainPanel = new MainPanel();
-	public GamePanel gamePanel = new GamePanel();
+	private GamePanel gamePanel = new GamePanel();
 	private StatsPanel statsPanel = new StatsPanel();
 	private HelpPanel helpPanel = new HelpPanel();
 	private SettingsPanel settPanel = new SettingsPanel();
 	private LogoutPanel logoutPanel = new LogoutPanel();
 	
-	private Score score = new Score();
+	public static Score score = new Score();
 	
 	public MainWindow() {
 		
@@ -223,8 +223,11 @@ public class MainWindow {
 		gamePanel.addAbortBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				score.p1=0;
-				score.p2=0;
+				gamePanel.speed.setText("");
+				gamePanel.start.setVisible(false);
+				gamePanel.actionLabel.setText("");
+				gamePanel.ret.setVisible(false);
+				score = new Score();
 				cardlayout.show(mainWindow, MAIN);
 			}
 		});
