@@ -6,51 +6,50 @@ import javax.swing.*;
 
 class LogoutPanel {
 	
-	private static final Dimension MAIN_SIZE = new Dimension(MainWindow.WIDTH, MainWindow.HEIGHT);
 	private JPanel mainPanel = new JPanel();
 	private JLabel title = new JLabel("Choose player(s) to logout");
-	private JButton PlayerOne;
-	private JButton PlayerTwo;
-	private JButton Both;
-	private JButton Cancel;
+	private JButton playerOne;
+	private JButton playerTwo;
+	private JButton both;
+	private JButton cancel;
 
 	public LogoutPanel() {
 		
 		mainPanel.setLayout(null);
-		PlayerOne = new JButton("Player 1");
-		PlayerTwo = new JButton("Player 2");
-		Both = new JButton("Both");
-		Cancel = new JButton ("Cancel");
+		playerOne = new JButton("Player 1");
+		playerTwo = new JButton("Player 2");
+		both = new JButton("Both");
+		cancel = new JButton ("Cancel");
 
 		mainPanel.add(title);
-		mainPanel.add(PlayerOne);
-		mainPanel.add(PlayerTwo);
-		mainPanel.add(Both);
-		mainPanel.add(Cancel);
+		mainPanel.add(playerOne);
+		mainPanel.add(playerTwo);
+		mainPanel.add(both);
+		mainPanel.add(cancel);
 		
 		Dimension size = new Dimension(100,25);
-		title.setBounds(415, 50, size.width, size.height);
-		PlayerOne.setBounds(400, 150, size.width, size.height);
-		PlayerTwo.setBounds(375, 250, 150, size.height);
-		Both.setBounds(375, 350, 150, size.height);
-		Cancel.setBounds(400, 450, size.width, size.height);
+		title.setBounds(375, 50, 200, size.height);
+		playerOne.setBounds(400, 150, size.width, size.height);
+		playerTwo.setBounds(400, 250, size.width, size.height);
+		both.setBounds(400, 350, size.width, size.height);
+		cancel.setBounds(400, 450, size.width, size.height);
 		
 		
 	}
 	public void addPlayerOneActionListener(ActionListener listener) {
-		PlayerOne.addActionListener(listener);
+		playerOne.addActionListener(listener);
 	}
 
 	public void addPlayerTwoActionListener(ActionListener listener) {
-		PlayerTwo.addActionListener(listener);
+		playerTwo.addActionListener(listener);
 	}
 	
 	public void addBothActionListener(ActionListener listener) {
-		Both.addActionListener(listener);
+		both.addActionListener(listener);
 	}
 	
 	public void addCancelActionListener(ActionListener listener) {
-		Cancel.addActionListener(listener);
+		cancel.addActionListener(listener);
 	}
 	
 	public JComponent getMainComponent() {
