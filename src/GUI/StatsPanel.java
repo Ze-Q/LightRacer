@@ -19,6 +19,7 @@ class StatsPanel {
 	private JTable topTenTable;
 	private JTable versusTable;
 	private boolean isVersusTableInitialized=false;
+	private boolean isTopTenTableInitialized=false;
 	
 	User user1;
 	User user2;
@@ -29,24 +30,21 @@ class StatsPanel {
 		topTenTitle = new JLabel("Top Ten Records");
 		versusTitle = new JLabel("Versus Records");
 		back = new JButton("Return to Main Menu");
-		topTenTable = generateTopTenTable();
 		
 		mainPanel.add(title);
 		mainPanel.add(topTenTitle);
-		mainPanel.add(topTenTable);
 		mainPanel.add(versusTitle);
 		mainPanel.add(back);
 		
 		Dimension size = new Dimension(100,25);
 		topTenTitle.setBounds(150, 140, 200,25);
-		topTenTable.setBounds(150, 160, 150, 175);
-		topTenTable.setBackground(Color.LIGHT_GRAY);
 		versusTitle.setBounds(600, 140, 200, 25);
 		back.setBounds(350, 450, 200, size.height);
 		title.setBounds(415, 50, size.width, size.height);
 	}
 	
 	public void updateStatsPanel() {
+		//update versus table
 		user1 = Login.getInstance().getUserOne();
 		user2 = Login.getInstance().getUserTwo();
 		
@@ -55,12 +53,21 @@ class StatsPanel {
 		}
 		
 		versusTable = generateVersusTable();
-		
 		mainPanel.add(versusTable);
 		isVersusTableInitialized=true;
-		
 		versusTable.setBounds(600, 160, 150, 45);
 		versusTable.setBackground(Color.LIGHT_GRAY);
+		
+		//update top ten table
+		if(isTopTenTableInitialized==true) {
+			mainPanel.remove(topTenTable);
+		}
+		
+		topTenTable=generateTopTenTable();
+		mainPanel.add(topTenTable);
+		isTopTenTableInitialized=true;
+		topTenTable.setBounds(150, 160, 150, 175);
+		topTenTable.setBackground(Color.LIGHT_GRAY);
 	}
 	
 	private JTable generateTopTenTable () {
