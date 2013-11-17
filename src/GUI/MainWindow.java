@@ -14,7 +14,7 @@ public class MainWindow {
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = WIDTH * 9 / 16 ;
 	
-	 private Login loginObject = Login.getInstance(); 
+	private Login loginObject = Login.getInstance(); 
 	
 	private static final String INTRO = "intro";
 	private static final String CRACC = "cracc";
@@ -36,7 +36,7 @@ public class MainWindow {
 	private LoginPanelOne loginPanel1 = new LoginPanelOne();
 	private LoginPanelTwo loginPanel2 = new LoginPanelTwo();
 	private MainPanel mainPanel = new MainPanel();
-	private GamePanel gamePanel = new GamePanel();
+	public GamePanel gamePanel = new GamePanel();
 	private StatsPanel statsPanel = new StatsPanel();
 	private HelpPanel helpPanel = new HelpPanel();
 	private SettingsPanel settPanel = new SettingsPanel();
@@ -134,6 +134,8 @@ public class MainWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(mainWindow, GAME);
+				gamePanel.set.setVisible(true);
+				gamePanel.abort.setVisible(true);
 			}
 		});
 		
@@ -215,7 +217,7 @@ public class MainWindow {
 		gamePanel.addStartBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				gameplay.Game startGame = new gameplay.Game(score, gamePanel.p1color, gamePanel.p2color, gamePanel.sp, gamePanel.mapNumber);
+				gameplay.Game startGame = new gameplay.Game(gamePanel,score, gamePanel.p1color, gamePanel.p2color, gamePanel.sp, gamePanel.mapNumber);
 				System.out.println("Out: Player1: "+score.p1+ "   Player2: "+score.p2);
 			}
 		});
@@ -227,7 +229,23 @@ public class MainWindow {
 				gamePanel.start.setVisible(false);
 				gamePanel.actionLabel.setText("");
 				gamePanel.ret.setVisible(false);
-				score = new Score();
+				gamePanel.title.setText("Current score: 0 - 0");
+				score.p1 = 0;
+				score.p2 = 0;
+				cardlayout.show(mainWindow, MAIN);
+			}
+		});
+		
+		gamePanel.addRetBtnActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				gamePanel.speed.setText("");
+				gamePanel.start.setVisible(false);
+				gamePanel.actionLabel.setText("");
+				gamePanel.ret.setVisible(false);
+				gamePanel.title.setText("Current score: 0 - 0");
+				score.p1 = 0;
+				score.p2 = 0;
 				cardlayout.show(mainWindow, MAIN);
 			}
 		});
