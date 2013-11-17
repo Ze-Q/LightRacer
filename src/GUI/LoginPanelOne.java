@@ -25,7 +25,7 @@ public class LoginPanelOne {
     protected static JTextField username1 = new JTextField(10);
     protected static JLabel actionLabel;
     public static JButton cont;
-    private JButton login;
+    private  static JButton login;
     private JButton back;
     private JLabel usernameLabel;
     private JLabel passwordLabel;
@@ -87,6 +87,8 @@ public class LoginPanelOne {
 				}
 				else{
 					cont.setVisible(true);
+					username1.setEditable(false);
+					password1.setEditable(false);
 					User newUser = new User(enteredUsername);
 					loginObject.setUserOne(newUser);
 					actionLabel.setText("Welcome! " + loginObject.getUserNameOne());
