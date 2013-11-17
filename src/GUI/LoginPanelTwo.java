@@ -83,6 +83,8 @@ public class LoginPanelTwo {
 							+ ", you are already logged in!");
 				} else {
 					cont.setVisible(true);
+					username2.setEditable(false);
+					password2.setEditable(false);
 					User newUser = new User(enteredUsername);
 					loginObject.setUserTwo(newUser);
 					actionLabel.setText("Welcome! "
