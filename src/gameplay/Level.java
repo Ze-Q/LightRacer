@@ -23,7 +23,7 @@ public class Level {
 		File[] mapFiles;
 		File dir;
 		try {
-			dir = new File("./src/res");
+			dir = new File("./src/res/maps");
 			mapFiles = dir.listFiles();
 			int mapsFound = mapFiles.length;
 			//preload all maps

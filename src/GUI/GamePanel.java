@@ -45,7 +45,7 @@ public class GamePanel {
 		map = new DefaultComboBoxModel();
 		File[] mapFiles;
 		File dir;
-		dir = new File("./src/res");
+		dir = new File("./src/res/maps");
 		mapFiles = dir.listFiles();
 		int mapsFound = mapFiles.length;
 		for(int i = 0; i < mapsFound; i++){

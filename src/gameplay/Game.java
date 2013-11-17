@@ -19,8 +19,6 @@ import GUI.GamePanel;
 import GUI.MainWindow;
 
 
-//TODO Game Over screens displaying who won round/game and handle new round
-
 public class Game extends Canvas implements Runnable {
 
         private static final long serialVersionUID = 1L;
