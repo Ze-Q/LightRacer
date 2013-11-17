@@ -11,10 +11,11 @@ import javax.imageio.ImageIO;
 public class Level {
 
 
-	public int width, height;
-	public int[][] pixels; 
-	public BufferedImage[] maps;
+	private int width, height;
+	private BufferedImage[] maps;
 
+	public int[][] pixels;
+	
 	public Level (int w, int h) {
 		this.width = w;
 		this.height = h;
@@ -25,7 +26,6 @@ public class Level {
 			dir = new File("./src/res");
 			mapFiles = dir.listFiles();
 			int mapsFound = mapFiles.length;
-			System.out.println("Found " + mapsFound + " maps in " + dir.toString() + " directory");
 			//preload all maps
 			maps = new BufferedImage[mapsFound];
 			for (int i = 0; i < mapsFound; i++) {
@@ -39,8 +39,8 @@ public class Level {
 
 	/* Default map layout :
 	 * Fill the pixels matrix with solid color #131717
-	 * Fill the border pixels with a different color #191F0C */
-	public void defaultMapLayout() {
+	 * Fill the border pixels with a different color #FFFFFF */
+	private void defaultMapLayout() {
 		for(int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++){
 				//background 
@@ -53,6 +53,7 @@ public class Level {
 		}
 	}
 	
+	//draws the appropriate map depending on index
 	public void setLevel(int mapIndex) {
 		BufferedImage image = maps[mapIndex];
 		for(int y = 0; y < height; y++) {
@@ -106,7 +107,8 @@ public class Level {
 		}
 	}
 	
-	public boolean isOutOfBounds(Player player) {
+	//checks if the next player position is out of map bounds
+	private boolean isOutOfBounds(Player player) {
 		boolean outOfBounds = false;
 		if (player.getNextPos()[0] < 2 || player.getNextPos()[0] > this.width - 2) {
 			outOfBounds = true;
