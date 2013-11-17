@@ -49,13 +49,18 @@ class StatsPanel {
 	public void updateStatsPanel() {
 		user1 = Login.getInstance().getUserOne();
 		user2 = Login.getInstance().getUserTwo();
-		versusTable = generateVersusTable();
-		if(isVersusTableInitialized==false){
-			mainPanel.add(versusTable);
+		
+		if(isVersusTableInitialized==true) {
+			mainPanel.remove(versusTable);
 		}
+		
+		versusTable = generateVersusTable();
+		
+		mainPanel.add(versusTable);
+		isVersusTableInitialized=true;
+		
 		versusTable.setBounds(600, 160, 150, 45);
 		versusTable.setBackground(Color.LIGHT_GRAY);
-		isVersusTableInitialized=true;
 	}
 	
 	private JTable generateTopTenTable () {
