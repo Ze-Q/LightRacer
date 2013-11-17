@@ -39,7 +39,7 @@ public class GamePanel {
 		
 		mainPanel.setLayout(null);
 
-		speedLabel = new JLabel("Set Speed (1-7)" + ": ");
+		speedLabel = new JLabel("Set Speed (3-10)" + ": ");
 		speedLabel.setLabelFor(speed);
 		mapLabel = new JLabel("Choose map" + ": ");
 		map = new DefaultComboBoxModel();
@@ -122,7 +122,7 @@ public class GamePanel {
 					actionLabel.setText("Choose different colors.");
 					start.setVisible(false);
 				}
-				else if(spd > 7 || spd < 1){
+				else if(spd > 10 || spd < 3){
 					actionLabel.setText("Invalid speed.");
 					start.setVisible(false);
 				}

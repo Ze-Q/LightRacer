@@ -30,6 +30,8 @@ public class Game extends Canvas implements Runnable {
         private JFrame frame;
         private Thread thread;
         private boolean running = false;
+        private boolean firstRun = true;
+        private boolean secondRun = false;
         private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);   
         private Level level;
         private Player player1, player2;
@@ -70,7 +72,7 @@ public class Game extends Canvas implements Runnable {
                 frame.setTitle(TITLE);
                 frame.add(this);
                 frame.pack();
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
                 start();
@@ -87,6 +89,11 @@ public class Game extends Canvas implements Runnable {
         
         
         private synchronized void stop() {
+        	try {
+				thread.sleep(2000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
         	frame.setVisible(false);
     		frame.dispose();
         	running = false;
@@ -142,6 +149,19 @@ public class Game extends Canvas implements Runnable {
                                 frames++;
                                 updates++;
                                 deltaTime--;
+                                if (secondRun) {
+                                	try {
+										thread.sleep(2000);
+										deltaTime = deltaTime - 25*2;
+										secondRun = false;
+									} catch (InterruptedException e) {
+										e.printStackTrace();
+									}
+                                }
+                                if (firstRun) {
+                                	secondRun = true;
+                                	firstRun = false;
+                                }
                         }
 
                   
