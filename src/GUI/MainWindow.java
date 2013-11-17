@@ -42,6 +42,8 @@ public class MainWindow {
 	private SettingsPanel settPanel = new SettingsPanel();
 	private LogoutPanel logoutPanel = new LogoutPanel();
 	
+	private Score score = new Score();
+	
 	public MainWindow() {
 		
 		mainWindow.add(introPanel.getMainComponent(), INTRO);
@@ -213,14 +215,16 @@ public class MainWindow {
 		gamePanel.addStartBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Score score = new Score();
 				gameplay.Game startGame = new gameplay.Game(score, gamePanel.p1color, gamePanel.p2color, gamePanel.sp, gamePanel.mapNumber);
+				System.out.println("Out: Player1: "+score.p1+ "   Player2: "+score.p2);
 			}
 		});
 
 		gamePanel.addAbortBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				score.p1=0;
+				score.p2=0;
 				cardlayout.show(mainWindow, MAIN);
 			}
 		});

@@ -90,14 +90,14 @@ public class Level {
 			//Next position for player1 is a collision => player2 wins
 			else if (pixels[player1.getNextPos()[0]][player1.getNextPos()[1]] != -16777216
 						|| isOutOfBounds(player1)) {
-				game.endRound(player2.getColor());
 				game.curScore.p2Won();	
+				game.endRound(player2.getColor());
 			}
 			//Next position for player2 is a collision => player1 wins
 			else if (pixels[player2.getNextPos()[0]][player2.getNextPos()[1]] != -16777216
 						|| isOutOfBounds(player2)) {
-				game.endRound(player1.getColor());
 				game.curScore.p1Won();
+				game.endRound(player1.getColor());
 			}
 			else {
 				player1.update(this);
