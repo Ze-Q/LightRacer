@@ -17,22 +17,23 @@ class GamePanel {
 	public int sp;
 	public int mapNumber;
 	
-	private JLabel title = new JLabel("New Game Menu");
-	private JLabel mapLabel;
-	private DefaultComboBoxModel map;
-	private JComboBox maps;
-	private JLabel color1Label;
-	private DefaultComboBoxModel color1;
-	private JComboBox player1Color;
-	private JLabel color2Label;
-	private DefaultComboBoxModel color2;
-	private JComboBox player2Color;
-	private JLabel speedLabel;
-	private JTextField speed;
-	private JButton set;
-	private JButton start;
-	private JButton abort;
-	private JLabel actionLabel;
+	protected JLabel title = new JLabel("Current Score: " + MainWindow.score.getP1() + "-" +  MainWindow.score.getP2());
+	protected JLabel mapLabel;
+	protected DefaultComboBoxModel map;
+	protected JComboBox maps;
+	protected JLabel color1Label;
+	protected DefaultComboBoxModel color1;
+	protected JComboBox player1Color;
+	protected JLabel color2Label;
+	protected DefaultComboBoxModel color2;
+	protected JComboBox player2Color;
+	protected JLabel speedLabel;
+	protected JTextField speed;
+	protected JButton set;
+	protected JButton start;
+	protected JButton abort;
+	protected JButton ret;
+	protected JLabel actionLabel;
 
 	public GamePanel() {
 		
@@ -71,6 +72,8 @@ class GamePanel {
 		abort = new JButton("Abort Game");
 		set = new JButton("Set");
 		actionLabel = new JLabel("");
+		ret = new JButton("Return to Main Menu");
+		ret.setVisible(false);
 
 		mainPanel.add(title);
 		mainPanel.add(start);
@@ -85,10 +88,11 @@ class GamePanel {
 		mainPanel.add(color2Label);
 		mainPanel.add(player2Color);
 		mainPanel.add(actionLabel);
+		mainPanel.add(ret);
 
 		Dimension size = new Dimension(100,25);	
 		abort.setBounds(375, 450, 150, size.height);
-		title.setBounds(400, 50, size.width, size.height);
+		title.setBounds(380, 50, 150, size.height);
 		start.setBounds(400, 400, size.width, size.height);
 		mapLabel.setBounds(350, 100, size.width, size.height);
 		maps.setBounds(450, 100, size.width, size.height);
@@ -100,6 +104,7 @@ class GamePanel {
 		speed.setBounds(450, 150, size.width, size.height);
 		set.setBounds(400, 350, size.width, size.height);
 		actionLabel.setBounds(400, 250, 400, 75);
+		ret.setBounds(375, 450, 150, size.height);
 		
 		set.addActionListener(new ActionListener() {
 			@Override
