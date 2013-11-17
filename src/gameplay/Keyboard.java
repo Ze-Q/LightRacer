@@ -7,7 +7,8 @@ public class Keyboard implements KeyListener {
 	
 	
 	private boolean[] keys = new boolean[150];
-	public boolean up, down, left, right, w, s, a, d;
+	public boolean up, down, left, right, w, s, a, d, pause;
+	public boolean hasBeenPaused = false;
 
 	
 	public void update() {
@@ -19,6 +20,15 @@ public class Keyboard implements KeyListener {
 		a = keys[KeyEvent.VK_A];
 		right = keys[KeyEvent.VK_RIGHT];
 		d = keys[KeyEvent.VK_D];
+		if (hasBeenPaused) {
+			pause = false;
+		}
+		else {
+			pause = keys[KeyEvent.VK_P];
+			if (pause) {
+				hasBeenPaused = true;
+			}
+		}
 	}
 	
 	
