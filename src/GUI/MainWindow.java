@@ -8,18 +8,20 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import accounts.Login;
-import accounts.Statistics;
 import accounts.User;
 
 public class MainWindow {
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = WIDTH * 9 / 16 ;
 	
+	 private Login loginObject = Login.getInstance(); 
+	
 	private static final String INTRO = "intro";
 	private static final String CRACC = "cracc";
 	private static final String LOGIN = "login1";
 	private static final String LOGIN2 = "login2";
 	private static final String MAIN = "main";
+	private static final String LOGOUT = "logout";
 	private static final String GAME = "game";
 	private static final String STATS = "stats";
 	private static final String HELP = "help";
@@ -38,6 +40,7 @@ public class MainWindow {
 	private StatsPanel statsPanel = new StatsPanel();
 	private HelpPanel helpPanel = new HelpPanel();
 	private SettingsPanel settPanel = new SettingsPanel();
+	private LogoutPanel logoutPanel = new LogoutPanel();
 	
 	public MainWindow() {
 		
@@ -50,12 +53,17 @@ public class MainWindow {
 		mainWindow.add(statsPanel.getMainComponent(), STATS);
 		mainWindow.add(helpPanel.getMainComponent(), HELP);
 		mainWindow.add(settPanel.getMainComponent(), SETT);
-
+		mainWindow.add(logoutPanel.getMainComponent(), LOGOUT);
 		
 		introPanel.addLoginBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(mainWindow, LOGIN);
+				if(loginObject.userOneLogin()){
+					cardlayout.show(mainWindow, LOGIN2);
+				}
+				else{
+					cardlayout.show(mainWindow, LOGIN);
+				}
 			}
 		});
 		
@@ -76,7 +84,16 @@ public class MainWindow {
 		loginPanel1.addContinueBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(mainWindow, LOGIN2);
+				LoginPanelOne.username1.setText("");
+				LoginPanelOne.password1.setText("");
+				LoginPanelOne.actionLabel.setText("");
+				LoginPanelOne.cont.setVisible(false);
+				if(loginObject.userTwoLogin()){
+					cardlayout.show(mainWindow, MAIN);
+				}
+				else{
+					cardlayout.show(mainWindow, LOGIN2);
+				}
 			}
 		});
 		
@@ -90,6 +107,10 @@ public class MainWindow {
 		loginPanel2.addContinueBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				LoginPanelTwo.username2.setText("");
+				LoginPanelTwo.password2.setText("");
+				LoginPanelTwo.actionLabel.setText("");
+				LoginPanelTwo.cont.setVisible(false);
 				cardlayout.show(mainWindow, MAIN);
 			}
 		});
@@ -97,7 +118,13 @@ public class MainWindow {
 		loginPanel2.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardlayout.show(mainWindow, LOGIN);
+				if(loginObject.userOneLogin()){
+					cardlayout.show(mainWindow, INTRO);
+				}
+				else{
+					cardlayout.show(mainWindow, LOGIN);
+				}
+				
 			}
 		});
 
@@ -112,7 +139,6 @@ public class MainWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(mainWindow, STATS);
-				statsPanel.updateStatsPanel();
 			}
 		});
 		
@@ -133,6 +159,40 @@ public class MainWindow {
 		mainPanel.addLogoutBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				cardlayout.show(mainWindow, LOGOUT);
+			}
+		});
+		
+		logoutPanel.addPlayerOneActionListener(new ActionListener() {
+			@Override
+			
+			public void actionPerformed(ActionEvent e) {
+				User newUser = null;
+				loginObject.setUserOne(newUser);
+				cardlayout.show(mainWindow, LOGIN);
+			}
+		});
+		
+		logoutPanel.addPlayerTwoActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				User newUser = null;
+				loginObject.setUserTwo(newUser);
+				cardlayout.show(mainWindow, LOGIN2);
+			}
+		});
+		
+		logoutPanel.addCancelActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cardlayout.show(mainWindow, MAIN);
+			}
+		});
+		
+		
+		logoutPanel.addBothActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
 				cardlayout.show(mainWindow, INTRO);
 			}
 		});
@@ -142,19 +202,6 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				Score score = new Score();
 				gameplay.Game startGame = new gameplay.Game(score, gamePanel.p1color, gamePanel.p2color, gamePanel.sp, gamePanel.mapNumber);
-				User user1 = Login.getInstance().getUserOne();
-				User user2 = Login.getInstance().getUserTwo();
-				Statistics statistics = Statistics.getInstance();
-				if(score.getP1()==2){
-					user1.increaseVersusWins();
-					statistics.updateStats(user1, user2);
-					statistics.updateStatsFile();
-				}
-				else{
-					user2.increaseVersusWins();
-					statistics.updateStats(user1, user2);
-					statistics.updateStatsFile();
-				}
 			}
 		});
 
