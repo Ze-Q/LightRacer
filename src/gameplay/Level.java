@@ -40,6 +40,7 @@ public class Level {
 	/* Default map layout :
 	 * Fill the pixels matrix with solid color #131717
 	 * Fill the border pixels with a different color #FFFFFF */
+	@SuppressWarnings("unused")
 	private void defaultMapLayout() {
 		for(int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++){

@@ -11,7 +11,6 @@ import gameplay.Level;
 import gameplay.Player;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
 import accounts.Login;
 import accounts.Statistics;
@@ -88,7 +87,8 @@ public class Game extends Canvas implements Runnable {
         }
         
         
-        private synchronized void stop() {
+        @SuppressWarnings("static-access")
+		private synchronized void stop() {
         	try {
 				thread.sleep(2000);
 			} catch (InterruptedException e) {
@@ -107,7 +107,8 @@ public class Game extends Canvas implements Runnable {
 
 
         //Main game loop
-        public void run() {
+        @SuppressWarnings("static-access")
+		public void run() {
                 int frames = 0;
                 int updates = 0;
                 double deltaTime = 0.0;
@@ -128,7 +129,8 @@ public class Game extends Canvas implements Runnable {
                         		if (key.pause) {
                         			try {
                         				resume = false;
-                        				Pause pause = new Pause(this);
+                        				@SuppressWarnings("unused")
+										Pause pause = new Pause(this);
                         				while (!resume) {
                         					thread.sleep(10);
                         				    deltaTime = deltaTime - 0.25;

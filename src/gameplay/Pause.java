@@ -14,12 +14,10 @@ import javax.swing.JFrame;
 public class Pause {
 		
 	private JFrame frame = new JFrame();
-	private boolean resume;
 	private Game game;
 	
 	public Pause(Game game) {
 		this.game = game;
-		resume = false;
 		JButton button = new JButton("Press to Resume");
 		button.setSize(100,100);
 		button.setFont(new Font("Dialog", 1, 15));
