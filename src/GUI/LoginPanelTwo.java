@@ -20,12 +20,12 @@ public class LoginPanelTwo {
 	public final int HEIGHT = WIDTH * 9 / 16;
 	public final int SCALE = 1;
 
-	public static JPasswordField password2 = new JPasswordField(10);
-	public static JTextField username2 = new JTextField(10);
-	protected JLabel actionLabel;
+	protected static JPasswordField password2 = new JPasswordField(10);
+	protected static JTextField username2 = new JTextField(10);
+	protected static JLabel actionLabel;
 	private JButton login;
 	private JButton back;
-	private JButton cont;
+	public static  JButton cont;
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
 
@@ -84,9 +84,10 @@ public class LoginPanelTwo {
 				} else {
 					cont.setVisible(true);
 					User newUser = new User(enteredUsername);
-					loginObject.serUseTwo(newUser);
+					loginObject.setUserTwo(newUser);
 					actionLabel.setText("Welcome! "
 							+ loginObject.getUserNameTwo());
+					
 
 				}
 			}
