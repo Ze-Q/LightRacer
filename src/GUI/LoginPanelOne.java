@@ -21,10 +21,10 @@ public class LoginPanelOne {
     public final int HEIGHT = WIDTH * 9 / 16;
     public final int SCALE = 1;
 
-   	protected JPasswordField password1 = new JPasswordField(10);
-    protected JTextField username1 = new JTextField(10);
-    protected JLabel actionLabel;
-    private JButton cont;
+   	protected static JPasswordField password1 = new JPasswordField(10);
+    protected static JTextField username1 = new JTextField(10);
+    protected static JLabel actionLabel;
+    public static JButton cont;
     private JButton login;
     private JButton back;
     private JLabel usernameLabel;
