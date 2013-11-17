@@ -5,11 +5,12 @@ import gameplay.Level;
 
 public class Player {
 
-	public int xPos, yPos;
+	private int xPos, yPos;
+	private int color;
+	private Tuple tColor;
+	
 	public String direction = "UP";
 	public int velocity = 1;
-	public int color;
-	public Tuple tColor;
 
 	public final static int RED = 0xFF0707;
 	public final static int RED_GLOW = 0xFF7777;
@@ -26,7 +27,7 @@ public class Player {
 	public final static Tuple GREENPLAYERCOLORS = new Tuple(GREEN, GREEN_GLOW);
 
 
-	//Default constructor : player position at middle - (400,300), direction UP
+	//Default constructor : player position at (400,300), direction UP
 	public Player() {
 		this.xPos = 400;
 		this.yPos = 300;
@@ -91,23 +92,12 @@ public class Player {
 		else 						{ this.tColor = REDPLAYERCOLORS; } 
 	}
 	
-	/*TODO Update the method to make the color on the inside darker - glow effect*/
 	public void update(Level level) {
 		//move
 		this.xPos = this.getNextPos()[0];
 		this.yPos = this.getNextPos()[1];
 		//set colors
-		level.pixels[xPos][yPos] = tColor.color;
-		/*level.pixels[xPos][yPos - 1] = tColor.color; 
-		level.pixels[xPos][yPos + 1] = tColor.color; 
-		level.pixels[xPos + 1][yPos] = tColor.color;  
-		level.pixels[xPos - 1][yPos] = tColor.color; 
-		level.pixels[xPos + 1][yPos - 1] = tColor.color;  
-		level.pixels[xPos - 1][yPos - 1] = tColor.color; 
-		level.pixels[xPos + 1][yPos + 1] = tColor.color; 
-		level.pixels[xPos - 1][yPos + 1] = tColor.color; */
-		//set collisions
-		//level.collisions[xPos][yPos] = true;		
+		level.pixels[xPos][yPos] = tColor.color;	
 	}
 	
 	public String getColor() {
