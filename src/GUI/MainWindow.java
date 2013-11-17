@@ -170,6 +170,8 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				User newUser = null;
 				loginObject.setUserOne(newUser);
+				LoginPanelOne.username1.setEditable(true);
+				LoginPanelOne.password1.setEditable(true);
 				cardlayout.show(mainWindow, LOGIN);
 			}
 		});
@@ -179,6 +181,8 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				User newUser = null;
 				loginObject.setUserTwo(newUser);
+				LoginPanelTwo.username2.setEditable(true);
+				LoginPanelTwo.password2.setEditable(true);
 				cardlayout.show(mainWindow, LOGIN2);
 			}
 		});
@@ -186,6 +190,7 @@ public class MainWindow {
 		logoutPanel.addCancelActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				
 				cardlayout.show(mainWindow, MAIN);
 			}
 		});
@@ -194,6 +199,13 @@ public class MainWindow {
 		logoutPanel.addBothActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				User newUser = null;
+				loginObject.setUserOne(newUser);
+				loginObject.setUserTwo(newUser);
+				LoginPanelOne.username1.setEditable(true);
+				LoginPanelOne.password1.setEditable(true);
+				LoginPanelTwo.username2.setEditable(true);
+				LoginPanelTwo.password2.setEditable(true);
 				cardlayout.show(mainWindow, INTRO);
 			}
 		});
