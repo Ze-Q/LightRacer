@@ -13,4 +13,12 @@ public class Score {
 		p2++;
 	}
 	
+	public int getP1() {
+		return p1;
+	}
+	
+	public int getP2() {
+		return p2;
+	}
+	
 }

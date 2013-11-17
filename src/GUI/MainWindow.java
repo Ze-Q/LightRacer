@@ -7,6 +7,10 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
+import accounts.Login;
+import accounts.Statistics;
+import accounts.User;
+
 public class MainWindow {
 	public static final int WIDTH = 900;
 	public static final int HEIGHT = WIDTH * 9 / 16 ;
@@ -138,6 +142,19 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				Score score = new Score();
 				gameplay.Game startGame = new gameplay.Game(score, gamePanel.p1color, gamePanel.p2color, gamePanel.sp, gamePanel.mapNumber);
+				User user1 = Login.getInstance().getUserOne();
+				User user2 = Login.getInstance().getUserTwo();
+				Statistics statistics = Statistics.getInstance();
+				if(score.getP1()==2){
+					user1.increaseVersusWins();
+					statistics.updateStats(user1, user2);
+					statistics.updateStatsFile();
+				}
+				else{
+					user2.increaseVersusWins();
+					statistics.updateStats(user1, user2);
+					statistics.updateStatsFile();
+				}
 			}
 		});
 
