@@ -24,29 +24,24 @@ import GUI.MainWindow;
 public class Game extends Canvas implements Runnable {
 
         private static final long serialVersionUID = 1L;
-
-        public final int WIDTH = 900;
-        public final int HEIGHT = WIDTH * 9 / 16 ;
-        public final int SCALE = 1;
-
-        private final static String TITLE = "Light Racer Prototype";
-
+        private final int WIDTH = 900;
+        private final int HEIGHT = WIDTH * 9 / 16 ;
+        private final int SCALE = 1;
+        private final static String TITLE = "Light Racer";
+        
         private JFrame frame;
         private Thread thread;
-        public Keyboard key;
-
-        public boolean running = false;
-        public boolean resume;
-
-        private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);        
-
-        public Level level;
-        public Player player1, player2;
+        private boolean running = false;
+        private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);   
+        private Level level;
+        private Player player1, player2;
+        private int player1Color;
+        private int player2Color;
+        private int speedSetting;
+        private int mapNumber;
         
-        public int player1Color;
-        public int player2Color;
-        public int speedSetting;
-        public int mapNumber;
+        public boolean resume;
+        public Keyboard key;
         public Score curScore;
         public GamePanel curPanel;
 
@@ -84,16 +79,16 @@ public class Game extends Canvas implements Runnable {
         }
 
 
-        public synchronized void start() {
+        private synchronized void start() {
                 running = true;
                 level.clear();
-                level.setLevel(mapNumber); //CHANGE THIS VALUE TO SET MAP LAYOUT
+                level.setLevel(mapNumber);
                 thread = new Thread(this, "Display");
                 thread.start();
         }
         
         
-        public synchronized void stop() {
+        private synchronized void stop() {
         	frame.setVisible(false);
     		frame.dispose();
         	running = false;
@@ -194,7 +189,6 @@ public class Game extends Canvas implements Runnable {
         
         //Called when collision is detected
         public void endRound(String result) {
-        		System.out.println("Player1: "+curScore.p1+ "   Player2: "+curScore.p2);
                 String roundResult;
                 if (result.equals("Draw")) {
                         roundResult = result;
@@ -203,8 +197,8 @@ public class Game extends Canvas implements Runnable {
                         roundResult = result + " has won this round!";
                 }
                 frame.setTitle(TITLE + " | " + roundResult);
-                System.out.println(roundResult);
-                if (MainWindow.score.getP1() == 2){
+                
+                if (MainWindow.score.getP1() == 2) {
                 	curPanel.title.setText("Player 1 has won!");
                 	curPanel.set.setVisible(false);
                 	curPanel.abort.setVisible(false);
@@ -215,7 +209,8 @@ public class Game extends Canvas implements Runnable {
                 	Statistics.getInstance().updateStats(Login.getInstance().getUserOne(), Login.getInstance().getUserTwo());
                 	Statistics.getInstance().updateStatsFile();
                 }
-                else if (MainWindow.score.getP2() == 2){
+                
+                else if (MainWindow.score.getP2() == 2) {
                 	curPanel.title.setText("Player 2 has won!");
                 	curPanel.set.setVisible(false);
                 	curPanel.abort.setVisible(false);
@@ -226,7 +221,8 @@ public class Game extends Canvas implements Runnable {
                 	Statistics.getInstance().updateStats(Login.getInstance().getUserOne(), Login.getInstance().getUserTwo());
                 	Statistics.getInstance().updateStatsFile();
                 }
-                else{
+                
+                else {
                 	curPanel.title.setText("Current Score: " + MainWindow.score.getP1() + " - " +  MainWindow.score.getP2());
                 	curPanel.title.setVisible(false);
                 	curPanel.title.setVisible(true);
