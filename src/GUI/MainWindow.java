@@ -136,6 +136,7 @@ public class MainWindow {
 				cardlayout.show(mainWindow, GAME);
 				gamePanel.set.setVisible(true);
 				gamePanel.abort.setVisible(true);
+				statsPanel.updateStatsPanel();
 			}
 		});
 		
