@@ -38,7 +38,7 @@ class GamePanel {
 		
 		mainPanel.setLayout(null);
 
-		speedLabel = new JLabel("Set Speed (2-10)" + ": ");
+		speedLabel = new JLabel("Set Speed (1-7)" + ": ");
 		speedLabel.setLabelFor(speed);
 		mapLabel = new JLabel("Choose map" + ": ");
 		map = new DefaultComboBoxModel();
@@ -96,7 +96,7 @@ class GamePanel {
 		player1Color.setBounds(325, 200, size.width, size.height);
 		color2Label.setBounds(450, 200, 75, size.height);
 		player2Color.setBounds(550, 200, size.width, size.height);
-		speedLabel.setBounds(350, 150, size.width, size.height);
+		speedLabel.setBounds(325, 150, size.width, size.height);
 		speed.setBounds(450, 150, size.width, size.height);
 		set.setBounds(400, 350, size.width, size.height);
 		actionLabel.setBounds(400, 250, 400, 75);
