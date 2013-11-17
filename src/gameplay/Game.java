@@ -11,6 +11,10 @@ import gameplay.Level;
 import gameplay.Player;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import GUI.GamePanel;
+import GUI.MainWindow;
 
 
 //TODO Game Over screens displaying who won round/game and handle new round
@@ -42,14 +46,16 @@ public class Game extends Canvas implements Runnable {
         public int speedSetting;
         public int mapNumber;
         public Score curScore;
+        public GamePanel curPanel;
 
-        public Game(Score score, int player1Color, int player2Color, int speed, int mapNumber) {
+        public Game(GamePanel gamePanel , Score score, int player1Color, int player2Color, int speed, int mapNumber) {
                 
         		this.player1Color = player1Color;
                 this.player2Color = player2Color;
                 this.speedSetting = speed;
                 this.mapNumber = mapNumber;
                 this.curScore = score;
+                this.curPanel = gamePanel;
         	
         		//set window size
                 Dimension screenSize = new Dimension(WIDTH*SCALE, HEIGHT*SCALE);
@@ -73,7 +79,6 @@ public class Game extends Canvas implements Runnable {
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
                 start();
-
         }
 
 
@@ -197,6 +202,23 @@ public class Game extends Canvas implements Runnable {
                 }
                 frame.setTitle(TITLE + " | " + roundResult);
                 System.out.println(roundResult);
+                if (MainWindow.score.getP1() == 2){
+                	curPanel.title.setText("Player 1 has won!");
+                	curPanel.set.setVisible(false);
+                	curPanel.abort.setVisible(false);
+                	curPanel.ret.setVisible(true);
+                	curPanel.start.setVisible(false);
+                }
+                else if (MainWindow.score.getP2() == 2){
+                	curPanel.title.setText("Player 2 has won!");
+                	curPanel.set.setVisible(false);
+                	curPanel.abort.setVisible(false);
+                	curPanel.ret.setVisible(true);
+                	curPanel.start.setVisible(false);
+                }
+                else{
+                	curPanel.title.setText("Current Score: " + MainWindow.score.getP1() + " - " +  MainWindow.score.getP2());
+                }
                 stop();
         }
 }
