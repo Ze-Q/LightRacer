@@ -9,7 +9,7 @@ import java.io.IOException;
 
 import javax.swing.*;
 
-class GamePanel {
+public class GamePanel {
 	private JPanel mainPanel = new JPanel();
 
 	public int p1color;
@@ -17,7 +17,7 @@ class GamePanel {
 	public int sp;
 	public int mapNumber;
 	
-	protected JLabel title = new JLabel("Current Score: " + MainWindow.score.getP1() + "-" +  MainWindow.score.getP2());
+	public JLabel title = new JLabel("Current Score: " + MainWindow.score.getP1() + " - " +  MainWindow.score.getP2());
 	protected JLabel mapLabel;
 	protected DefaultComboBoxModel map;
 	protected JComboBox maps;
@@ -29,10 +29,10 @@ class GamePanel {
 	protected JComboBox player2Color;
 	protected JLabel speedLabel;
 	protected JTextField speed;
-	protected JButton set;
-	protected JButton start;
-	protected JButton abort;
-	protected JButton ret;
+	public JButton set;
+	public JButton start;
+	public JButton abort;
+	public JButton ret;
 	protected JLabel actionLabel;
 
 	public GamePanel() {
@@ -167,6 +167,10 @@ class GamePanel {
 	
 	public void addStartBtnActionListener(ActionListener listener) {
 		   start.addActionListener(listener);
+	}
+	
+	public void addRetBtnActionListener(ActionListener listener) {
+		   ret.addActionListener(listener);
 	}
 	
 	public JComponent getMainComponent() {
