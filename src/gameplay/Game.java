@@ -27,9 +27,10 @@ public class Game extends Canvas implements Runnable {
 
         private JFrame frame;
         private Thread thread;
-        private Keyboard key;
+        public Keyboard key;
 
         public boolean running = false;
+        public boolean resume;
 
         private BufferedImage image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);        
 
@@ -71,7 +72,6 @@ public class Game extends Canvas implements Runnable {
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
-                frame.setResizable(false);
                 start();
 
         }
@@ -113,9 +113,31 @@ public class Game extends Canvas implements Runnable {
                         deltaTime += (currentTime - lastTime) / nanoSecondsPerUpdate;
                         lastTime = currentTime;
 
-                        // Limit to 20 updates per second
+                        // Limit to 25 updates per second
                         while (deltaTime >= 1.0) {
-                                update();
+                        		level.update(this, player1, player2);
+                        		//update player direction and check for pause
+                        		key.update();
+                        		if (key.pause) {
+                        			try {
+                        				resume = false;
+                        				Pause pause = new Pause(this);
+                        				while (!resume) {
+                        					thread.sleep(10);
+                        				    deltaTime = deltaTime - 0.25;
+                        				}
+                        			} catch (InterruptedException e) {
+                        				e.printStackTrace();
+                        			}
+                           		}                  
+                        		if (key.up && player2.direction != "DOWN") { player2.direction = "UP"; }
+                        		else if (key.down && player2.direction != "UP") { player2.direction = "DOWN"; }
+                        		else if (key.left && player2.direction != "RIGHT") { player2.direction = "LEFT"; }
+                        		else if (key.right && player2.direction != "LEFT") { player2.direction = "RIGHT"; }
+                        		if (key.w && player1.direction != "DOWN") { player1.direction = "UP"; }
+                        		else if (key.s && player1.direction != "UP") { player1.direction = "DOWN"; }
+                        		else if (key.a && player1.direction != "RIGHT") { player1.direction = "LEFT"; }
+                        		else if (key.d && player1.direction != "LEFT") { player1.direction = "RIGHT"; }
                                 render();
                                 frames++;
                                 updates++;
@@ -135,23 +157,8 @@ public class Game extends Canvas implements Runnable {
                 }
         }
 
-        //Called a set number of times per second
-        public void update() {
-                //update player position
-                level.update(this, player1, player2);
-                //update player direction
-                key.update();
-                if (key.up && player2.direction != "DOWN") { player2.direction = "UP"; }
-                else if (key.down && player2.direction != "UP") { player2.direction = "DOWN"; }
-                else if (key.left && player2.direction != "RIGHT") { player2.direction = "LEFT"; }
-                else if (key.right && player2.direction != "LEFT") { player2.direction = "RIGHT"; }
-                if (key.w && player1.direction != "DOWN") { player1.direction = "UP"; }
-                else if (key.s && player1.direction != "UP") { player1.direction = "DOWN"; }
-                else if (key.a && player1.direction != "RIGHT") { player1.direction = "LEFT"; }
-                else if (key.d && player1.direction != "LEFT") { player1.direction = "RIGHT"; }
-        }
 
-        //Called unlimited times a second
+        //Called 25 times a second
         public void render() {
                 BufferStrategy strategy = getBufferStrategy();
                 if (strategy == null) {
