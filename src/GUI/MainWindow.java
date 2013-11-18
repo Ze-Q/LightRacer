@@ -4,7 +4,14 @@ import gameplay.Score;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 import accounts.Login;
@@ -30,6 +37,9 @@ public class MainWindow {
 	
 	private CardLayout cardlayout = new CardLayout();
 	private JPanel mainWindow = new JPanel(cardlayout);
+	private String sound = "src/res/sfx/button.wav";
+	private AudioInputStream audioInputStream;
+	private Clip clip;
 	
 	private IntroPanel introPanel = new IntroPanel();
 	private CrAccPanel crAccPanel = new CrAccPanel();
@@ -46,6 +56,14 @@ public class MainWindow {
 	
 	public MainWindow() {
 		
+		try {
+			audioInputStream = AudioSystem.getAudioInputStream(new File(sound).getAbsoluteFile());
+			clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+		
 		mainWindow.add(introPanel.getMainComponent(), INTRO);
 		mainWindow.add(crAccPanel.getMainComponent(), CRACC);
 		mainWindow.add(loginPanel1.getMainComponent(), LOGIN);
@@ -61,9 +79,11 @@ public class MainWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(loginObject.userOneLogin()){
+					clip.start();
 					cardlayout.show(mainWindow, LOGIN2);
 				}
 				else{
+					clip.start();
 					cardlayout.show(mainWindow, LOGIN);
 				}
 			}
@@ -72,6 +92,7 @@ public class MainWindow {
 		introPanel.addCreateAccBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				clip.start();
 				cardlayout.show(mainWindow, CRACC);
 			}
 		});
@@ -79,6 +100,7 @@ public class MainWindow {
 		crAccPanel.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				clip.start();
 				cardlayout.show(mainWindow, INTRO);
 			}
 		});
