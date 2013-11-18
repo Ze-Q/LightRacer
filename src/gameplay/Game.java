@@ -5,11 +5,15 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 import gameplay.Keyboard;
 import gameplay.Level;
 import gameplay.Player;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
 
 import accounts.Login;
@@ -39,6 +43,27 @@ public class Game extends Canvas implements Runnable {
         private int player2Color;
         private int speedSetting;
         private int mapNumber;
+        private String greenSound = "src/res/sfx/greenround.wav";
+        private String redSound = "src/res/sfx/redround.wav";
+        private String blueSound = "src/res/sfx/blueround.wav";
+        private String yellowSound = "src/res/sfx/yellowround.wav";
+        private String countdownSound = "src/res/sfx/countdown.wav";
+        private String greenWonSound = "src/res/sfx/greenwon.wav";
+        private String redWonSound = "src/res/sfx/redwon.wav";
+        private String blueWonSound = "src/res/sfx/bluewon.wav";
+        private String yellowWonSound = "src/res/sfx/yellowwon.wav";
+        private String drawSound = "src/res/sfx/draw.wav";
+    	private AudioInputStream audioInputStream;
+    	private Clip greenClip;
+    	private Clip redClip;
+    	private Clip blueClip;
+    	private Clip yellowClip;
+    	private Clip countdownClip;
+    	private Clip greenWonClip;
+    	private Clip redWonClip;
+    	private Clip blueWonClip;
+    	private Clip yellowWonClip;
+    	private Clip drawClip;
         
         public boolean resume;
         public Keyboard key;
@@ -47,6 +72,41 @@ public class Game extends Canvas implements Runnable {
 
         public Game(GamePanel gamePanel , Score score, int player1Color, int player2Color, int speed, int mapNumber) {
                 
+        		try {
+        			audioInputStream = AudioSystem.getAudioInputStream(new File(greenSound).getAbsoluteFile());
+        			greenClip = AudioSystem.getClip();
+        			greenClip.open(audioInputStream);
+        			audioInputStream = AudioSystem.getAudioInputStream(new File(redSound).getAbsoluteFile());
+        			redClip = AudioSystem.getClip();
+        			redClip.open(audioInputStream);
+        			audioInputStream = AudioSystem.getAudioInputStream(new File(blueSound).getAbsoluteFile());
+        			blueClip = AudioSystem.getClip();
+        			blueClip.open(audioInputStream);
+        			audioInputStream = AudioSystem.getAudioInputStream(new File(yellowSound).getAbsoluteFile());
+        			yellowClip = AudioSystem.getClip();
+        			yellowClip.open(audioInputStream);
+        			audioInputStream = AudioSystem.getAudioInputStream(new File(countdownSound).getAbsoluteFile());
+        			countdownClip = AudioSystem.getClip();
+        			countdownClip.open(audioInputStream);
+        			audioInputStream = AudioSystem.getAudioInputStream(new File(greenWonSound).getAbsoluteFile());
+        			greenWonClip = AudioSystem.getClip();
+        			greenWonClip.open(audioInputStream);
+        			audioInputStream = AudioSystem.getAudioInputStream(new File(redWonSound).getAbsoluteFile());
+        			redWonClip = AudioSystem.getClip();
+        			redWonClip.open(audioInputStream);
+        			audioInputStream = AudioSystem.getAudioInputStream(new File(blueWonSound).getAbsoluteFile());
+        			blueWonClip = AudioSystem.getClip();
+        			blueWonClip.open(audioInputStream);
+        			audioInputStream = AudioSystem.getAudioInputStream(new File(yellowWonSound).getAbsoluteFile());
+        			yellowWonClip = AudioSystem.getClip();
+        			yellowWonClip.open(audioInputStream);
+        			audioInputStream = AudioSystem.getAudioInputStream(new File(drawSound).getAbsoluteFile());
+        			drawClip = AudioSystem.getClip();
+        			drawClip.open(audioInputStream);
+        		} catch (Exception e1) {
+        			e1.printStackTrace();
+        		}
+        	
         		this.player1Color = player1Color;
                 this.player2Color = player2Color;
                 this.speedSetting = speed;
@@ -88,13 +148,7 @@ public class Game extends Canvas implements Runnable {
         }
         
         
-        @SuppressWarnings("static-access")
-		private synchronized void stop() {
-        	try {
-				thread.sleep(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+        private synchronized void stop() {
         	frame.setVisible(false);
     		frame.dispose();
         	running = false;
@@ -153,17 +207,16 @@ public class Game extends Canvas implements Runnable {
                                 updates++;
                                 deltaTime--;
                                 if (secondRun) {
-                                	try {
-										thread.sleep(2000);
-										deltaTime = deltaTime - FPS*2;
-										secondRun = false;
-									} catch (InterruptedException e) {
-										e.printStackTrace();
-									}
+                                	long curT = System.currentTimeMillis();
+                                	playSound(countdownClip);
+                                	long newT = System.currentTimeMillis();
+                                	long deltaT = newT - curT;
+                                	deltaTime = deltaTime - FPS*deltaT/1000;
+                                	secondRun = false;
                                 }
                                 if (firstRun) {
-                                	secondRun = true;
                                 	firstRun = false;
+                                	secondRun = true;
                                 }
                         }
 
@@ -218,8 +271,9 @@ public class Game extends Canvas implements Runnable {
                         roundResult = result + " has won this round!";
                 }
                 frame.setTitle(TITLE + " | " + roundResult);
-                
+                announceRoundWinner(result);
                 if (MainWindow.score.getP1() == 2) {
+                	announceGameWinner(player1.getColor());
                 	curPanel.title.setText("Player 1 has won!");
                 	curPanel.set.setVisible(false);
                 	curPanel.abort.setVisible(false);
@@ -232,6 +286,7 @@ public class Game extends Canvas implements Runnable {
                 }
                 
                 else if (MainWindow.score.getP2() == 2) {
+                	announceGameWinner(player2.getColor());
                 	curPanel.title.setText("Player 2 has won!");
                 	curPanel.set.setVisible(false);
                 	curPanel.abort.setVisible(false);
@@ -251,5 +306,47 @@ public class Game extends Canvas implements Runnable {
                 	curPanel.mainPanel.add(curPanel.title);
                 }
                 stop();
+        }
+        
+        private void playSound(Clip clip) {
+    		clip.setFramePosition(0);
+    		clip.start();
+    		while (clip.getFramePosition() != clip.getFrameLength()) {
+    			//wait until clip has been played
+    		}
+    		clip.stop();
+    	}
+        
+        private void announceRoundWinner(String winner) {
+        	if (winner.equals("Red")) {
+        		playSound(redClip);
+        	}
+        	else if (winner.equals("Blue")) {
+        		playSound(blueClip);
+        	}
+        	else if (winner.equals("Green")) {
+        		playSound(greenClip);
+        	}
+        	else if (winner.equals("Yellow")) {
+        		playSound(yellowClip);
+        	}
+        	else {
+        		playSound(drawClip);
+        	}
+        }
+        
+        private void announceGameWinner(String winner) {
+        	if (winner.equals("Red")) {
+        		playSound(redWonClip);
+        	}
+        	else if (winner.equals("Blue")) {
+        		playSound(blueWonClip);
+        	}
+        	else if (winner.equals("Green")) {
+        		playSound(greenWonClip);
+        	}
+        	else if (winner.equals("Yellow")) {
+        		playSound(yellowWonClip);
+        	}
         }
 }
