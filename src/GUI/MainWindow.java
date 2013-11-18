@@ -5,13 +5,9 @@ import gameplay.Score;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
-import java.io.IOException;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.*;
 
 import accounts.Login;
@@ -37,9 +33,15 @@ public class MainWindow {
 	
 	private CardLayout cardlayout = new CardLayout();
 	private JPanel mainWindow = new JPanel(cardlayout);
-	private String sound = "src/res/sfx/button.wav";
+	private String successSound = "src/res/sfx/success.wav";
+	private String errorSound = "src/res/sfx/error.wav";
+	private String backSound = "src/res/sfx/back.wav";
+	private String gameSound = "src/res/sfx/startgame.wav";
 	private AudioInputStream audioInputStream;
-	private Clip clip;
+	private Clip successClip;
+	private Clip errorClip;
+	private Clip backClip;
+	private Clip gameClip;
 	
 	private IntroPanel introPanel = new IntroPanel();
 	private CrAccPanel crAccPanel = new CrAccPanel();
@@ -57,9 +59,18 @@ public class MainWindow {
 	public MainWindow() {
 		
 		try {
-			audioInputStream = AudioSystem.getAudioInputStream(new File(sound).getAbsoluteFile());
-			clip = AudioSystem.getClip();
-			clip.open(audioInputStream);
+			audioInputStream = AudioSystem.getAudioInputStream(new File(successSound).getAbsoluteFile());
+			successClip = AudioSystem.getClip();
+			successClip.open(audioInputStream);
+			audioInputStream = AudioSystem.getAudioInputStream(new File(errorSound).getAbsoluteFile());
+			errorClip = AudioSystem.getClip();
+			errorClip.open(audioInputStream);
+			audioInputStream = AudioSystem.getAudioInputStream(new File(backSound).getAbsoluteFile());
+			backClip = AudioSystem.getClip();
+			backClip.open(audioInputStream);
+			audioInputStream = AudioSystem.getAudioInputStream(new File(gameSound).getAbsoluteFile());
+			gameClip = AudioSystem.getClip();
+			gameClip.open(audioInputStream);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -78,12 +89,11 @@ public class MainWindow {
 		introPanel.addLoginBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(successClip);
 				if(loginObject.userOneLogin()){
-					clip.start();
 					cardlayout.show(mainWindow, LOGIN2);
 				}
 				else{
-					clip.start();
 					cardlayout.show(mainWindow, LOGIN);
 				}
 			}
@@ -92,7 +102,7 @@ public class MainWindow {
 		introPanel.addCreateAccBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				clip.start();
+				playSound(successClip);
 				cardlayout.show(mainWindow, CRACC);
 			}
 		});
@@ -100,7 +110,7 @@ public class MainWindow {
 		crAccPanel.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				clip.start();
+				playSound(backClip);
 				cardlayout.show(mainWindow, INTRO);
 			}
 		});
@@ -108,6 +118,7 @@ public class MainWindow {
 		loginPanel1.addContinueBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(successClip);
 				LoginPanelOne.username1.setText("");
 				LoginPanelOne.password1.setText("");
 				LoginPanelOne.actionLabel.setText("");
@@ -124,6 +135,7 @@ public class MainWindow {
 		loginPanel1.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(backClip);
 				cardlayout.show(mainWindow, INTRO);
 			}
 		});
@@ -131,6 +143,7 @@ public class MainWindow {
 		loginPanel2.addContinueBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(successClip);
 				LoginPanelTwo.username2.setText("");
 				LoginPanelTwo.password2.setText("");
 				LoginPanelTwo.actionLabel.setText("");
@@ -142,6 +155,7 @@ public class MainWindow {
 		loginPanel2.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(backClip);
 				if(loginObject.userOneLogin()){
 					cardlayout.show(mainWindow, INTRO);
 				}
@@ -155,6 +169,7 @@ public class MainWindow {
 		mainPanel.addNewGameBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(successClip);
 				cardlayout.show(mainWindow, GAME);
 				gamePanel.set.setVisible(true);
 				gamePanel.abort.setVisible(true);
@@ -165,6 +180,7 @@ public class MainWindow {
 		mainPanel.addStatsBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(successClip);
 				cardlayout.show(mainWindow, STATS);
 				statsPanel.updateStatsPanel();
 			}
@@ -173,6 +189,7 @@ public class MainWindow {
 		mainPanel.addHelpBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(successClip);
 				cardlayout.show(mainWindow, HELP);
 			}
 		});
@@ -180,6 +197,7 @@ public class MainWindow {
 		mainPanel.addSettBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(successClip);
 				cardlayout.show(mainWindow, SETT);
 			}
 		});
@@ -187,6 +205,7 @@ public class MainWindow {
 		mainPanel.addLogoutBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(successClip);
 				cardlayout.show(mainWindow, LOGOUT);
 			}
 		});
@@ -195,6 +214,7 @@ public class MainWindow {
 			@Override
 			
 			public void actionPerformed(ActionEvent e) {
+				playSound(successClip);
 				User newUser = null;
 				loginObject.setUserOne(newUser);
 				LoginPanelOne.username1.setEditable(true);
@@ -206,6 +226,7 @@ public class MainWindow {
 		logoutPanel.addPlayerTwoActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(successClip);
 				User newUser = null;
 				loginObject.setUserTwo(newUser);
 				LoginPanelTwo.username2.setEditable(true);
@@ -217,7 +238,7 @@ public class MainWindow {
 		logoutPanel.addCancelActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				playSound(backClip);
 				cardlayout.show(mainWindow, MAIN);
 			}
 		});
@@ -226,6 +247,7 @@ public class MainWindow {
 		logoutPanel.addBothActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(successClip);
 				User newUser = null;
 				loginObject.setUserOne(newUser);
 				loginObject.setUserTwo(newUser);
@@ -240,6 +262,7 @@ public class MainWindow {
 		gamePanel.addStartBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(gameClip);
 				gameplay.Game startGame = new gameplay.Game(gamePanel,score, gamePanel.p1color, gamePanel.p2color, gamePanel.sp, gamePanel.mapNumber);
 			}
 		});
@@ -247,6 +270,7 @@ public class MainWindow {
 		gamePanel.addAbortBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(backClip);
 				gamePanel.speed.setText("");
 				gamePanel.start.setVisible(false);
 				gamePanel.actionLabel.setText("");
@@ -261,6 +285,7 @@ public class MainWindow {
 		gamePanel.addRetBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(backClip);
 				gamePanel.speed.setText("");
 				gamePanel.start.setVisible(false);
 				gamePanel.actionLabel.setText("");
@@ -275,6 +300,7 @@ public class MainWindow {
 		statsPanel.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(backClip);
 				cardlayout.show(mainWindow, MAIN);
 			}
 		});
@@ -282,6 +308,7 @@ public class MainWindow {
 		helpPanel.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(backClip);
 				cardlayout.show(mainWindow, MAIN);
 			}
 		});
@@ -289,6 +316,7 @@ public class MainWindow {
 		settPanel.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(backClip);
 				cardlayout.show(mainWindow, MAIN);
 			}
 		});
@@ -307,6 +335,15 @@ public class MainWindow {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
+	}
+	
+	private void playSound(Clip clip) {
+		clip.setFramePosition(0);
+		clip.start();
+		while (clip.getFramePosition() != clip.getFrameLength()) {
+			//wait until clip has been played
+		}
+		clip.stop();
 	}
 
 	public static void main(String[] args) {

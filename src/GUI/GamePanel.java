@@ -7,6 +7,9 @@ import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 public class GamePanel {
@@ -34,8 +37,25 @@ public class GamePanel {
 	public JButton abort;
 	public JButton ret;
 	protected JLabel actionLabel;
+	
+    private String successSound = "src/res/sfx/success.wav";
+	private String errorSound = "src/res/sfx/error.wav";
+	private AudioInputStream audioInputStream;
+	private Clip successClip;
+	private Clip errorClip;
 
 	public GamePanel() {
+		
+		try {
+			audioInputStream = AudioSystem.getAudioInputStream(new File(successSound).getAbsoluteFile());
+			successClip = AudioSystem.getClip();
+			successClip.open(audioInputStream);
+			audioInputStream = AudioSystem.getAudioInputStream(new File(errorSound).getAbsoluteFile());
+			errorClip = AudioSystem.getClip();
+			errorClip.open(audioInputStream);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 		
 		mainPanel.setLayout(null);
 
@@ -119,14 +139,17 @@ public class GamePanel {
 					spd = -1;
 				}
 				if(colorPlayer1.equals(colorPlayer2)){
+					playSound(errorClip);
 					actionLabel.setText("Choose different colors.");
 					start.setVisible(false);
 				}
 				else if(spd > 10 || spd < 3){
+					playSound(errorClip);
 					actionLabel.setText("Invalid speed.");
 					start.setVisible(false);
 				}
 				else { 
+					playSound(successClip);
 					if(colorPlayer1.equals("Red")){
 						p1color = Player.RED;
 					}
@@ -175,5 +198,14 @@ public class GamePanel {
 	
 	public JComponent getMainComponent() {
 	   return mainPanel;
+	}
+	
+	private void playSound(Clip clip) {
+		clip.setFramePosition(0);
+		clip.start();
+		while (clip.getFramePosition() != clip.getFrameLength()) {
+			//wait until clip has been played
+		}
+		clip.stop();
 	}
 }

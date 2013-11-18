@@ -2,7 +2,11 @@ package GUI;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 import accounts.Login;
@@ -28,10 +32,26 @@ public class LoginPanelTwo {
 	public static  JButton cont;
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
+    private String successSound = "src/res/sfx/success.wav";
+	private String errorSound = "src/res/sfx/error.wav";
+	private AudioInputStream audioInputStream;
+	private Clip successClip;
+	private Clip errorClip;
 
 	private Login loginObject = Login.getInstance();
 
 	public LoginPanelTwo() {
+		
+		try {
+			audioInputStream = AudioSystem.getAudioInputStream(new File(successSound).getAbsoluteFile());
+			successClip = AudioSystem.getClip();
+			successClip.open(audioInputStream);
+			audioInputStream = AudioSystem.getAudioInputStream(new File(errorSound).getAbsoluteFile());
+			errorClip = AudioSystem.getClip();
+			errorClip.open(audioInputStream);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 
 		mainPanel.setLayout(null);
 
@@ -77,11 +97,14 @@ public class LoginPanelTwo {
 						enteredPassword);
 				boolean loggedIn = loginObject.checkLogedin(enteredUsername);
 				if (!success) {
+					playSound(errorClip);
 					actionLabel.setText("Unsuccessful Login.");
 				} else if (loggedIn) {
+					playSound(errorClip);
 					actionLabel.setText(enteredUsername
 							+ ", you are already logged in!");
 				} else {
+					playSound(successClip);
 					cont.setVisible(true);
 					username2.setEditable(false);
 					password2.setEditable(false);
@@ -107,5 +130,14 @@ public class LoginPanelTwo {
 
 	public JComponent getMainComponent() {
 		return mainPanel;
+	}
+	
+	private void playSound(Clip clip) {
+		clip.setFramePosition(0);
+		clip.start();
+		while (clip.getFramePosition() != clip.getFrameLength()) {
+			//wait until clip has been played
+		}
+		clip.stop();
 	}
 }
