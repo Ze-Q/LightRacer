@@ -25,6 +25,7 @@ public class Game extends Canvas implements Runnable {
         private final int HEIGHT = WIDTH * 9 / 16 ;
         private final int SCALE = 1;
         private final static String TITLE = "Light Racer";
+        private final double FPS = 25.0;
         
         private JFrame frame;
         private Thread thread;
@@ -112,7 +113,7 @@ public class Game extends Canvas implements Runnable {
                 int frames = 0;
                 int updates = 0;
                 double deltaTime = 0.0;
-                final double nanoSecondsPerUpdate = 1000000000.0 / 25.0;
+                final double nanoSecondsPerUpdate = 1000000000.0 / FPS;
                 long lastTime = System.nanoTime();
                 long timer = System.currentTimeMillis();
                 requestFocus();
@@ -133,7 +134,7 @@ public class Game extends Canvas implements Runnable {
 										Pause pause = new Pause(this);
                         				while (!resume) {
                         					thread.sleep(10);
-                        				    deltaTime = deltaTime - 0.25;
+                        				    deltaTime = deltaTime - FPS/100.0;
                         				}
                         			} catch (InterruptedException e) {
                         				e.printStackTrace();
@@ -154,7 +155,7 @@ public class Game extends Canvas implements Runnable {
                                 if (secondRun) {
                                 	try {
 										thread.sleep(2000);
-										deltaTime = deltaTime - 25*2;
+										deltaTime = deltaTime - FPS*2;
 										secondRun = false;
 									} catch (InterruptedException e) {
 										e.printStackTrace();
