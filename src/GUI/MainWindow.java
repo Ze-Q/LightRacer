@@ -321,7 +321,7 @@ public class MainWindow {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
-		backgroundClip.loop(0);
+		backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	
 	private void playSound(Clip clip) {

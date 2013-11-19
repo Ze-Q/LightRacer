@@ -189,12 +189,14 @@ public class Game extends Canvas implements Runnable {
                         		if (key.pause) {
                         			try {
                         				resume = false;
+                        				ingameClip.stop();
                         				@SuppressWarnings("unused")
 										Pause pause = new Pause(this);
                         				while (!resume) {
                         					thread.sleep(10);
                         				    deltaTime = deltaTime - FPS/100.0;
                         				}
+                        				ingameClip.start();
                         			} catch (InterruptedException e) {
                         				e.printStackTrace();
                         			}
@@ -282,7 +284,7 @@ public class Game extends Canvas implements Runnable {
                 announceRoundWinner(result);
                 if (MainWindow.score.getP1() == 2) {
                 	announceGameWinner(player1.getColor());
-    				MainWindow.backgroundClip.loop(0);
+    				MainWindow.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
                 	curPanel.title.setText("<html> <h1>Player 2 has won!</h1> </html>");
                 	curPanel.title.setBounds(350, 25, 400, 100);
                 	curPanel.set.setVisible(false);
@@ -297,7 +299,7 @@ public class Game extends Canvas implements Runnable {
                 
                 else if (MainWindow.score.getP2() == 2) {
                 	announceGameWinner(player2.getColor());
-    				MainWindow.backgroundClip.loop(0);
+    				MainWindow.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
                 	curPanel.title.setText("<html> <h1>Player 2 has won!</h1> </html>");
                 	curPanel.title.setBounds(350, 25, 400, 100);
                 	curPanel.actionLabel.setText("");
@@ -317,7 +319,7 @@ public class Game extends Canvas implements Runnable {
                 	curPanel.mainPanel.remove(curPanel.title);
                 	curPanel.mainPanel.add(curPanel.title);
                 }
-				MainWindow.backgroundClip.loop(0);
+				MainWindow.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
                 stop();
         }
         
