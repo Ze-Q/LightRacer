@@ -4,19 +4,20 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import accounts.Login;
+
 class LogoutPanel {
 	
 	private JPanel mainPanel = new JPanel();
 	private JLabel title = new JLabel("<html> <h1>Choose player(s) to logout</h1> </html>");
-	private JButton playerOne;
-	private JButton playerTwo;
+	protected static JButton playerOne;
+	protected static JButton playerTwo;
 	private JButton both;
 	private JButton cancel;
 
 	public LogoutPanel() {
 		
 		mainPanel.setLayout(null);
-
 		playerOne = new JButton("Player 1");
 		playerOne.setForeground(Color.WHITE);
 		playerOne.setBackground(Color.DARK_GRAY);
