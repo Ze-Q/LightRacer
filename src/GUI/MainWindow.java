@@ -28,8 +28,6 @@ public class MainWindow {
 	private static final String GAME = "game";
 	private static final String STATS = "stats";
 	private static final String HELP = "help";
-	private static final String SETT = "setting";
-	private static final String STARTGAME = "startGame";
 	
 	private CardLayout cardlayout = new CardLayout();
 	private JPanel mainWindow = new JPanel(cardlayout);
@@ -51,7 +49,6 @@ public class MainWindow {
 	public GamePanel gamePanel = new GamePanel();
 	private StatsPanel statsPanel = new StatsPanel();
 	private HelpPanel helpPanel = new HelpPanel();
-	private SettingsPanel settPanel = new SettingsPanel();
 	private LogoutPanel logoutPanel = new LogoutPanel();
 	
 	public static Score score = new Score();
@@ -83,7 +80,6 @@ public class MainWindow {
 		mainWindow.add(gamePanel.getMainComponent(), GAME);
 		mainWindow.add(statsPanel.getMainComponent(), STATS);
 		mainWindow.add(helpPanel.getMainComponent(), HELP);
-		mainWindow.add(settPanel.getMainComponent(), SETT);
 		mainWindow.add(logoutPanel.getMainComponent(), LOGOUT);
 		
 		introPanel.addLoginBtnActionListener(new ActionListener() {
@@ -193,15 +189,7 @@ public class MainWindow {
 				cardlayout.show(mainWindow, HELP);
 			}
 		});
-		
-		mainPanel.addSettBtnActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				playSound(successClip);
-				cardlayout.show(mainWindow, SETT);
-			}
-		});
-		
+				
 		mainPanel.addLogoutBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -272,10 +260,10 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				playSound(backClip);
 				gamePanel.speed.setText("");
-				gamePanel.start.setVisible(false);
+				gamePanel.start.setEnabled(false);
 				gamePanel.actionLabel.setText("");
 				gamePanel.ret.setVisible(false);
-				gamePanel.title.setText("Current score: 0 - 0");
+				gamePanel.title.setText("<html> <h1>Current score: 0 - 0</h1> </html>S");
 				score.p1 = 0;
 				score.p2 = 0;
 				cardlayout.show(mainWindow, MAIN);
@@ -287,10 +275,10 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				playSound(backClip);
 				gamePanel.speed.setText("");
-				gamePanel.start.setVisible(false);
+				gamePanel.start.setEnabled(false);
 				gamePanel.actionLabel.setText("");
 				gamePanel.ret.setVisible(false);
-				gamePanel.title.setText("Current score: 0 - 0");
+				gamePanel.title.setText("<html> <h1>Current score: 0 - 0</h1> </html>");
 				score.p1 = 0;
 				score.p2 = 0;
 				cardlayout.show(mainWindow, MAIN);
@@ -306,14 +294,6 @@ public class MainWindow {
 		});
 		
 		helpPanel.addBackBtnActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				playSound(backClip);
-				cardlayout.show(mainWindow, MAIN);
-			}
-		});
-		
-		settPanel.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				playSound(backClip);

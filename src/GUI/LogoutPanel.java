@@ -7,7 +7,7 @@ import javax.swing.*;
 class LogoutPanel {
 	
 	private JPanel mainPanel = new JPanel();
-	private JLabel title = new JLabel("Choose player(s) to logout");
+	private JLabel title = new JLabel("<html> <h1>Choose player(s) to logout</h1> </html>");
 	private JButton playerOne;
 	private JButton playerTwo;
 	private JButton both;
@@ -16,22 +16,34 @@ class LogoutPanel {
 	public LogoutPanel() {
 		
 		mainPanel.setLayout(null);
+
 		playerOne = new JButton("Player 1");
+		playerOne.setForeground(Color.WHITE);
+		playerOne.setBackground(Color.DARK_GRAY);
 		playerTwo = new JButton("Player 2");
+		playerTwo.setForeground(Color.WHITE);
+		playerTwo.setBackground(Color.DARK_GRAY);
 		both = new JButton("Both");
+		both.setForeground(Color.WHITE);
+		both.setBackground(Color.DARK_GRAY);
 		cancel = new JButton ("Cancel");
+		cancel.setForeground(Color.WHITE);
+		cancel.setBackground(Color.DARK_GRAY);
+		title.setForeground(Color.WHITE);
 
 		mainPanel.add(title);
 		mainPanel.add(playerOne);
 		mainPanel.add(playerTwo);
 		mainPanel.add(both);
 		mainPanel.add(cancel);
+	    mainPanel.setOpaque(true);
+	    mainPanel.setBackground(Color.BLACK);
 		
 		Dimension size = new Dimension(100,25);
-		title.setBounds(375, 50, 200, size.height);
-		playerOne.setBounds(400, 150, size.width, size.height);
+		title.setBounds(315, 25, 400, 100);
+		playerOne.setBounds(400, 200, size.width, size.height);
 		playerTwo.setBounds(400, 250, size.width, size.height);
-		both.setBounds(400, 350, size.width, size.height);
+		both.setBounds(400, 300, size.width, size.height);
 		cancel.setBounds(400, 450, size.width, size.height);
 		
 		

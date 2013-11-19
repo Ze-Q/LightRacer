@@ -8,7 +8,7 @@ class HelpPanel {
 	
 	private JPanel mainPanel = new JPanel();
 
-	private JLabel title = new JLabel("Help");
+	private JLabel title = new JLabel("<html> <h1>Help</h1> </html>");
 	private JLabel actionLabel;
 	private JButton gameRules;
 	private JButton controls;
@@ -19,23 +19,26 @@ class HelpPanel {
 	public HelpPanel() {
 		
 		mainPanel.setLayout(null);
+		
 		back = new JButton("Return to Main Menu");
-		
+		back.setForeground(Color.WHITE);
+		back.setBackground(Color.DARK_GRAY);
 		actionLabel = new JLabel("");
+		actionLabel.setForeground(Color.WHITE);
 		gameRules = new JButton ("Game Rules");
+		gameRules.setForeground(Color.WHITE);
+		gameRules.setBackground(Color.DARK_GRAY);
 		controls = new JButton ("Controls");
+		controls.setForeground(Color.WHITE);
+		controls.setBackground(Color.DARK_GRAY);
 		loadMap = new JButton ("Maps");
+		loadMap.setForeground(Color.WHITE);
+		loadMap.setBackground(Color.DARK_GRAY);
 		about = new JButton ("About");
-		
-		/*
-		
-		
-		controls = new JLabel();
-		
-		loadMap = new JLabel();
+		about.setForeground(Color.WHITE);
+		about.setBackground(Color.DARK_GRAY);
+		title.setForeground(Color.WHITE);
 
-		about = new JLabel ();
-		*/
 		
 		mainPanel.add(title);
 		mainPanel.add(back);
@@ -44,10 +47,12 @@ class HelpPanel {
 		mainPanel.add(controls);
 		mainPanel.add(loadMap);
 		mainPanel.add(about);
+	    mainPanel.setOpaque(true);
+	    mainPanel.setBackground(Color.BLACK);
 		
 		Dimension size = new Dimension(100,25);
 		back.setBounds(350, 450, 200, size.height);
-		title.setBounds(415, 50, size.width, size.height);
+		title.setBounds(410, 25, 200, 100);
 		actionLabel.setBounds(450, 50, 400, 400);
 		gameRules.setBounds(100, 150, 200, size.height);
 		controls.setBounds(100, 200, 200, size.height);

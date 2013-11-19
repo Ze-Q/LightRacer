@@ -6,11 +6,10 @@ import javax.swing.*;
 
 class MainPanel {
 	private JPanel mainPanel = new JPanel();
-	private JLabel title = new JLabel("Main Menu");
+	private JLabel title = new JLabel("<html> <h1>Main Menu</h1> </html>");
 	private JButton newGame;
 	private JButton stats;
 	private JButton help;
-	private JButton settings;
 	private JButton logout;
 	private JButton exit;
 
@@ -18,27 +17,37 @@ class MainPanel {
 		
 		mainPanel.setLayout(null);
 		newGame = new JButton("New Game");
+		newGame.setForeground(Color.WHITE);
+		newGame.setBackground(Color.DARK_GRAY);
 		logout = new JButton("Logout");
+		logout.setForeground(Color.WHITE);
+		logout.setBackground(Color.DARK_GRAY);
 		exit = new JButton ("Exit");
+		exit.setForeground(Color.WHITE);
+		exit.setBackground(Color.DARK_GRAY);
 		stats = new JButton ("Statistics");
+		stats.setForeground(Color.WHITE);
+		stats.setBackground(Color.DARK_GRAY);
 		help = new JButton ("Help");
-		settings = new JButton ("Settings");
-
+		help.setForeground(Color.WHITE);
+		help.setBackground(Color.DARK_GRAY);
+		title.setForeground(Color.WHITE);
+		
 		mainPanel.add(title);
 		mainPanel.add(newGame);
 		mainPanel.add(logout);
 		mainPanel.add(exit);
 		mainPanel.add(stats);
 		mainPanel.add(help);
-		mainPanel.add(settings);
+	    mainPanel.setOpaque(true);
+	    mainPanel.setBackground(Color.BLACK);
 		
 		Dimension size = new Dimension(100,25);
-		title.setBounds(415, 10, 100, size.height);
-		newGame.setBounds(400, 100, size.width, size.height);
-		stats.setBounds(400, 150, size.width, size.height);
-		help.setBounds(400, 200, size.width, size.height);
-		settings.setBounds(400, 250, size.width, size.height);
-		logout.setBounds(400, 300, size.width, size.height);
+		title.setBounds(385, 25, 200, 100);
+		newGame.setBounds(400, 175, size.width, size.height);
+		stats.setBounds(400, 225, size.width, size.height);
+		help.setBounds(400, 275, size.width, size.height);
+		logout.setBounds(400, 325, size.width, size.height);
 		exit.setBounds(400, 450, size.width, size.height);
 		
 		exit.addActionListener(new ActionListener() {
@@ -61,10 +70,6 @@ class MainPanel {
 		help.addActionListener(listener);
 	}
 	
-	public void addSettBtnActionListener(ActionListener listener) {
-		settings.addActionListener(listener);
-	}
-
 	public void addLogoutBtnActionListener(ActionListener listener) {
 		logout.addActionListener(listener);
 	}

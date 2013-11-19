@@ -12,7 +12,7 @@ import accounts.User;
 class StatsPanel {
 	private JPanel mainPanel = new JPanel();
 
-	private JLabel title = new JLabel("Statistics");
+	private JLabel title = new JLabel("<html> <h1>Statistics</h1> </html>");
 	private JLabel topTenTitle;
 	private JLabel versusTitle;
 	private JButton back;
@@ -28,19 +28,28 @@ class StatsPanel {
 		
 		mainPanel.setLayout(null);
 		topTenTitle = new JLabel("Top Ten Records");
+		topTenTitle.setForeground(Color.WHITE);
+		topTenTitle.setBackground(Color.DARK_GRAY);
 		versusTitle = new JLabel("Versus Records");
+		versusTitle.setForeground(Color.WHITE);
+		versusTitle.setBackground(Color.DARK_GRAY);
 		back = new JButton("Return to Main Menu");
+		back.setForeground(Color.WHITE);
+		back.setBackground(Color.DARK_GRAY);
+		title.setForeground(Color.WHITE);
 		
 		mainPanel.add(title);
 		mainPanel.add(topTenTitle);
 		mainPanel.add(versusTitle);
 		mainPanel.add(back);
+	    mainPanel.setOpaque(true);
+	    mainPanel.setBackground(Color.BLACK);
 		
 		Dimension size = new Dimension(100,25);
 		topTenTitle.setBounds(150, 140, 200,25);
 		versusTitle.setBounds(600, 140, 200, 25);
 		back.setBounds(350, 450, 200, size.height);
-		title.setBounds(415, 50, size.width, size.height);
+		title.setBounds(385, 25, 200, 100);
 	}
 	
 	public void updateStatsPanel() {
@@ -57,6 +66,7 @@ class StatsPanel {
 		isVersusTableInitialized=true;
 		versusTable.setBounds(600, 160, 150, 45);
 		versusTable.setBackground(Color.LIGHT_GRAY);
+		title.setForeground(Color.WHITE);
 		
 		//update top ten table
 		if(isTopTenTableInitialized==true) {
@@ -68,6 +78,7 @@ class StatsPanel {
 		isTopTenTableInitialized=true;
 		topTenTable.setBounds(150, 160, 150, 175);
 		topTenTable.setBackground(Color.LIGHT_GRAY);
+		title.setForeground(Color.WHITE);
 	}
 	
 	private JTable generateTopTenTable () {

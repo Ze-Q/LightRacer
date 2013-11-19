@@ -100,7 +100,7 @@ public class CSVHandler {
 		// regex which check for alphanumeric characters
 		String matchThis = "^[a-zA-Z0-9]{1,}$";
 		if (!username.matches(matchThis)) {
-			message = "username must only contains alphanumeric characters.<br>";
+			message = "Username must only contains alphanumeric characters.<br>";
 		}
 		return message;
 	}
@@ -116,7 +116,7 @@ public class CSVHandler {
 		lower = upper = digit = nonAlphanumeric = false;
 		nonAlphanumeric = password.matches(nonAlpha);
 		if (length < 8) {
-			message = message + "password minimum length is 8.<br>";
+			message = message + "Password minimum length is 8.<br>";
 		}
 		for (int i = 0; i < length; i++) {
 			char c = password.charAt(i);
@@ -128,16 +128,16 @@ public class CSVHandler {
 				upper = true;
 		}
 		if (!digit)
-			message = message + "password must contain at least one digit.<br>";
+			message = message + "Password must contain at least one digit.<br>";
 		if (!lower)
 			message = message
-					+ "password must contain at least one lowercase character.<br>";
+					+ "Password must contain at least one lowercase character.<br>";
 		if (!upper)
 			message = message
-					+ "password must contain at least one uppercase character.<br>";
+					+ "Password must contain at least one uppercase character.<br>";
 		if (!nonAlphanumeric)
 			message = message
-					+ "password must contain at least one nonAlphanumeric character.<br>";
+					+ "Password must contain at least one non-alphanumeric character.<br>";
 		return message;
 	}
 

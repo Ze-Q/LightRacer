@@ -14,10 +14,10 @@ import accounts.User;
 
 public class LoginPanelTwo {
 	private JPanel mainPanel = new JPanel();
-	private JLabel title = new JLabel("Login Player 2");
+	private JLabel title = new JLabel("<html> <h1>Login Player 2</h1></html>");
 
-	protected static final String usernameField = "username";
-	protected static final String passwordField = "password";
+	protected static final String usernameField = "Username";
+	protected static final String passwordField = "Password";
 	protected static final String loginString = "Login";
 
 	public final int WIDTH = 900;
@@ -56,14 +56,24 @@ public class LoginPanelTwo {
 		mainPanel.setLayout(null);
 
 		login = new JButton("Login");
+		login.setForeground(Color.WHITE);
+		login.setBackground(Color.DARK_GRAY);
 		back = new JButton("Back");
+		back.setForeground(Color.WHITE);
+		back.setBackground(Color.DARK_GRAY);
 		cont = new JButton("Continue");
+		cont.setForeground(Color.WHITE);
+		cont.setBackground(Color.DARK_GRAY);
 		cont.setVisible(false);
 		usernameLabel = new JLabel(usernameField + ": ");
+		usernameLabel.setForeground(Color.WHITE);
 		usernameLabel.setLabelFor(username2);
 		passwordLabel = new JLabel(passwordField + ": ");
+		passwordLabel.setForeground(Color.WHITE);
 		passwordLabel.setLabelFor(password2);
 		actionLabel = new JLabel("");
+		actionLabel.setForeground(Color.WHITE);
+		title.setForeground(Color.WHITE);
 
 		mainPanel.add(title);
 		mainPanel.add(login);
@@ -75,9 +85,11 @@ public class LoginPanelTwo {
 		mainPanel.add(password2);
 		mainPanel.add(actionLabel);
 		mainPanel.add(cont);
+	    mainPanel.setOpaque(true);
+	    mainPanel.setBackground(Color.BLACK);
 
 		Dimension size = new Dimension(100, 25);
-		title.setBounds(415, 50, 100, size.height);
+		title.setBounds(375, 50, 200, 50);
 		login.setBounds(400, 350, size.width, size.height);
 		back.setBounds(400, 400, size.width, size.height);
 		cont.setBounds(400, 450, size.width, size.height);
@@ -97,23 +109,26 @@ public class LoginPanelTwo {
 						enteredPassword);
 				boolean loggedIn = loginObject.checkLogedin(enteredUsername);
 				if (!success) {
+					actionLabel.setForeground(Color.RED);
 					playSound(errorClip);
 					actionLabel.setText("Unsuccessful Login.");
-				} else if (loggedIn) {
+					actionLabel.setBounds(395, 250, 200, 25);
+				} 
+				else if (loggedIn) {
+					actionLabel.setForeground(Color.RED);
 					playSound(errorClip);
-					actionLabel.setText(enteredUsername
-							+ ", you are already logged in!");
-				} else {
+					actionLabel.setText(enteredUsername + ", you are already logged in!");
+				} 
+				else {
+					actionLabel.setForeground(Color.WHITE);
+					actionLabel.setBounds(400, 250, 200, 25);
 					playSound(successClip);
 					cont.setVisible(true);
 					username2.setEditable(false);
 					password2.setEditable(false);
 					User newUser = new User(enteredUsername);
 					loginObject.setUserTwo(newUser);
-					actionLabel.setText("Welcome! "
-							+ loginObject.getUserNameTwo());
-					
-
+					actionLabel.setText("Welcome " + loginObject.getUserNameTwo() + "!");
 				}
 			}
 		});

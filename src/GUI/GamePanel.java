@@ -20,7 +20,7 @@ public class GamePanel {
 	public int sp;
 	public int mapNumber;
 	
-	public JLabel title = new JLabel("Current Score: " + MainWindow.score.getP1() + " - " +  MainWindow.score.getP2());
+	public JLabel title = new JLabel("<html> <h1>Current Score: " + MainWindow.score.getP1() + " - " +  MainWindow.score.getP2() + "</h1> </html>");
 	protected JLabel mapLabel;
 	protected DefaultComboBoxModel map;
 	protected JComboBox maps;
@@ -36,7 +36,7 @@ public class GamePanel {
 	public JButton start;
 	public JButton abort;
 	public JButton ret;
-	protected JLabel actionLabel;
+	public JLabel actionLabel;
 	
     private String successSound = "src/res/sfx/success.wav";
 	private String errorSound = "src/res/sfx/error.wav";
@@ -61,7 +61,9 @@ public class GamePanel {
 
 		speedLabel = new JLabel("Set Speed (3-10)" + ": ");
 		speedLabel.setLabelFor(speed);
+		speedLabel.setForeground(Color.WHITE);
 		mapLabel = new JLabel("Choose map" + ": ");
+		mapLabel.setForeground(Color.WHITE);
 		map = new DefaultComboBoxModel();
 		File[] mapFiles;
 		File dir;
@@ -72,9 +74,13 @@ public class GamePanel {
 			map.addElement(mapFiles[i].getName());
 		}
 		maps = new JComboBox(map);
+		maps.setBackground(Color.DARK_GRAY);
+		maps.setForeground(Color.WHITE);
 		color1Label = new JLabel("Player 1" + ": ");
+		color1Label.setForeground(Color.WHITE);
 		color1 = new DefaultComboBoxModel();
 		color2Label = new JLabel("Player 2" + ": ");
+		color2Label.setForeground(Color.WHITE);
 		color2 = new DefaultComboBoxModel();
 		color1.addElement("Red");
 		color1.addElement("Blue");
@@ -85,15 +91,28 @@ public class GamePanel {
 		color2.addElement("Green");
 		color2.addElement("Yellow");
 		player1Color = new JComboBox(color1);
+		player1Color.setBackground(Color.DARK_GRAY);
+		player1Color.setForeground(Color.WHITE);
 		player2Color = new JComboBox(color2);
+		player2Color.setBackground(Color.DARK_GRAY);
+		player2Color.setForeground(Color.WHITE);
 		speed = new JTextField(10);
 		start = new JButton("Start Game");
-		start.setVisible(false);
+		start.setForeground(Color.WHITE);
+		start.setBackground(Color.DARK_GRAY);
+		start.setEnabled(false);
 		abort = new JButton("Abort Game");
-		set = new JButton("Set");
+		abort.setForeground(Color.WHITE);
+		abort.setBackground(Color.DARK_GRAY);
+		set = new JButton("Ready!");
+		set.setForeground(Color.WHITE);
+		set.setBackground(Color.DARK_GRAY);
 		actionLabel = new JLabel("");
 		ret = new JButton("Return to Main Menu");
+		ret.setForeground(Color.WHITE);
+		ret.setBackground(Color.DARK_GRAY);
 		ret.setVisible(false);
+		title.setForeground(Color.WHITE);
 
 		mainPanel.add(title);
 		mainPanel.add(start);
@@ -109,21 +128,23 @@ public class GamePanel {
 		mainPanel.add(player2Color);
 		mainPanel.add(actionLabel);
 		mainPanel.add(ret);
+	    mainPanel.setOpaque(true);
+	    mainPanel.setBackground(Color.BLACK);
 
 		Dimension size = new Dimension(100,25);	
+		title.setBounds(340, 25, 400, 100);
 		abort.setBounds(375, 450, 150, size.height);
-		title.setBounds(380, 50, 150, size.height);
 		start.setBounds(400, 400, size.width, size.height);
-		mapLabel.setBounds(350, 100, size.width, size.height);
-		maps.setBounds(450, 100, size.width, size.height);
-		color1Label.setBounds(225, 200, 75, size.height);
-		player1Color.setBounds(325, 200, size.width, size.height);
-		color2Label.setBounds(450, 200, 75, size.height);
-		player2Color.setBounds(550, 200, size.width, size.height);
-		speedLabel.setBounds(335, 150, size.width+10, size.height);
-		speed.setBounds(450, 150, size.width, size.height);
+		mapLabel.setBounds(350, 125, size.width, size.height);
+		maps.setBounds(450, 125, size.width, size.height);
+		color1Label.setBounds(225, 225, 75, size.height);
+		player1Color.setBounds(325, 225, size.width, size.height);
+		color2Label.setBounds(450, 225, 75, size.height);
+		player2Color.setBounds(550, 225, size.width, size.height);
+		speedLabel.setBounds(335, 175, size.width+10, size.height);
+		speed.setBounds(450, 175, size.width, size.height);
 		set.setBounds(400, 350, size.width, size.height);
-		actionLabel.setBounds(400, 250, 400, 75);
+		actionLabel.setBounds(400, 275, 400, 75);
 		ret.setBounds(375, 450, 150, size.height);
 		
 		set.addActionListener(new ActionListener() {
@@ -141,12 +162,16 @@ public class GamePanel {
 				if(colorPlayer1.equals(colorPlayer2)){
 					playSound(errorClip);
 					actionLabel.setText("Choose different colors.");
-					start.setVisible(false);
+					actionLabel.setBounds(385, 250, 400, 75);
+					actionLabel.setForeground(Color.RED);
+					start.setEnabled(false);
 				}
 				else if(spd > 10 || spd < 3){
 					playSound(errorClip);
 					actionLabel.setText("Invalid speed.");
-					start.setVisible(false);
+					actionLabel.setBounds(410, 250, 400, 75);
+					actionLabel.setForeground(Color.RED);
+					start.setEnabled(false);
 				}
 				else { 
 					playSound(successClip);
@@ -176,8 +201,10 @@ public class GamePanel {
 					}
 					sp = spd;
 					mapNumber = Character.getNumericValue((chosenMap.charAt(3)));
+					actionLabel.setForeground(Color.WHITE);
+					actionLabel.setBounds(400, 275, 400, 75);
 					actionLabel.setText("<html>" + "Map: " + chosenMap + "<br>" +  "Speed: " + sp + "<br>" + "Player 1:" + colorPlayer1 + "<br>" + "Player 2:" + colorPlayer2 + "</html>");
-					start.setVisible(true);
+					start.setEnabled(true);
 				}
 			}
 		});

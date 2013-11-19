@@ -15,10 +15,10 @@ import javax.swing.*;
 
 public class CrAccPanel {
 	private JPanel mainPanel = new JPanel();
-	private JLabel title = new JLabel("Create Account");
+	private JLabel title = new JLabel("<html> <h1>Create Account</h1> </html>");
 
-	protected static final String usernameField = "username";
-	protected static final String passwordField = "password";
+	protected static final String usernameField = "Username";
+	protected static final String passwordField = "Password";
 
 	public final int WIDTH = 900;
 	public final int HEIGHT = WIDTH * 9 / 16;
@@ -53,13 +53,20 @@ public class CrAccPanel {
 		mainPanel.setLayout(null);
 		
 		crAcc = new JButton("Create New Account");
+		crAcc.setForeground(Color.WHITE);
+		crAcc.setBackground(Color.DARK_GRAY);
 		back = new JButton("Back");
-
+		back.setForeground(Color.WHITE);
+		back.setBackground(Color.DARK_GRAY);
 		textFieldLabel = new JLabel(usernameField + ": ");
+		textFieldLabel.setForeground(Color.WHITE);
 		textFieldLabel.setLabelFor(username);
 		passwordFieldLabel = new JLabel(passwordField + ": ");
+		passwordFieldLabel.setForeground(Color.WHITE);
 		passwordFieldLabel.setLabelFor(password);
 		actionLabel = new JLabel("");
+		actionLabel.setForeground(Color.WHITE);
+		title.setForeground(Color.WHITE);
 
 		mainPanel.add(title);
 		mainPanel.add(crAcc);
@@ -69,18 +76,18 @@ public class CrAccPanel {
 		mainPanel.add(actionLabel);
 		mainPanel.add(username);
 		mainPanel.add(password);
+	    mainPanel.setOpaque(true);
+	    mainPanel.setBackground(Color.BLACK);
 
 		Dimension size = new Dimension(100, 25);
-		title.setBounds(400, 50, size.width, size.height);
-		crAcc.setBounds(350, 350, 200, size.height);
+		title.setBounds(370, 25, 200, 100);
+		crAcc.setBounds(350, 400, 200, size.height);
 		back.setBounds(400, 450, size.width, size.height);
 		textFieldLabel.setBounds(350, 150, size.width, size.height);
 		passwordFieldLabel.setBounds(350, 200, size.width, size.height);
 		username.setBounds(450, 150, size.width, size.height);
 		password.setBounds(450, 200, size.width, size.height);
-		actionLabel.setBounds(350, 220, 500, size.height + 100);
-
-
+		actionLabel.setBounds(300, 225, 400, size.height + 150);
 
 		crAcc.addActionListener(new ActionListener() {
 			@Override
@@ -93,22 +100,22 @@ public class CrAccPanel {
 						enteredPassword);
 
 				if (!success) {
+					actionLabel.setForeground(Color.RED);
 					playSound(errorClip);
 					String errorMessage = "";
 					try {
 						if (CSVHandler.isExist(enteredUsername))
-							errorMessage = errorMessage
-									+ "Username Already Exists.<br>";
-						errorMessage = errorMessage
-								+ CSVHandler.isValidUsername(enteredUsername);
-						errorMessage = errorMessage
-								+ CSVHandler.isValidPassword(enteredPassword);
+							errorMessage = errorMessage + "Username Already Exists.<br>";
+						errorMessage = errorMessage + CSVHandler.isValidUsername(enteredUsername);
+						errorMessage = errorMessage + CSVHandler.isValidPassword(enteredPassword);
 						actionLabel.setText("<html>" + errorMessage + "</html>");
 					} catch (IOException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 				} else {
+					actionLabel.setForeground(Color.WHITE);
+					actionLabel.setBounds(355, 225, 400, 175);
 					playSound(successClip);
 					actionLabel.setText("Your Account Has Been Created.");
 
