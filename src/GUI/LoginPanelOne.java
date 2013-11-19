@@ -123,13 +123,14 @@ public class LoginPanelOne {
 				else{
 					actionLabel.setForeground(Color.WHITE);
 					actionLabel.setBounds(400, 250, 200, 25);
-					playSound(successClip);
-					cont.setVisible(true);
+					//cont.setVisible(true);
 					username1.setEditable(false);
 					password1.setEditable(false);
 					User newUser = new User(enteredUsername);
 					loginObject.setUserOne(newUser);
 					actionLabel.setText("Welcome " + loginObject.getUserNameOne() + "!");
+					playSound(successClip);
+					cont.doClick();
 				}
 			}
 		});
@@ -141,7 +142,7 @@ public class LoginPanelOne {
 
 	
 	public void addBackBtnActionListener(ActionListener listener) {
-		   back.addActionListener(listener);
+		back.addActionListener(listener);
 	}
 
 	public JComponent getMainComponent() {
