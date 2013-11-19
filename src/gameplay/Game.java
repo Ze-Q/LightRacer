@@ -53,6 +53,7 @@ public class Game extends Canvas implements Runnable {
         private String blueWonSound = "src/res/sfx/bluewon.wav";
         private String yellowWonSound = "src/res/sfx/yellowwon.wav";
         private String drawSound = "src/res/sfx/draw.wav";
+    	private String ingameSound = "src/res/sfx/ingame.wav";
     	private AudioInputStream audioInputStream;
     	private Clip greenClip;
     	private Clip redClip;
@@ -64,6 +65,7 @@ public class Game extends Canvas implements Runnable {
     	private Clip blueWonClip;
     	private Clip yellowWonClip;
     	private Clip drawClip;
+    	private Clip ingameClip;
         
         public boolean resume;
         public Keyboard key;
@@ -103,6 +105,9 @@ public class Game extends Canvas implements Runnable {
         			audioInputStream = AudioSystem.getAudioInputStream(new File(drawSound).getAbsoluteFile());
         			drawClip = AudioSystem.getClip();
         			drawClip.open(audioInputStream);
+        			audioInputStream = AudioSystem.getAudioInputStream(new File(ingameSound).getAbsoluteFile());
+        			ingameClip = AudioSystem.getClip();
+        			ingameClip.open(audioInputStream);
         		} catch (Exception e1) {
         			e1.printStackTrace();
         		}
@@ -209,6 +214,8 @@ public class Game extends Canvas implements Runnable {
                                 if (secondRun) {
                                 	long curT = System.currentTimeMillis();
                                 	playSound(countdownClip);
+                    				ingameClip.setFramePosition(0);
+                    				ingameClip.start();
                                 	long newT = System.currentTimeMillis();
                                 	long deltaT = newT - curT;
                                 	deltaTime = deltaTime - FPS*deltaT/1000;
@@ -270,10 +277,12 @@ public class Game extends Canvas implements Runnable {
                 else {
                         roundResult = result + " has won this round!";
                 }
+                ingameClip.stop();
                 frame.setTitle(TITLE + " | " + roundResult);
                 announceRoundWinner(result);
                 if (MainWindow.score.getP1() == 2) {
                 	announceGameWinner(player1.getColor());
+    				MainWindow.backgroundClip.loop(0);
                 	curPanel.title.setText("<html> <h1>Player 2 has won!</h1> </html>");
                 	curPanel.title.setBounds(350, 25, 400, 100);
                 	curPanel.set.setVisible(false);
@@ -288,6 +297,7 @@ public class Game extends Canvas implements Runnable {
                 
                 else if (MainWindow.score.getP2() == 2) {
                 	announceGameWinner(player2.getColor());
+    				MainWindow.backgroundClip.loop(0);
                 	curPanel.title.setText("<html> <h1>Player 2 has won!</h1> </html>");
                 	curPanel.title.setBounds(350, 25, 400, 100);
                 	curPanel.actionLabel.setText("");
@@ -307,6 +317,7 @@ public class Game extends Canvas implements Runnable {
                 	curPanel.mainPanel.remove(curPanel.title);
                 	curPanel.mainPanel.add(curPanel.title);
                 }
+				MainWindow.backgroundClip.loop(0);
                 stop();
         }
         

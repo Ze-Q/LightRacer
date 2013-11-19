@@ -35,11 +35,13 @@ public class MainWindow {
 	private String errorSound = "src/res/sfx/error.wav";
 	private String backSound = "src/res/sfx/back.wav";
 	private String gameSound = "src/res/sfx/startgame.wav";
+	private String backgroundSound = "src/res/sfx/background.wav";
 	private AudioInputStream audioInputStream;
 	private Clip successClip;
 	private Clip errorClip;
 	private Clip backClip;
 	private Clip gameClip;
+	public static Clip backgroundClip;
 	
 	private IntroPanel introPanel = new IntroPanel();
 	private CrAccPanel crAccPanel = new CrAccPanel();
@@ -68,6 +70,9 @@ public class MainWindow {
 			audioInputStream = AudioSystem.getAudioInputStream(new File(gameSound).getAbsoluteFile());
 			gameClip = AudioSystem.getClip();
 			gameClip.open(audioInputStream);
+			audioInputStream = AudioSystem.getAudioInputStream(new File(backgroundSound).getAbsoluteFile());
+			backgroundClip = AudioSystem.getClip();
+			backgroundClip.open(audioInputStream);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
@@ -250,6 +255,7 @@ public class MainWindow {
 		gamePanel.addStartBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				backgroundClip.stop();
 				playSound(gameClip);
 				gameplay.Game startGame = new gameplay.Game(gamePanel,score, gamePanel.p1color, gamePanel.p2color, gamePanel.sp, gamePanel.mapNumber);
 			}
@@ -315,6 +321,7 @@ public class MainWindow {
 		frame.setLocationRelativeTo(null);
 		frame.setResizable(false);
 		frame.setVisible(true);
+		backgroundClip.loop(0);
 	}
 	
 	private void playSound(Clip clip) {

@@ -44,6 +44,7 @@ class IntroPanel {
 		exit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				MainWindow.backgroundClip.stop();
 				Window win = SwingUtilities.getWindowAncestor(mainPanel);
 				win.dispose();
 			}
