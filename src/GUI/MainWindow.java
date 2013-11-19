@@ -199,6 +199,8 @@ public class MainWindow {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				playSound(successClip);
+				LogoutPanel.playerOne.setText(loginObject.getUserNameOne());
+				LogoutPanel.playerTwo.setText(loginObject.getUserNameTwo());
 				cardlayout.show(mainWindow, LOGOUT);
 			}
 		});
