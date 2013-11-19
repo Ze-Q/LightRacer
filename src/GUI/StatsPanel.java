@@ -36,6 +36,8 @@ class StatsPanel {
 		back = new JButton("Return to Main Menu");
 		back.setForeground(Color.WHITE);
 		back.setBackground(Color.DARK_GRAY);
+		back.setOpaque(true);
+		back.setBorderPainted(false);
 		title.setForeground(Color.WHITE);
 		
 		mainPanel.add(title);

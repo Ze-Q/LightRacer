@@ -59,12 +59,18 @@ public class LoginPanelOne {
         login = new JButton("Login");
 		login.setForeground(Color.WHITE);
 		login.setBackground(Color.DARK_GRAY);
+		login.setOpaque(true);
+		login.setBorderPainted(false);
         back = new JButton("Back");
 		back.setForeground(Color.WHITE);
 		back.setBackground(Color.DARK_GRAY);
+		back.setOpaque(true);
+		back.setBorderPainted(false);
         cont = new JButton("Continue");
 		cont.setForeground(Color.WHITE);
 		cont.setBackground(Color.DARK_GRAY);
+		cont.setOpaque(true);
+		cont.setBorderPainted(false);
         cont.setVisible(false);
         usernameLabel = new JLabel(usernameField + ": ");
 		usernameLabel.setForeground(Color.WHITE);

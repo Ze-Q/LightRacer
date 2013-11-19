@@ -74,8 +74,9 @@ public class GamePanel {
 			map.addElement(mapFiles[i].getName());
 		}
 		maps = new JComboBox(map);
-		maps.setBackground(Color.DARK_GRAY);
-		maps.setForeground(Color.WHITE);
+		maps.setBackground(Color.WHITE);
+		maps.setForeground(Color.BLACK);
+
 		color1Label = new JLabel("Player 1" + ": ");
 		color1Label.setForeground(Color.WHITE);
 		color1 = new DefaultComboBoxModel();
@@ -91,27 +92,35 @@ public class GamePanel {
 		color2.addElement("Green");
 		color2.addElement("Yellow");
 		player1Color = new JComboBox(color1);
-		player1Color.setBackground(Color.DARK_GRAY);
-		player1Color.setForeground(Color.WHITE);
+		player1Color.setBackground(Color.WHITE);
+		player1Color.setForeground(Color.BLACK);
 		player2Color = new JComboBox(color2);
-		player2Color.setBackground(Color.DARK_GRAY);
-		player2Color.setForeground(Color.WHITE);
+		player2Color.setBackground(Color.WHITE);
+		player2Color.setForeground(Color.black);
 		speed = new JTextField(10);
 		start = new JButton("Start Game");
 		start.setForeground(Color.WHITE);
 		start.setBackground(Color.DARK_GRAY);
+		start.setOpaque(true);
+		start.setBorderPainted(false);
 		start.setEnabled(false);
 		abort = new JButton("Abort Game");
 		abort.setForeground(Color.WHITE);
 		abort.setBackground(Color.DARK_GRAY);
+		abort.setOpaque(true);
+		abort.setBorderPainted(false);
 		set = new JButton("Ready!");
 		set.setForeground(Color.WHITE);
 		set.setBackground(Color.DARK_GRAY);
+		set.setOpaque(true);
+		set.setBorderPainted(false);
 		actionLabel = new JLabel("");
 		ret = new JButton("Return to Main Menu");
 		ret.setForeground(Color.WHITE);
 		ret.setBackground(Color.DARK_GRAY);
 		ret.setVisible(false);
+		ret.setOpaque(true);
+		ret.setBorderPainted(false);
 		title.setForeground(Color.WHITE);
 
 		mainPanel.add(title);
@@ -136,12 +145,12 @@ public class GamePanel {
 		abort.setBounds(375, 450, 150, size.height);
 		start.setBounds(400, 400, size.width, size.height);
 		mapLabel.setBounds(350, 125, size.width, size.height);
-		maps.setBounds(450, 125, size.width, size.height);
+		maps.setBounds(450, 125, size.width+15, size.height);
 		color1Label.setBounds(225, 225, 75, size.height);
 		player1Color.setBounds(325, 225, size.width, size.height);
 		color2Label.setBounds(450, 225, 75, size.height);
 		player2Color.setBounds(550, 225, size.width, size.height);
-		speedLabel.setBounds(335, 175, size.width+10, size.height);
+		speedLabel.setBounds(335, 175, size.width+15, size.height);
 		speed.setBounds(450, 175, size.width, size.height);
 		set.setBounds(400, 350, size.width, size.height);
 		actionLabel.setBounds(400, 275, 400, 75);

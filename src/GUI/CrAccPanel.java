@@ -55,9 +55,13 @@ public class CrAccPanel {
 		crAcc = new JButton("Create New Account");
 		crAcc.setForeground(Color.WHITE);
 		crAcc.setBackground(Color.DARK_GRAY);
+		crAcc.setOpaque(true);
+		crAcc.setBorderPainted(false);
 		back = new JButton("Back");
 		back.setForeground(Color.WHITE);
 		back.setBackground(Color.DARK_GRAY);
+		back.setOpaque(true);
+		back.setBorderPainted(false);
 		textFieldLabel = new JLabel(usernameField + ": ");
 		textFieldLabel.setForeground(Color.WHITE);
 		textFieldLabel.setLabelFor(username);

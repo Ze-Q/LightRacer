@@ -21,15 +21,23 @@ class LogoutPanel {
 		playerOne = new JButton("Player 1");
 		playerOne.setForeground(Color.WHITE);
 		playerOne.setBackground(Color.DARK_GRAY);
+		playerOne.setOpaque(true);
+		playerOne.setBorderPainted(false);
 		playerTwo = new JButton("Player 2");
 		playerTwo.setForeground(Color.WHITE);
 		playerTwo.setBackground(Color.DARK_GRAY);
+		playerTwo.setOpaque(true);
+		playerTwo.setBorderPainted(false);
 		both = new JButton("Both");
 		both.setForeground(Color.WHITE);
 		both.setBackground(Color.DARK_GRAY);
+		both.setOpaque(true);
+		both.setBorderPainted(false);
 		cancel = new JButton ("Cancel");
 		cancel.setForeground(Color.WHITE);
 		cancel.setBackground(Color.DARK_GRAY);
+		cancel.setOpaque(true);
+		cancel.setBorderPainted(false);
 		title.setForeground(Color.WHITE);
 
 		mainPanel.add(title);

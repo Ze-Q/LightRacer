@@ -19,18 +19,28 @@ class MainPanel {
 		newGame = new JButton("New Game");
 		newGame.setForeground(Color.WHITE);
 		newGame.setBackground(Color.DARK_GRAY);
+		newGame.setOpaque(true);
+		newGame.setBorderPainted(false);
 		logout = new JButton("Logout");
 		logout.setForeground(Color.WHITE);
 		logout.setBackground(Color.DARK_GRAY);
+		logout.setOpaque(true);
+		logout.setBorderPainted(false);
 		exit = new JButton ("Exit");
 		exit.setForeground(Color.WHITE);
 		exit.setBackground(Color.DARK_GRAY);
+		exit.setOpaque(true);
+		exit.setBorderPainted(false);
 		stats = new JButton ("Statistics");
 		stats.setForeground(Color.WHITE);
 		stats.setBackground(Color.DARK_GRAY);
+		stats.setOpaque(true);
+		stats.setBorderPainted(false);
 		help = new JButton ("Help");
 		help.setForeground(Color.WHITE);
 		help.setBackground(Color.DARK_GRAY);
+		help.setOpaque(true);
+		help.setBorderPainted(false);
 		title.setForeground(Color.WHITE);
 		
 		mainPanel.add(title);
@@ -44,8 +54,8 @@ class MainPanel {
 		
 		Dimension size = new Dimension(100,25);
 		title.setBounds(385, 25, 200, 100);
-		newGame.setBounds(400, 175, size.width, size.height);
-		stats.setBounds(400, 225, size.width, size.height);
+		newGame.setBounds(400-5, 175, size.width+10, size.height);
+		stats.setBounds(400-2, 225, size.width+5, size.height);
 		help.setBounds(400, 275, size.width, size.height);
 		logout.setBounds(400, 325, size.width, size.height);
 		exit.setBounds(400, 450, size.width, size.height);

@@ -19,12 +19,18 @@ class IntroPanel {
 		login = new JButton("Login");
 		login.setForeground(Color.WHITE);
 		login.setBackground(Color.DARK_GRAY);
+		login.setOpaque(true);
+		login.setBorderPainted(false);
 		createAccount = new JButton("Create Account");
 		createAccount.setForeground(Color.WHITE);
 		createAccount.setBackground(Color.DARK_GRAY);
+		createAccount.setOpaque(true);
+		createAccount.setBorderPainted(false);
 		exit = new JButton ("Exit");
 		exit.setForeground(Color.WHITE);
 		exit.setBackground(Color.DARK_GRAY);
+		exit.setOpaque(true);
+		exit.setBorderPainted(false);
 		title.setForeground(Color.WHITE);
 
 		mainPanel.add(title);

@@ -23,20 +23,30 @@ class HelpPanel {
 		back = new JButton("Return to Main Menu");
 		back.setForeground(Color.WHITE);
 		back.setBackground(Color.DARK_GRAY);
+		back.setOpaque(true);
+		back.setBorderPainted(false);
 		actionLabel = new JLabel("");
 		actionLabel.setForeground(Color.WHITE);
 		gameRules = new JButton ("Game Rules");
 		gameRules.setForeground(Color.WHITE);
 		gameRules.setBackground(Color.DARK_GRAY);
+		gameRules.setOpaque(true);
+		gameRules.setBorderPainted(false);
 		controls = new JButton ("Controls");
 		controls.setForeground(Color.WHITE);
 		controls.setBackground(Color.DARK_GRAY);
+		controls.setOpaque(true);
+		controls.setBorderPainted(false);
 		loadMap = new JButton ("Maps");
 		loadMap.setForeground(Color.WHITE);
 		loadMap.setBackground(Color.DARK_GRAY);
+		loadMap.setOpaque(true);
+		loadMap.setBorderPainted(false);
 		about = new JButton ("About");
 		about.setForeground(Color.WHITE);
 		about.setBackground(Color.DARK_GRAY);
+		about.setOpaque(true);
+		about.setBorderPainted(false);
 		title.setForeground(Color.WHITE);
 
 		
