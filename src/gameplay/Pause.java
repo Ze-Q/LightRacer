@@ -6,7 +6,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
@@ -15,8 +19,18 @@ public class Pause {
 		
 	private JFrame frame = new JFrame();
 	private Game game;
+	private String successSound = "src/res/sfx/success.wav";
+	private AudioInputStream audioInputStream;
+	private Clip successClip;
 	
 	public Pause(Game game) {
+		try {
+			audioInputStream = AudioSystem.getAudioInputStream(new File(successSound).getAbsoluteFile());
+			successClip = AudioSystem.getClip();
+			successClip.open(audioInputStream);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 		this.game = game;
 		JButton button = new JButton("Press to Resume");
 		button.setSize(100,100);
@@ -29,6 +43,7 @@ public class Pause {
 		frame.addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				playSound(successClip);
 				resume();
 				frame.setVisible(false);
 				frame.dispose();
@@ -40,6 +55,7 @@ public class Pause {
 		button.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				playSound(successClip);
 				resume();
 				frame.setVisible(false);
 				frame.dispose();
@@ -50,6 +66,15 @@ public class Pause {
 	private void resume() {
 		game.resume = true;
 		game.key.pause = false;
+	}
+	
+    private void playSound(Clip clip) {
+		clip.setFramePosition(0);
+		clip.start();
+		while (clip.getFramePosition() != clip.getFrameLength()) {
+			//wait until clip has been played
+		}
+		clip.stop();
 	}
 	
 }
