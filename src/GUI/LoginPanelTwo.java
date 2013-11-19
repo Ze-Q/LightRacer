@@ -122,13 +122,14 @@ public class LoginPanelTwo {
 				else {
 					actionLabel.setForeground(Color.WHITE);
 					actionLabel.setBounds(400, 250, 200, 25);
-					playSound(successClip);
-					cont.setVisible(true);
+					//cont.setVisible(true);
 					username2.setEditable(false);
 					password2.setEditable(false);
 					User newUser = new User(enteredUsername);
 					loginObject.setUserTwo(newUser);
 					actionLabel.setText("Welcome " + loginObject.getUserNameTwo() + "!");
+					playSound(successClip);
+					cont.doClick();
 				}
 			}
 		});
