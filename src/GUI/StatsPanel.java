@@ -68,6 +68,7 @@ class StatsPanel {
 		isVersusTableInitialized=true;
 		versusTable.setBounds(600, 160, 150, 45);
 		versusTable.setBackground(Color.LIGHT_GRAY);
+		versusTable.setEnabled(false);
 		title.setForeground(Color.WHITE);
 		
 		//update top ten table
@@ -80,6 +81,7 @@ class StatsPanel {
 		isTopTenTableInitialized=true;
 		topTenTable.setBounds(150, 160, 150, 175);
 		topTenTable.setBackground(Color.LIGHT_GRAY);
+		topTenTable.setEnabled(false);
 		title.setForeground(Color.WHITE);
 	}
 	
