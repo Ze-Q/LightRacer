@@ -123,7 +123,6 @@ public class MainWindow {
 				LoginPanelOne.username1.setText("");
 				LoginPanelOne.password1.setText("");
 				LoginPanelOne.actionLabel.setText("");
-				LoginPanelOne.cont.setVisible(false);
 				if(loginObject.userTwoLogin()){
 					cardlayout.show(mainWindow, MAIN);
 				}
@@ -148,7 +147,6 @@ public class MainWindow {
 				LoginPanelTwo.username2.setText("");
 				LoginPanelTwo.password2.setText("");
 				LoginPanelTwo.actionLabel.setText("");
-				LoginPanelTwo.cont.setVisible(false);
 				cardlayout.show(mainWindow, MAIN);
 			}
 		});
@@ -268,10 +266,9 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				playSound(backClip);
 				gamePanel.speed.setText("");
-				gamePanel.start.setEnabled(false);
 				gamePanel.actionLabel.setText("");
 				gamePanel.ret.setVisible(false);
-				gamePanel.title.setText("<html> <h1>Current score: 0 - 0</h1> </html>S");
+				gamePanel.title.setText("<html> <h1>Choose your settings: </h1> </html>S");
 				score.p1 = 0;
 				score.p2 = 0;
 				cardlayout.show(mainWindow, MAIN);
@@ -283,10 +280,9 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				playSound(backClip);
 				gamePanel.speed.setText("");
-				gamePanel.start.setEnabled(false);
 				gamePanel.actionLabel.setText("");
 				gamePanel.ret.setVisible(false);
-				gamePanel.title.setText("<html> <h1>Current score: 0 - 0</h1> </html>");
+				gamePanel.title.setText("<html> <h1>Choose your settings: </h1> </html>");
 				score.p1 = 0;
 				score.p2 = 0;
 				cardlayout.show(mainWindow, MAIN);
