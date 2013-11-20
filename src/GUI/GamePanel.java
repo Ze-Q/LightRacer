@@ -76,7 +76,6 @@ public class GamePanel {
 		maps = new JComboBox(map);
 		maps.setBackground(Color.WHITE);
 		maps.setForeground(Color.BLACK);
-
 		color1Label = new JLabel("Player 1" + ": ");
 		color1Label.setForeground(Color.WHITE);
 		color1 = new DefaultComboBoxModel();
@@ -103,13 +102,13 @@ public class GamePanel {
 		start.setBackground(Color.DARK_GRAY);
 		start.setOpaque(true);
 		start.setBorderPainted(false);
-		start.setEnabled(false);
+		start.setVisible(false);
 		abort = new JButton("Abort Game");
 		abort.setForeground(Color.WHITE);
 		abort.setBackground(Color.DARK_GRAY);
 		abort.setOpaque(true);
 		abort.setBorderPainted(false);
-		set = new JButton("Ready!");
+		set = new JButton("Start Round!");
 		set.setForeground(Color.WHITE);
 		set.setBackground(Color.DARK_GRAY);
 		set.setOpaque(true);
@@ -183,7 +182,6 @@ public class GamePanel {
 					start.setEnabled(false);
 				}
 				else { 
-					playSound(successClip);
 					if(colorPlayer1.equals("Red")){
 						p1color = Player.RED;
 					}
@@ -213,7 +211,8 @@ public class GamePanel {
 					actionLabel.setForeground(Color.WHITE);
 					actionLabel.setBounds(400, 275, 400, 75);
 					actionLabel.setText("<html>" + "Map: " + chosenMap + "<br>" +  "Speed: " + sp + "<br>" + "Player 1:" + colorPlayer1 + "<br>" + "Player 2:" + colorPlayer2 + "</html>");
-					start.setEnabled(true);
+					playSound(successClip);
+					start.doClick();
 				}
 			}
 		});
