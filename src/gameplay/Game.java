@@ -285,7 +285,7 @@ public class Game extends Canvas implements Runnable {
                 if (MainWindow.score.getP1() == 2) {
                 	announceGameWinner(player1.getColor());
     				MainWindow.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
-                	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserOne() +  " has won!</h1> </html>");
+                	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserOne().getUsername() +  " has won!</h1> </html>");
                 	curPanel.title.setBounds(350, 25, 400, 100);
                 	curPanel.set.setVisible(false);
                 	curPanel.abort.setVisible(false);
@@ -299,7 +299,7 @@ public class Game extends Canvas implements Runnable {
                 else if (MainWindow.score.getP2() == 2) {
                 	announceGameWinner(player2.getColor());
     				MainWindow.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
-                	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserTwo() +  " has won!</h1> </html>");
+                	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserTwo().getUsername() +  " has won!</h1> </html>");
                 	curPanel.title.setBounds(350, 25, 400, 100);
                 	curPanel.actionLabel.setText("");
                 	curPanel.set.setVisible(false);

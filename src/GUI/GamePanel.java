@@ -153,7 +153,7 @@ public class GamePanel {
 		speed.setBounds(450, 175, size.width, size.height);
 		set.setBounds(400, 350, size.width, size.height);
 		actionLabel.setBounds(400, 275, 400, 75);
-		ret.setBounds(375, 450, 150, size.height);
+		ret.setBounds(375, 450, 150+20, size.height);
 		
 		set.addActionListener(new ActionListener() {
 			@Override
