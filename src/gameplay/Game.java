@@ -124,8 +124,8 @@ public class Game extends Canvas implements Runnable {
                 setPreferredSize(screenSize);
 
                 //create 2 players
-                player1 = new Player(100, 450, speedSetting, "UP", this.player1Color);
-                player2 = new Player(800, 56, speedSetting, "DOWN", this.player2Color);
+                player1 = new Player(10, 501, speedSetting, "UP", this.player1Color);
+                player2 = new Player(890, 5, speedSetting, "DOWN", this.player2Color);
 
                 level = new Level(WIDTH, HEIGHT);
                 frame = new JFrame();
