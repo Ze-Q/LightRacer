@@ -151,9 +151,9 @@ public class GamePanel {
 		player2Color.setBounds(550, 225, size.width, size.height);
 		speedLabel.setBounds(335, 175, size.width+15, size.height);
 		speed.setBounds(450, 175, size.width, size.height);
-		set.setBounds(400, 350, size.width, size.height);
+		set.setBounds(400-15, 350, size.width+30, size.height);
 		actionLabel.setBounds(400, 275, 400, 75);
-		ret.setBounds(375, 450, 150+20, size.height);
+		ret.setBounds(375, 450, 150+40, size.height);
 		
 		set.addActionListener(new ActionListener() {
 			@Override
