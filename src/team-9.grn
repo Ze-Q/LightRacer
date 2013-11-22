@@ -91,34 +91,6 @@
       <x="109"/>
       <y="1573"/>
    </type>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
-      <sourceType="=team-9/src<gameplay{Game.java[Game"/>
-      <targetType="=team-9/src<gameplay{Player.java[Player"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
-      <sourceType="=team-9/src<gameplay{Game.java[Game"/>
-      <targetType="=team-9/src<gameplay{Level.java[Level"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=team-9/src<gameplay{Game.java[Game"/>
-      <targetType="=team-9/src<gameplay{Pause.java[Pause"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
-   <relationship>
-      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
-      <sourceType="=team-9/src<gameplay{Game.java[Game"/>
-      <targetType="=team-9/src<gameplay{Keyboard.java[Keyboard"/>
-      <bendpoints>
-      </bendpoints>
-   </relationship>
    <type>
       <name="=team-9/src<GUI{CrAccPanel.java[CrAccPanel"/>
       <height="-1"/>
@@ -198,8 +170,36 @@
    </type>
    <relationship>
       <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=team-9/src<GUI{MainWindow.java[MainWindow"/>
+      <targetType="=team-9/src<gameplay{Game.java[Game"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
       <sourceType="=team-9/src<GUI{LoginPanelOne.java[LoginPanelOne"/>
       <targetType="=team-9/src<accounts{User.java[User"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
+      <sourceType="=team-9/src<gameplay{Game.java[Game"/>
+      <targetType="=team-9/src<gameplay{Player.java[Player"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
+      <sourceType="=team-9/src<gameplay{Game.java[Game"/>
+      <targetType="=team-9/src<gameplay{Keyboard.java[Keyboard"/>
+      <bendpoints>
+      </bendpoints>
+   </relationship>
+   <relationship>
+      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
+      <sourceType="=team-9/src<gameplay{Game.java[Game"/>
+      <targetType="=team-9/src<gameplay{Pause.java[Pause"/>
       <bendpoints>
       </bendpoints>
    </relationship>
@@ -211,9 +211,9 @@
       </bendpoints>
    </relationship>
    <relationship>
-      <class="edu.buffalo.cse.green.relationship.dependency.DependencyLPart"/>
-      <sourceType="=team-9/src<GUI{MainWindow.java[MainWindow"/>
-      <targetType="=team-9/src<gameplay{Game.java[Game"/>
+      <class="edu.buffalo.cse.green.relationship.composition.CompositionPart"/>
+      <sourceType="=team-9/src<gameplay{Game.java[Game"/>
+      <targetType="=team-9/src<gameplay{Level.java[Level"/>
       <bendpoints>
       </bendpoints>
    </relationship>
