@@ -10,22 +10,22 @@ import javax.sound.sampled.Clip;
 public class Sound {
 
 	
-	public final String GREENSOUND = "./res/sfx/greenround.wav";
-	public final String REDSOUND = "./res/sfx/redround.wav";
-    public final String BLUESOUND = "./res/sfx/blueround.wav";
-    public final String YELLOWSOUND = "./res/sfx/yellowround.wav";
-    public final String COUNTDOWNSOUND = "./res/sfx/countdown.wav";
-    public final String GREENWONSOUND = "./res/sfx/greenwon.wav";
-    public final String REDWONSOUND = "./res/sfx/redwon.wav";
-    public final String BLUEWONSOUND = "./res/sfx/bluewon.wav";
-    public final String YELLOWWONSOUND = "./res/sfx/yellowwon.wav";
-    public final String DRAWSOUND = "./res/sfx/draw.wav";
-	public final String INGAMESOUND = "./res/sfx/ingame.wav";
-	public final String SUCCESSSOUND = "./res/sfx/success.wav";
-	public final String ERRORSOUND = "./res/sfx/error.wav";
-	public final String BACKSOUND = "./res/sfx/back.wav";
-	public final String GAMESOUND = "./res/sfx/startgame.wav";
-	public final String BACKGROUNDSOUND = "./res/sfx/background.wav";
+	public final String GREENSOUND = "./res/raw/greenround.wav";
+	public final String REDSOUND = "./res/raw/redround.wav";
+    public final String BLUESOUND = "./res/raw/blueround.wav";
+    public final String YELLOWSOUND = "./res/raw/yellowround.wav";
+    public final String COUNTDOWNSOUND = "./res/raw/countdown.wav";
+    public final String GREENWONSOUND = "./res/raw/greenwon.wav";
+    public final String REDWONSOUND = "./res/raw/redwon.wav";
+    public final String BLUEWONSOUND = "./res/raw/bluewon.wav";
+    public final String YELLOWWONSOUND = "./res/raw/yellowwon.wav";
+    public final String DRAWSOUND = "./res/raw/draw.wav";
+	public final String INGAMESOUND = "./res/raw/ingame.wav";
+	public final String SUCCESSSOUND = "./res/raw/success.wav";
+	public final String ERRORSOUND = "./res/raw/error.wav";
+	public final String BACKSOUND = "./res/raw/back.wav";
+	public final String GAMESOUND = "./res/raw/startgame.wav";
+	public final String BACKGROUNDSOUND = "./res/raw/background.wav";
 	public Clip greenClip;
 	public Clip redClip;
 	public Clip blueClip;

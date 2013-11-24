@@ -13,7 +13,7 @@ public class Level {
 
 	private int width, height;
 	private BufferedImage[] maps;
-	private String mapsPath = "./res/maps";
+	private String mapsPath = "./res/image";
 	public int[][] pixels;
 	
 	/**
