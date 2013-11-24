@@ -21,16 +21,16 @@ public class GamePanel {
 	public int mapNumber;
 	
 	public JLabel title = new JLabel("<html> <h1></h1> </html>");
-	protected JLabel mapLabel;
-	protected DefaultComboBoxModel map;
-	protected JComboBox maps;
-	protected JLabel color1Label;
-	protected DefaultComboBoxModel color1;
-	protected JComboBox player1Color;
-	protected JLabel color2Label;
-	protected DefaultComboBoxModel color2;
-	protected JComboBox player2Color;
-	protected JLabel speedLabel;
+	private JLabel mapLabel;
+	private DefaultComboBoxModel map;
+	private JComboBox maps;
+	private JLabel color1Label;
+	private DefaultComboBoxModel color1;
+	private JComboBox player1Color;
+	private JLabel color2Label;
+	private DefaultComboBoxModel color2;
+	private JComboBox player2Color;
+	private JLabel speedLabel;
 	protected JTextField speed;
 	public JButton set;
 	public JButton start;
@@ -40,6 +40,19 @@ public class GamePanel {
 	
 	private Sound sound = new Sound();
 
+    /**
+     * GamePanel class contains the menu which will display all the game options to the players and starts a new game round
+     * Main parameters:
+     * @param p1color			stores selected color for player one
+     * @param p2color			stores selected color for player one
+     * @param sp				stores selected speed
+     * @param mapNumber			stores selected map
+     * @param set				JButton that sets current selected settings
+     * @param start				JButton that starts a new round
+     * @param abort				JButton that returns to MainPanel
+     * @param ret				JButton that returns to MainPanel
+     * @param actionLabel		displays error message if settings are invalid and confirmation if settings are valid
+     */
 	public GamePanel() {
 		
 		mainPanel.setLayout(null);
@@ -202,20 +215,32 @@ public class GamePanel {
 	
 	}
 
+	/**
+ 	* Adds ActionListener to abort JButton, discards the stats for the current match and changes displayed card to MainPanel
+ 	*/
 	public void addAbortBtnActionListener(ActionListener listener) {
 		   abort.addActionListener(listener);
 	}
 	
+	/**
+ 	* Adds ActionListener to start JButton, creates a new Game() object with the desired settings
+ 	*/
 	public void addStartBtnActionListener(ActionListener listener) {
 		   start.addActionListener(listener);
 	}
 	
+	/**
+ 	* Adds ActionListener to ret JButton, changes displayed card to MainPanel
+ 	*/
 	public void addRetBtnActionListener(ActionListener listener) {
 		   ret.addActionListener(listener);
 	}
 	
+	/**
+ 	* Returns the main component of this JPanel
+ 	* @return Main Component of JPanel
+ 	*/
 	public JComponent getMainComponent() {
 	   return mainPanel;
 	}
-
 }
