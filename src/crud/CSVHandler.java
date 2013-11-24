@@ -32,7 +32,7 @@ public class CSVHandler {
 			return false;
 		}
 
-		@SuppressWarnings("resource")
+		//@SuppressWarnings("resource")
 		BufferedReader br = new BufferedReader(new FileReader(userCSV));
 		String line;
 		while ((line = br.readLine()) != null) {
@@ -61,7 +61,7 @@ public class CSVHandler {
 			return false;
 		}
 		
-		@SuppressWarnings("resource")
+		//@SuppressWarnings("resource")
 		BufferedReader br = new BufferedReader(new FileReader(userCSV));
 		String line;
 		while ((line = br.readLine()) != null) {
