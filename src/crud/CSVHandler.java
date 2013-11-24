@@ -19,6 +19,7 @@ public class CSVHandler {
 		if (!userCSV.exists()) {
 			return false;
 		}
+		@SuppressWarnings("resource")
 		BufferedReader br = new BufferedReader(new FileReader(userCSV));
 		String line;
 		while ((line = br.readLine()) != null) {
@@ -28,10 +29,8 @@ public class CSVHandler {
 			boolean checkUsername = thisUsername.equals(username);
 			boolean checkPassword = thisPassword.equals(password);
 			if (checkUsername && checkPassword)
-				br.close();
 				return true;
 		}
-		br.close();
 		return false;
 	}
 
@@ -42,17 +41,17 @@ public class CSVHandler {
 		if (!userCSV.exists()) {
 			return false;
 		}
+		@SuppressWarnings("resource")
 		BufferedReader br = new BufferedReader(new FileReader(userCSV));
 		String line;
 		while ((line = br.readLine()) != null) {
 			String[] credentials = line.split(",");
 			String thisUsername = credentials[0];
 			if (thisUsername.equals(username))
-				br.close();
 				return true;
 		}
-		br.close();
 		return false;
+		
 	}
 
 	public static boolean addUser(String username, String password) {
@@ -109,9 +108,6 @@ public class CSVHandler {
 		return message;
 	}
 
-	// TODO:
-	// put minimum passowrdLength in a global class
-	// using try catch and generate exception to show the user what is missing.
 	public static String isValidPassword(String password) {
 		String message = "";
 		String nonAlpha = ".*\\W+.*";
