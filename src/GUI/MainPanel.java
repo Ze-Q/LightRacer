@@ -13,6 +13,9 @@ class MainPanel {
 	private JButton logout;
 	private JButton exit;
 
+	/**
+	 * This panel contains the main menu with access to GamePanel, HelpPanel, StatsPanel and LogoutPanel as well as exiting the program entirely
+	 */
 	public MainPanel() {
 		
 		mainPanel.setLayout(null);
@@ -61,7 +64,6 @@ class MainPanel {
 		exit.setBounds(400, 450, size.width, size.height);
 		
 		exit.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainWindow.sound.backgroundClip.stop();
 				Window win = SwingUtilities.getWindowAncestor(mainPanel);
@@ -69,22 +71,39 @@ class MainPanel {
 			}
 		});
 	}
+	
+	/**
+ 	* Adds ActionListener to newGame JButton, changes displayed card to GamePanel
+ 	*/
 	public void addNewGameBtnActionListener(ActionListener listener) {
 		newGame.addActionListener(listener);
 	}
 	
+	/**
+ 	* Adds ActionListener to stats JButton, changes displayed card to StatsPanel
+ 	*/
 	public void addStatsBtnActionListener(ActionListener listener) {
 		stats.addActionListener(listener);
 	}
 	
+	/**
+ 	* Adds ActionListener to help JButton, changes displayed card to HelpPanel
+ 	*/
 	public void addHelpBtnActionListener(ActionListener listener) {
 		help.addActionListener(listener);
 	}
 	
+	/**
+ 	* Adds ActionListener to logout JButton, changes displayed card to LogoutPanel
+ 	*/
 	public void addLogoutBtnActionListener(ActionListener listener) {
 		logout.addActionListener(listener);
 	}
 	
+	/**
+ 	* Returns the main component of this JPanel
+ 	* @return Main Component of JPanel
+ 	*/
 	public JComponent getMainComponent() {
 		return mainPanel;
 	}
