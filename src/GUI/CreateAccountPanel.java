@@ -5,25 +5,15 @@ import crud.CSVHandler;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
 import java.io.IOException;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 public class CreateAccountPanel {
 	private JPanel mainPanel = new JPanel();
 	private JLabel title = new JLabel("<html> <h1>Create Account</h1> </html>");
 
-	protected static final String usernameField = "Username";
-	protected static final String passwordField = "Password";
-
-	public final int WIDTH = 900;
-	public final int HEIGHT = WIDTH * 9 / 16;
-	public final int SCALE = 1;
-
+	private String usernameField = "Username";
+	private String passwordField = "Password";
 	protected JPasswordField password = new JPasswordField(10);
 	protected JTextField username = new JTextField(10);
 	protected JLabel actionLabel;
@@ -34,6 +24,14 @@ public class CreateAccountPanel {
 
 	private Sound sound = new Sound();
 
+    /**
+     * This class contains the panel in which a user can create a new account
+     * Main parameters:
+     * @param password			stores the input password
+     * @param username			stores the input username
+     * @param actionLabel		displays error message if creation was unsuccessful and success message if creation was successful
+     * @param sound				Sound object handling sound output
+     */
 	public CreateAccountPanel() {
 		
 		mainPanel.setLayout(null);
@@ -115,10 +113,17 @@ public class CreateAccountPanel {
 
 	}
 
+	/**
+ 	* Adds ActionListener to back JButton, changes displayed card to IntroPanel
+ 	*/
 	public void addBackBtnActionListener(ActionListener listener) {
 		back.addActionListener(listener);
 	}
-
+	
+	/**
+ 	* Returns the main component of this JPanel
+ 	* @return Main Component of JPanel
+ 	*/
 	public JComponent getMainComponent() {
 		return mainPanel;
 	}
