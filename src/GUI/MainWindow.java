@@ -34,7 +34,7 @@ public class MainWindow {
 
 	
 	private IntroPanel introPanel = new IntroPanel();
-	private CrAccPanel crAccPanel = new CrAccPanel();
+	private CreateAccountPanel createAccountPanel = new CreateAccountPanel();
 	private LoginPanelOne loginPanel1 = new LoginPanelOne();
 	private LoginPanelTwo loginPanel2 = new LoginPanelTwo();
 	private MainPanel mainPanel = new MainPanel();
@@ -49,7 +49,7 @@ public class MainWindow {
 	public MainWindow() {
 		
 		mainWindow.add(introPanel.getMainComponent(), INTRO);
-		mainWindow.add(crAccPanel.getMainComponent(), CRACC);
+		mainWindow.add(createAccountPanel.getMainComponent(), CRACC);
 		mainWindow.add(loginPanel1.getMainComponent(), LOGIN);
 		mainWindow.add(loginPanel2.getMainComponent(), LOGIN2);
 		mainWindow.add(mainPanel.getMainComponent(), MAIN);
@@ -79,7 +79,7 @@ public class MainWindow {
 			}
 		});
 				
-		crAccPanel.addBackBtnActionListener(new ActionListener() {
+		createAccountPanel.addBackBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.backClip);
@@ -90,7 +90,6 @@ public class MainWindow {
 		loginPanel1.addContinueBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				sound.playSound(sound.successClip);
 				LoginPanelOne.username1.setText("");
 				LoginPanelOne.password1.setText("");
 				LoginPanelOne.actionLabel.setText("");
@@ -114,7 +113,6 @@ public class MainWindow {
 		loginPanel2.addContinueBtnActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				sound.playSound(sound.successClip);
 				LoginPanelTwo.username2.setText("");
 				LoginPanelTwo.password2.setText("");
 				LoginPanelTwo.actionLabel.setText("");
@@ -141,6 +139,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.successClip);
 				cardlayout.show(mainWindow, GAME);
+				gamePanel.title.setText("<html> <h1>"+ loginObject.getUserOne().getUsername() + " 0 - 0 " +loginObject.getUserTwo().getUsername() +"</h1> </html>");
 				gamePanel.set.setVisible(true);
 				gamePanel.abort.setVisible(true);
 				statsPanel.updateStatsPanel();
@@ -239,7 +238,7 @@ public class MainWindow {
 				gamePanel.speed.setText("");
 				gamePanel.actionLabel.setText("");
 				gamePanel.ret.setVisible(false);
-				gamePanel.title.setText("<html> <h1>Choose your settings: </h1> </html>S");
+				gamePanel.title.setText("<html> <h1></h1> </html>");
 				score.p1 = 0;
 				score.p2 = 0;
 				cardlayout.show(mainWindow, MAIN);
@@ -253,7 +252,7 @@ public class MainWindow {
 				gamePanel.speed.setText("");
 				gamePanel.actionLabel.setText("");
 				gamePanel.ret.setVisible(false);
-				gamePanel.title.setText("<html> <h1>Choose your settings: </h1> </html>");
+				gamePanel.title.setText("<html> <h1></h1> </html>");
 				score.p1 = 0;
 				score.p2 = 0;
 				cardlayout.show(mainWindow, MAIN);

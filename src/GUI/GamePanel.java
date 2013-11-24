@@ -20,7 +20,7 @@ public class GamePanel {
 	public int sp;
 	public int mapNumber;
 	
-	public JLabel title = new JLabel("<html> <h1>Current Score: " + MainWindow.score.getP1() + " - " +  MainWindow.score.getP2() + "</h1> </html>");
+	public JLabel title = new JLabel("<html> <h1></h1> </html>");
 	protected JLabel mapLabel;
 	protected DefaultComboBoxModel map;
 	protected JComboBox maps;

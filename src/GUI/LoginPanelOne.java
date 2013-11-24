@@ -106,7 +106,7 @@ public class LoginPanelOne {
 					actionLabel.setText("Unsuccessful Login.");
 					actionLabel.setBounds(395, 250, 200, 25);
 				}
-				else if(loggedIn){
+				if(loggedIn){
 					actionLabel.setForeground(Color.RED);
 					sound.playSound(sound.errorClip);
 					actionLabel.setText(enteredUsername + ", you are already logged in!");
@@ -120,6 +120,7 @@ public class LoginPanelOne {
 					User newUser = new User(enteredUsername);
 					loginObject.setUserOne(newUser);
 					actionLabel.setText("Welcome " + loginObject.getUserNameOne() + "!");
+					sound.playSound(sound.successClip);
 					cont.doClick();
 				}
 			}
