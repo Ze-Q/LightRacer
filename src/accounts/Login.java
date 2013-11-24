@@ -41,12 +41,12 @@ public class Login {
 		return userTwo.getUsername();
 	}
 
-	public boolean userTwoLogin() {
-		return !(userTwo == null);
-	}
-
 	public boolean userOneLogin() {
 		return !(userOne == null);
+	}
+
+	public boolean userTwoLogin() {
+		return !(userTwo == null);
 	}
 
 	public boolean checkLogedin(String username) {
