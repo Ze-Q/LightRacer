@@ -2,6 +2,11 @@ package accounts;
 
 import crud.StatsFileSystem;
 
+/**
+ * 
+ * @author Ze
+ *
+ */
 public class Statistics {
 	private static final Statistics INSTANCE = new Statistics();
 	private static StatsFileSystem statsFileSystem = StatsFileSystem.getInstance();

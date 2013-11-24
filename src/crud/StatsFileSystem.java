@@ -1,25 +1,56 @@
 package crud;
 import java.io.*;
 
+/**
+ * 
+ * @author Ze
+ *
+ */
 public class StatsFileSystem {
 	
+	/**
+	 * Singleton design, the only instance of this StatsFileSystem object
+	 */
 	private static final StatsFileSystem INSTANCE = new StatsFileSystem();
+	
+	/**
+	 * The maximum number of users is defined to be 50 in this case, but it can be changed easily if we need to have more users.
+	 */
 	private int maxNumOfUsers = 50;
+	
+	/**
+	 * This private array stores all the stats information in the memory
+	 */
 	private String statsArray[][];
 	
+	/**
+	 * Private constructor for the singleton design, Read from the stats file on the disk
+	 */
 	private StatsFileSystem() {
 		readStatsFromFile();
 	}
 	
+	/**
+	 * The getter for singleton design, make sure that there is only one instance of this object.
+	 * @return return the only instance of the object
+	 */
 	public static StatsFileSystem getInstance() { 
         return INSTANCE;
     }
 	
+	/**
+	 * This method generates a new stats array with a '0' at [0][0]
+	 * @param size take in a variable size which determines the size of the stats array
+	 */
 	public void generateNewStatsArray(int size) {
 		statsArray = new String[size][size];
 		statsArray[0][0]="0";
 	}
 	
+	/**
+	 * Return the stats array
+	 * @return return the stats array object
+	 */
 	public String[][] getStatsArray() {
 		return statsArray;
 	}

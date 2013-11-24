@@ -1,14 +1,19 @@
 package accounts;
 
+/**
+ * 
+ * @author Ze
+ *
+ */
 public class User {
 	private String username;
 	private int totalWins;
 	private int versusWins;
 	
+	
 	public User (String username) {
 		this.username=username;
 	}
-	
 	
 	//constructor used for top ten rank
 	public User (String username, int totalWins) {

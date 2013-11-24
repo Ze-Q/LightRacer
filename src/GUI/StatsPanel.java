@@ -9,6 +9,11 @@ import accounts.Login;
 import accounts.Statistics;
 import accounts.User;
 
+/**
+ * 
+ * @author Ze
+ *
+ */
 class StatsPanel {
 	private JPanel mainPanel = new JPanel();
 
