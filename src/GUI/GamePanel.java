@@ -36,16 +36,6 @@ public class GamePanel {
 
     /**
      * GamePanel class contains the menu which will display all the game options to the players and starts a new game round
-     * Main parameters:
-     * @param p1color			stores selected color for player one
-     * @param p2color			stores selected color for player one
-     * @param sp				stores selected speed
-     * @param mapNumber			stores selected map
-     * @param set				JButton that sets current selected settings
-     * @param start				JButton that starts a new round
-     * @param abort				JButton that returns to MainPanel
-     * @param ret				JButton that returns to MainPanel
-     * @param actionLabel		displays error message if settings are invalid and confirmation if settings are valid
      */
 	public GamePanel() {
 		
@@ -211,6 +201,7 @@ public class GamePanel {
 
 	/**
  	* Adds ActionListener to abort JButton, discards the stats for the current match and changes displayed card to MainPanel
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addAbortBtnActionListener(ActionListener listener) {
 		   abort.addActionListener(listener);
@@ -218,6 +209,7 @@ public class GamePanel {
 	
 	/**
  	* Adds ActionListener to start JButton, creates a new Game() object with the desired settings
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addStartBtnActionListener(ActionListener listener) {
 		   start.addActionListener(listener);
@@ -225,6 +217,7 @@ public class GamePanel {
 	
 	/**
  	* Adds ActionListener to ret JButton, changes displayed card to MainPanel
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addRetBtnActionListener(ActionListener listener) {
 		   ret.addActionListener(listener);
