@@ -31,24 +31,10 @@ public class CrAccPanel {
 	private JButton back;
 	private JLabel textFieldLabel;
 	private JLabel passwordFieldLabel;
-	private String successSound = "src/res/sfx/success.wav";
-	private String errorSound = "src/res/sfx/error.wav";
-	private AudioInputStream audioInputStream;
-	private Clip successClip;
-	private Clip errorClip;
+
+	private Sound sound = new Sound();
 
 	public CrAccPanel() {
-
-		try {
-			audioInputStream = AudioSystem.getAudioInputStream(new File(successSound).getAbsoluteFile());
-			successClip = AudioSystem.getClip();
-			successClip.open(audioInputStream);
-			audioInputStream = AudioSystem.getAudioInputStream(new File(errorSound).getAbsoluteFile());
-			errorClip = AudioSystem.getClip();
-			errorClip.open(audioInputStream);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
 		
 		mainPanel.setLayout(null);
 		
@@ -105,7 +91,7 @@ public class CrAccPanel {
 
 				if (!success) {
 					actionLabel.setForeground(Color.RED);
-					playSound(errorClip);
+					sound.playSound(sound.errorClip);
 					String errorMessage = "";
 					try {
 						if (CSVHandler.isExist(enteredUsername))
@@ -120,7 +106,7 @@ public class CrAccPanel {
 				} else {
 					actionLabel.setForeground(Color.WHITE);
 					actionLabel.setBounds(355, 225, 400, 175);
-					playSound(successClip);
+					sound.playSound(sound.successClip);
 					actionLabel.setText("Your Account Has Been Created.");
 
 				}
@@ -136,13 +122,5 @@ public class CrAccPanel {
 	public JComponent getMainComponent() {
 		return mainPanel;
 	}
-	
-	private void playSound(Clip clip) {
-		clip.setFramePosition(0);
-		clip.start();
-		while (clip.getFramePosition() != clip.getFrameLength()) {
-			//wait until clip has been played
-		}
-		clip.stop();
-	}
+
 }

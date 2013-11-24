@@ -38,24 +38,9 @@ public class GamePanel {
 	public JButton ret;
 	public JLabel actionLabel;
 	
-    private String successSound = "src/res/sfx/success.wav";
-	private String errorSound = "src/res/sfx/error.wav";
-	private AudioInputStream audioInputStream;
-	private Clip successClip;
-	private Clip errorClip;
+	private Sound sound = new Sound();
 
 	public GamePanel() {
-		
-		try {
-			audioInputStream = AudioSystem.getAudioInputStream(new File(successSound).getAbsoluteFile());
-			successClip = AudioSystem.getClip();
-			successClip.open(audioInputStream);
-			audioInputStream = AudioSystem.getAudioInputStream(new File(errorSound).getAbsoluteFile());
-			errorClip = AudioSystem.getClip();
-			errorClip.open(audioInputStream);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
 		
 		mainPanel.setLayout(null);
 
@@ -67,7 +52,7 @@ public class GamePanel {
 		map = new DefaultComboBoxModel();
 		File[] mapFiles;
 		File dir;
-		dir = new File("./src/res/maps");
+		dir = new File("./res/maps");
 		mapFiles = dir.listFiles();
 		int mapsFound = mapFiles.length;
 		for(int i = 0; i < mapsFound; i++){
@@ -168,14 +153,14 @@ public class GamePanel {
 					spd = -1;
 				}
 				if(colorPlayer1.equals(colorPlayer2)){
-					playSound(errorClip);
+					sound.playSound(sound.errorClip);
 					actionLabel.setText("Choose different colors.");
 					actionLabel.setBounds(385, 250, 400, 75);
 					actionLabel.setForeground(Color.RED);
 					start.setEnabled(false);
 				}
 				else if(spd > 10 || spd < 3){
-					playSound(errorClip);
+					sound.playSound(sound.errorClip);
 					actionLabel.setText("Invalid speed.");
 					actionLabel.setBounds(410, 250, 400, 75);
 					actionLabel.setForeground(Color.RED);
@@ -211,7 +196,7 @@ public class GamePanel {
 					actionLabel.setForeground(Color.WHITE);
 					actionLabel.setBounds(400, 275, 400, 75);
 					actionLabel.setText("<html>" + "Map: " + chosenMap + "<br>" +  "Speed: " + sp + "<br>" + "Player 1:" + colorPlayer1 + "<br>" + "Player 2:" + colorPlayer2 + "</html>");
-					playSound(successClip);
+					sound.playSound(sound.successClip);
 					start.doClick();
 				}
 			}
@@ -234,13 +219,5 @@ public class GamePanel {
 	public JComponent getMainComponent() {
 	   return mainPanel;
 	}
-	
-	private void playSound(Clip clip) {
-		clip.setFramePosition(0);
-		clip.start();
-		while (clip.getFramePosition() != clip.getFrameLength()) {
-			//wait until clip has been played
-		}
-		clip.stop();
-	}
+
 }

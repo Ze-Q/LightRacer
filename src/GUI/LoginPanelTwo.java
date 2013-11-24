@@ -32,26 +32,12 @@ public class LoginPanelTwo {
 	public static  JButton cont;
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
-    private String successSound = "src/res/sfx/success.wav";
-	private String errorSound = "src/res/sfx/error.wav";
-	private AudioInputStream audioInputStream;
-	private Clip successClip;
-	private Clip errorClip;
+    
+	private Sound sound = new Sound();
 
 	private Login loginObject = Login.getInstance();
 
 	public LoginPanelTwo() {
-		
-		try {
-			audioInputStream = AudioSystem.getAudioInputStream(new File(successSound).getAbsoluteFile());
-			successClip = AudioSystem.getClip();
-			successClip.open(audioInputStream);
-			audioInputStream = AudioSystem.getAudioInputStream(new File(errorSound).getAbsoluteFile());
-			errorClip = AudioSystem.getClip();
-			errorClip.open(audioInputStream);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
 
 		mainPanel.setLayout(null);
 
@@ -116,13 +102,13 @@ public class LoginPanelTwo {
 				boolean loggedIn = loginObject.checkLogedin(enteredUsername);
 				if (!success) {
 					actionLabel.setForeground(Color.RED);
-					playSound(errorClip);
+					sound.playSound(sound.errorClip);
 					actionLabel.setText("Unsuccessful Login.");
 					actionLabel.setBounds(395, 250, 200, 25);
 				} 
 				else if (loggedIn) {
 					actionLabel.setForeground(Color.RED);
-					playSound(errorClip);
+					sound.playSound(sound.errorClip);
 					actionLabel.setText(enteredUsername + ", you are already logged in!");
 				} 
 				else {
@@ -152,12 +138,4 @@ public class LoginPanelTwo {
 		return mainPanel;
 	}
 	
-	private void playSound(Clip clip) {
-		clip.setFramePosition(0);
-		clip.start();
-		while (clip.getFramePosition() != clip.getFrameLength()) {
-			//wait until clip has been played
-		}
-		clip.stop();
-	}
 }
