@@ -157,14 +157,12 @@ public class GamePanel {
 					actionLabel.setText("Choose different colors.");
 					actionLabel.setBounds(385, 250, 400, 75);
 					actionLabel.setForeground(Color.RED);
-					start.setEnabled(false);
 				}
 				else if(spd > 10 || spd < 3){
 					sound.playSound(sound.errorClip);
 					actionLabel.setText("Invalid speed.");
 					actionLabel.setBounds(410, 250, 400, 75);
 					actionLabel.setForeground(Color.RED);
-					start.setEnabled(false);
 				}
 				else { 
 					if(colorPlayer1.equals("Red")){
@@ -196,7 +194,7 @@ public class GamePanel {
 					actionLabel.setForeground(Color.WHITE);
 					actionLabel.setBounds(400, 275, 400, 75);
 					actionLabel.setText("<html>" + "Map: " + chosenMap + "<br>" +  "Speed: " + sp + "<br>" + "Player 1:" + colorPlayer1 + "<br>" + "Player 2:" + colorPlayer2 + "</html>");
-					sound.playSound(sound.successClip);
+					actionLabel.paintImmediately(actionLabel.getVisibleRect());
 					start.doClick();
 				}
 			}
