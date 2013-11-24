@@ -25,12 +25,7 @@ public class LoginPanelTwo {
 	private Login loginObject = Login.getInstance();
 
     /**
-     * This class contains the panel in which a user can login as player one
-     * Main parameters:
-     * @param password			stores the input password
-     * @param username			stores the input username
-     * @param actionLabel		displays error message if login was unsuccessful and welcome message if login was successful
-     * @param sound				Sound object handling sound output
+     * This class contains the panel in which a user can login as player two
      */
 	public LoginPanelTwo() {
 
@@ -122,6 +117,7 @@ public class LoginPanelTwo {
 
 	/**
  	* Adds ActionListener to cont JButton, changes displayed card to MainPanel
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addContinueBtnActionListener(ActionListener listener) {
 		cont.addActionListener(listener);
@@ -129,6 +125,7 @@ public class LoginPanelTwo {
 
 	/**
  	* Adds ActionListener to back JButton, changes displayed card to IntroPanel
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addBackBtnActionListener(ActionListener listener) {
 		back.addActionListener(listener);
