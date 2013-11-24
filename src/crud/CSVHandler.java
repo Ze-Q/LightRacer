@@ -19,6 +19,7 @@ public class CSVHandler {
 		if (!userCSV.exists()) {
 			return false;
 		}
+
 		@SuppressWarnings("resource")
 		BufferedReader br = new BufferedReader(new FileReader(userCSV));
 		String line;
@@ -41,6 +42,7 @@ public class CSVHandler {
 		if (!userCSV.exists()) {
 			return false;
 		}
+		
 		@SuppressWarnings("resource")
 		BufferedReader br = new BufferedReader(new FileReader(userCSV));
 		String line;

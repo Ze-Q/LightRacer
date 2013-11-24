@@ -84,6 +84,24 @@ public class CSVHandlerTests {
 				"testIsValidPasswordWithUnalidPasswordWithLengthLessThan8 failed, this is a unvalid password!",
 				message.contains("Password minimum length is 8.<br>"));
 	}
+	
+	@Test
+	public void testIsValidPasswordWithNoDigit() {
+		String password = "abc";
+		String message = CSVHandler.isValidPassword(password);
+		assertTrue(
+				"testIsValidPasswordWithNoDigit failed, this is a unvalid password!",
+				message.contains("Password must contain at least one digit.<br>"));
+	}
+	
+	@Test
+	public void testIsValidPasswordWithNoLower() {
+		String password = "ABC";
+		String message = CSVHandler.isValidPassword(password);
+		assertTrue(
+				"testIsValidPasswordWithNoLower failed, this is a unvalid password!",
+				message.contains("Password must contain at least one lowercase character.<br>"));
+	}
 
 	@Test
 	public void testValidateCredential() {
