@@ -49,32 +49,24 @@ public class Login {
 		return userTwo.getUsername();
 	}
 
-	public User getNotLogin() {
-		if (userOne == null)
-			return userOne;
-		else
-			return userTwo;
+	public boolean userTwoLogin() {
+		return !(userTwo == null);
 	}
-	
-	public boolean userTwoLogin(){
-		return !(userTwo==null);
+
+	public boolean userOneLogin() {
+		return !(userOne == null);
 	}
-	
-	public boolean userOneLogin(){
-		return !(userOne==null);
-	}
-	
-	public boolean checkLogedin (String username){
+
+	public boolean checkLogedin(String username) {
 		boolean alreadyLogin = false;
-		if(userOne == null && userOne == null) return alreadyLogin;
-		else if(userOne!=null){
+		if (userOne == null && userOne == null)
+			return alreadyLogin;
+		else if (userOne != null) {
 			alreadyLogin = userOne.getUsername().equals(username);
-		}
-		else{
+		} else {
 			alreadyLogin = userTwo.getUsername().equals(username);
 		}
-			
-		
+
 		return alreadyLogin;
 	}
 
