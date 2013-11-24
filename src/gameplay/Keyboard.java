@@ -11,8 +11,17 @@ public class Keyboard implements KeyListener {
 	
 	public boolean up, down, left, right, w, s, a, d, pause;
 
-
+	/**
+	 * Keyboard class handles user input
+	 */
+	public Keyboard() {
+		
+	}
 	
+	/**
+	 * Updates booleans if the corresponding keys were pressed, calls pause if pause key is detected
+	 * @see Pause
+	 */
 	public void update() {
 		up = keys[KeyEvent.VK_UP];
 		w = keys[KeyEvent.VK_W];
@@ -33,15 +42,23 @@ public class Keyboard implements KeyListener {
 		}
 	}
 	
-	
+	/**
+	 * Update keys array if a key press detected
+	 */
 	public void keyPressed(KeyEvent e) {
 		keys[e.getKeyCode()] = true;
 	}
 
+	/**
+	 * Update keys array if a key release detected
+	 */
 	public void keyReleased(KeyEvent e) {
 		keys[e.getKeyCode()] = false;
 	}
 
+	/**
+	 * Handle key typed detection (unused)
+	 */
 	public void keyTyped(KeyEvent e) {}
 	
 }
