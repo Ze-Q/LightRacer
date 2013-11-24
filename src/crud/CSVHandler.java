@@ -143,12 +143,4 @@ public class CSVHandler {
 		return message;
 	}
 
-	public static boolean checkPasswordLength(String password) {
-		int length = password.length();
-		if (length < 8)
-			return false;
-		else
-			return true;
-	}
-
 }
