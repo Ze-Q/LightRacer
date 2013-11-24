@@ -28,8 +28,10 @@ public class CSVHandler {
 			boolean checkUsername = thisUsername.equals(username);
 			boolean checkPassword = thisPassword.equals(password);
 			if (checkUsername && checkPassword)
+				br.close();
 				return true;
 		}
+		br.close();
 		return false;
 	}
 
@@ -46,8 +48,10 @@ public class CSVHandler {
 			String[] credentials = line.split(",");
 			String thisUsername = credentials[0];
 			if (thisUsername.equals(username))
+				br.close();
 				return true;
 		}
+		br.close();
 		return false;
 	}
 

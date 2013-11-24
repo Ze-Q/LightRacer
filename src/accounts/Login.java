@@ -2,13 +2,9 @@ package accounts;
 
 import java.io.IOException;
 
-import crud.CSVHandler;
-import crud.StatsFileSystem;
-
 public class Login {
 
 	private static final Login INSTANCE = new Login();
-	private static CSVHandler csvHandler = CSVHandler.getInstance();
 
 	private Login() {
 
