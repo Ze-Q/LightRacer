@@ -1,35 +1,22 @@
 package GUI;
 
 import accounts.Login;
-import accounts.User;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 public class LoginPanelOne {
 	
 	private JPanel mainPanel = new JPanel();
-	private JLabel title = new JLabel("<html> <h1>Login Player 1</h1></html>");
-	
-	protected static final String usernameField = "Username";
-	protected static final String passwordField = "Password";
-    protected static final String loginString = "Login";
-    
-    public final int WIDTH = 900;
-    public final int HEIGHT = WIDTH * 9 / 16;
-    public final int SCALE = 1;
-
+	private JLabel title = new JLabel("<html> <h1>Login Player 1</h1></html>");	
+	private String usernameField = "Username";
+	private String passwordField = "Password";
    	protected static JPasswordField password1 = new JPasswordField(10);
     protected static JTextField username1 = new JTextField(10);
     protected static JLabel actionLabel;
-    public static JButton cont;
-    private  static JButton login;
+    private JButton cont;
+    private JButton login;
     private JButton back;
     private JLabel usernameLabel;
     private JLabel passwordLabel;
@@ -38,6 +25,14 @@ public class LoginPanelOne {
     
     private Login loginObject = Login.getInstance(); 
 	
+    /**
+     * This class contains the panel in which a user can login as player one
+     * Main parameters:
+     * @param password			stores the input password
+     * @param username			stores the input username
+     * @param actionLabel		displays error message if login was unsuccessful and welcome message if login was successful
+     * @param sound				Sound object handling sound output
+     */
     public LoginPanelOne() {
 
         mainPanel.setLayout(null);
@@ -110,9 +105,8 @@ public class LoginPanelOne {
 					actionLabel.setForeground(Color.RED);
 					sound.playSound(sound.errorClip);
 					actionLabel.setText(enteredUsername + ", you are already logged in!");
-				
 				}
-				else{
+				else {
 					actionLabel.setForeground(Color.WHITE);
 					actionLabel.setBounds(400, 250, 200, 25);
 					username1.setEditable(false);
@@ -127,15 +121,24 @@ public class LoginPanelOne {
 		});
     }
 	
+	/**
+ 	* Adds ActionListener to cont JButton, changes displayed card to LoginPanelTwo or MainPanel if player two is logged in
+ 	*/
 	public void addContinueBtnActionListener(ActionListener listener) {
 		cont.addActionListener(listener);
 	}
 
-	
+	/**
+ 	* Adds ActionListener to back JButton, changes displayed card to IntroPanel
+ 	*/
 	public void addBackBtnActionListener(ActionListener listener) {
 		back.addActionListener(listener);
 	}
 
+	/**
+ 	* Returns the main component of this JPanel
+ 	* @return Main Component of JPanel
+ 	*/
 	public JComponent getMainComponent() {
 		return mainPanel;
 	}
