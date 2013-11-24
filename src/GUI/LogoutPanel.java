@@ -16,8 +16,6 @@ class LogoutPanel {
     /**
      * This class contains the panel in which a user can login as player one
      * Main parameters:
-     * @param playerOne			stores player one username and displays a button
-     * @param playerTwo			stores player two username and displays a button
      */
 	public LogoutPanel() {
 		
@@ -64,6 +62,7 @@ class LogoutPanel {
 	
 	/**
  	* Adds ActionListener to playerOne JButton, logs out player one and changes displayed card to LoginPanelOne
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addPlayerOneActionListener(ActionListener listener) {
 		playerOne.addActionListener(listener);
@@ -71,6 +70,7 @@ class LogoutPanel {
 
 	/**
  	* Adds ActionListener to playerTwo JButton, logs out player two and changes displayed card to LoginPanelTwo
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addPlayerTwoActionListener(ActionListener listener) {
 		playerTwo.addActionListener(listener);
@@ -78,6 +78,7 @@ class LogoutPanel {
 	
 	/**
  	* Adds ActionListener to both JButton, logs out both players and changes displayed card to LoginPanelOne
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addBothActionListener(ActionListener listener) {
 		both.addActionListener(listener);
@@ -85,6 +86,7 @@ class LogoutPanel {
 	
 	/**
  	* Adds ActionListener to cancel JButton, changes displayed card to MainPanel
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addCancelActionListener(ActionListener listener) {
 		cancel.addActionListener(listener);
