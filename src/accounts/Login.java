@@ -73,5 +73,48 @@ public class Login {
 		}
 		return isValid;
 	}
+	
+	public boolean isValidUserInfo(String username, String password){
+		boolean isValid = false;
+		try {
+			isValid = (crud.CSVHandler.isValidCredential(username, password));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return isValid;
+	}
+	
+	public boolean loginUserOne(String username, String password){
+		boolean isValid;
+		try {
+			isValid = (crud.CSVHandler.isValidCredential(username, password));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			isValid = false;
+		}
+		if(isValid){
+			User thisUser = new User(username);
+			setUserOne(thisUser);
+		}
+		return isValid;
+	}
+	
+	public boolean loginUserTwo(String username, String password){
+		boolean isValid;
+		try {
+			isValid = (crud.CSVHandler.isValidCredential(username, password));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			isValid = false;
+		}
+		if(isValid){
+			User thisUser = new User(username);
+			setUserTwo(thisUser);
+		}
+		return isValid;
+	}
 
 }

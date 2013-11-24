@@ -98,7 +98,7 @@ public class LoginPanelOne {
 
 				String enteredUsername = username1.getText();
 				String enteredPassword = new String (password1.getPassword());
-				boolean success = loginObject.login(enteredUsername, enteredPassword);
+				boolean success = loginObject.isValidUserInfo(enteredUsername, enteredPassword);
 				boolean loggedIn = loginObject.checkLogedin(enteredUsername);
 				if(!success){
 					actionLabel.setForeground(Color.RED);
@@ -117,8 +117,7 @@ public class LoginPanelOne {
 					actionLabel.setBounds(400, 250, 200, 25);
 					username1.setEditable(false);
 					password1.setEditable(false);
-					User newUser = new User(enteredUsername);
-					loginObject.setUserOne(newUser);
+					loginObject.loginUserOne(enteredUsername, enteredPassword);
 					actionLabel.setText("Welcome " + loginObject.getUserNameOne() + "!");
 					sound.playSound(sound.successClip);
 					cont.doClick();

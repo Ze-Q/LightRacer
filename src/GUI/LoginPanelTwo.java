@@ -97,7 +97,7 @@ public class LoginPanelTwo {
 
 				String enteredUsername = username2.getText();
 				String enteredPassword = new String(password2.getPassword());
-				boolean success = loginObject.login(enteredUsername,
+				boolean success = loginObject.isValidUserInfo(enteredUsername,
 						enteredPassword);
 				boolean loggedIn = loginObject.checkLogedin(enteredUsername);
 				if (!success) {
@@ -116,8 +116,7 @@ public class LoginPanelTwo {
 					actionLabel.setBounds(400, 250, 200, 25);
 					username2.setEditable(false);
 					password2.setEditable(false);
-					User newUser = new User(enteredUsername);
-					loginObject.setUserTwo(newUser);
+					loginObject.loginUserTwo(enteredUsername, enteredPassword);
 					actionLabel.setText("Welcome " + loginObject.getUserNameTwo() + "!");
 					sound.playSound(sound.successClip);
 					cont.doClick();
