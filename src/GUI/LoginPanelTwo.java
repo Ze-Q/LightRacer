@@ -106,7 +106,7 @@ public class LoginPanelTwo {
 					actionLabel.setText("Unsuccessful Login.");
 					actionLabel.setBounds(395, 250, 200, 25);
 				} 
-				if (loggedIn) {
+				else if (loggedIn) {
 					actionLabel.setForeground(Color.RED);
 					sound.playSound(sound.errorClip);
 					actionLabel.setText(enteredUsername + ", you are already logged in!");
