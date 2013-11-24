@@ -13,7 +13,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
 
-public class CrAccPanel {
+public class CreateAccountPanel {
 	private JPanel mainPanel = new JPanel();
 	private JLabel title = new JLabel("<html> <h1>Create Account</h1> </html>");
 
@@ -27,22 +27,22 @@ public class CrAccPanel {
 	protected JPasswordField password = new JPasswordField(10);
 	protected JTextField username = new JTextField(10);
 	protected JLabel actionLabel;
-	private JButton crAcc;
+	private JButton createAccount;
 	private JButton back;
 	private JLabel textFieldLabel;
 	private JLabel passwordFieldLabel;
 
 	private Sound sound = new Sound();
 
-	public CrAccPanel() {
+	public CreateAccountPanel() {
 		
 		mainPanel.setLayout(null);
 		
-		crAcc = new JButton("Create New Account");
-		crAcc.setForeground(Color.WHITE);
-		crAcc.setBackground(Color.DARK_GRAY);
-		crAcc.setOpaque(true);
-		crAcc.setBorderPainted(false);
+		createAccount = new JButton("Create New Account");
+		createAccount.setForeground(Color.WHITE);
+		createAccount.setBackground(Color.DARK_GRAY);
+		createAccount.setOpaque(true);
+		createAccount.setBorderPainted(false);
 		back = new JButton("Back");
 		back.setForeground(Color.WHITE);
 		back.setBackground(Color.DARK_GRAY);
@@ -59,7 +59,7 @@ public class CrAccPanel {
 		title.setForeground(Color.WHITE);
 
 		mainPanel.add(title);
-		mainPanel.add(crAcc);
+		mainPanel.add(createAccount);
 		mainPanel.add(back);
 		mainPanel.add(textFieldLabel);
 		mainPanel.add(passwordFieldLabel);
@@ -71,7 +71,7 @@ public class CrAccPanel {
 
 		Dimension size = new Dimension(100, 25);
 		title.setBounds(370, 25, 200, 100);
-		crAcc.setBounds(350, 400, 200, size.height);
+		createAccount.setBounds(350, 400, 200, size.height);
 		back.setBounds(400, 450, size.width, size.height);
 		textFieldLabel.setBounds(350, 150, size.width, size.height);
 		passwordFieldLabel.setBounds(350, 200, size.width, size.height);
@@ -79,7 +79,7 @@ public class CrAccPanel {
 		password.setBounds(450, 200, size.width, size.height);
 		actionLabel.setBounds(300, 225, 400, size.height + 150);
 
-		crAcc.addActionListener(new ActionListener() {
+		createAccount.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 

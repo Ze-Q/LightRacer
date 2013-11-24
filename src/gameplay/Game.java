@@ -254,8 +254,7 @@ public class Game extends Canvas implements Runnable {
                 }
                 
                 else {
-                	curPanel.title.setText("<html> <h1>Current Score: " + MainWindow.score.getP1() + " - " +  MainWindow.score.getP2() + "</h1> </html>");
-                	curPanel.title.setVisible(true);
+                	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserTwo().getUsername() + " " + MainWindow.score.getP1() + " - " +  MainWindow.score.getP2() + " " + Login.getInstance().getUserTwo().getUsername() + "</h1> </html>");
                 	curPanel.mainPanel.remove(curPanel.title);
                 	curPanel.mainPanel.add(curPanel.title);
                 }

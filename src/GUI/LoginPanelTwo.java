@@ -119,6 +119,7 @@ public class LoginPanelTwo {
 					User newUser = new User(enteredUsername);
 					loginObject.setUserTwo(newUser);
 					actionLabel.setText("Welcome " + loginObject.getUserNameTwo() + "!");
+					sound.playSound(sound.successClip);
 					cont.doClick();
 				}
 			}

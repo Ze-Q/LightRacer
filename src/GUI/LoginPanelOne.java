@@ -120,6 +120,7 @@ public class LoginPanelOne {
 					User newUser = new User(enteredUsername);
 					loginObject.setUserOne(newUser);
 					actionLabel.setText("Welcome " + loginObject.getUserNameOne() + "!");
+					sound.playSound(sound.successClip);
 					cont.doClick();
 				}
 			}
