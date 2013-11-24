@@ -27,7 +27,10 @@ public class Player {
 	public final static Tuple GREENPLAYERCOLORS = new Tuple(GREEN, GREEN_GLOW);
 
 
-	//Default constructor : player position at (400,300), direction UP
+	/**
+	 * Player constructor
+	 * Takes no arguments as input, default parameter values
+	 */
 	public Player() {
 		this.xPos = 400;
 		this.yPos = 300;
@@ -35,21 +38,43 @@ public class Player {
 		this.tColor = REDPLAYERCOLORS;
 	}
 
-	//Constructor that allows to specify all parameters
+	/**
+	 * Player object constructor
+	 * @param xPos					integer representing initial horizontal position of a player 
+	 * @param yPos					integer representing initial vertical position of a player 
+	 * @param velocity				integer representing initial player speed
+	 * @param direction				String representing initial player direction
+	 * @param color					integer representing player color
+	 */
 	public Player(int xPos, int yPos, int velocity, String direction, int color) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.velocity = velocity;
 		this.direction = direction;
 		this.color = color;
-		if (color == RED) 			{ this.tColor = REDPLAYERCOLORS; } 
-		else if (color == BLUE) 	{ this.tColor = BLUEPLAYERCOLORS; } 
-		else if (color == YELLOW) 	{ this.tColor = YELLOWPLAYERCOLORS; } 
-		else if (color == GREEN) 	{ this.tColor = GREENPLAYERCOLORS; }
-		else 						{ this.tColor = REDPLAYERCOLORS; } 
+		if (color == RED) { 
+			this.tColor = REDPLAYERCOLORS; 
+		} 
+		else if (color == BLUE) { 
+			this.tColor = BLUEPLAYERCOLORS; 
+		} 
+		else if (color == YELLOW) { 
+			this.tColor = YELLOWPLAYERCOLORS;
+		} 
+		else if (color == GREEN) { 
+			this.tColor = GREENPLAYERCOLORS;
+		}
+		else { 
+			this.tColor = REDPLAYERCOLORS;
+		} 
 	}
 
-	//Constructor that allows to specify xPos, yPos and has default speed and direction
+	/**
+	 * Player object constructor
+	 * @param xPos					integer representing initial horizontal position of a player 
+	 * @param yPos					integer representing initial vertical position of a player
+	 * other parameters are set to default values
+	 */
 	public Player(int xPos, int yPos) {
 		this.xPos = xPos;
 		this.yPos = yPos;
@@ -57,7 +82,13 @@ public class Player {
 		this.tColor = REDPLAYERCOLORS;
 	}
 
-	//Constructor that allows to specify xPos, yPos, and direction with default velocity and color
+	/**
+	 * Player object constructor
+	 * @param xPos					integer representing initial horizontal position of a player 
+	 * @param yPos					integer representing initial vertical position of a player
+	 * @param direction				String representing initial player direction
+	 * other parameters are set to default values
+	 */
 	public Player(int xPos, int yPos, String direction) {
 		this.xPos = xPos;
 		this.yPos = yPos;
@@ -66,32 +97,71 @@ public class Player {
 		this.tColor = REDPLAYERCOLORS;
 	}
 
-	//Constructor that allows to specify xPos, yPos, color, and velocity with default direction
+	/**
+	 * Player object constructor
+	 * @param xPos					integer representing initial horizontal position of a player 
+	 * @param yPos					integer representing initial vertical position of a player
+	 * @param velocity				integer representing initial player speed
+	 * @param color					integer representing player color
+	 * other parameters are set to default values
+	 */
 	public Player(int xPos, int yPos, int velocity, int color) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.velocity = velocity;
 		this.color = color;
-		if (color == RED) 			{ this.tColor = REDPLAYERCOLORS; } 
-		else if (color == BLUE) 	{ this.tColor = BLUEPLAYERCOLORS; } 
-		else if (color == YELLOW) 	{ this.tColor = YELLOWPLAYERCOLORS; } 
-		else if (color == GREEN) 	{ this.tColor = GREENPLAYERCOLORS; }
-		else 						{ this.tColor = REDPLAYERCOLORS; } 
+		if (color == RED) { 
+			this.tColor = REDPLAYERCOLORS;
+		} 
+		else if (color == BLUE) { 
+			this.tColor = BLUEPLAYERCOLORS;
+		} 
+		else if (color == YELLOW) { 
+			this.tColor = YELLOWPLAYERCOLORS;
+		} 
+		else if (color == GREEN) { 
+			this.tColor = GREENPLAYERCOLORS;
+		}
+		else { 
+			this.tColor = REDPLAYERCOLORS;
+		} 
 	}
 
-	//Constructor that allows to specify xPos, yPos, color, and direction with default velocity
+	/**
+	 * Player object constructor
+	 * @param xPos					integer representing initial horizontal position of a player 
+	 * @param yPos					integer representing initial vertical position of a player
+	 * @param direction				String representing initial player direction
+	 * @param color					integer representing player color
+	 * other parameters are set to default values
+	 */
 	public Player(int xPos, int yPos, String direction, int color) {
 		this.xPos = xPos;
 		this.yPos = yPos;
 		this.direction = direction;
 		this.color = color;
-		if (color == RED) 			{ this.tColor = REDPLAYERCOLORS; } 
-		else if (color == BLUE) 	{ this.tColor = BLUEPLAYERCOLORS; } 
-		else if (color == YELLOW) 	{ this.tColor = YELLOWPLAYERCOLORS; } 
-		else if (color == GREEN) 	{ this.tColor = GREENPLAYERCOLORS; }
-		else 						{ this.tColor = REDPLAYERCOLORS; } 
+		if (color == RED) { 
+			this.tColor = REDPLAYERCOLORS;
+		} 
+		else if (color == BLUE) { 
+			this.tColor = BLUEPLAYERCOLORS;
+		} 
+		else if (color == YELLOW) { 
+			this.tColor = YELLOWPLAYERCOLORS;
+		} 
+		else if (color == GREEN) { 
+			this.tColor = GREENPLAYERCOLORS;
+		}
+		else { 
+			this.tColor = REDPLAYERCOLORS;
+		} 
 	}
 	
+	/** 
+	 * Updates player position in Level object
+	 * @param level				required to update player position in Level object
+	 * @see Level
+	 */
 	public void update(Level level) {
 		//move
 		this.xPos = this.getNextPos()[0];
@@ -100,6 +170,10 @@ public class Player {
 		level.pixels[xPos][yPos] = tColor.color;	
 	}
 	
+	/**
+	 * Returns player color as a String
+	 * @return	String representing player color
+	 */
 	public String getColor() {
 		String color;
 		if (this.color == Player.RED) {
