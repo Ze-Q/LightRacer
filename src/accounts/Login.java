@@ -62,19 +62,7 @@ public class Login {
 		return alreadyLogin;
 	}
 
-	public boolean login(String username, String password) {
-		boolean isValid;
-		try {
-			isValid = (crud.CSVHandler.isValidCredential(username, password));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			isValid = false;
-		}
-		return isValid;
-	}
-	
-	public boolean isValidUserInfo(String username, String password){
+	public boolean isValidUserInfo(String username, String password) {
 		boolean isValid = false;
 		try {
 			isValid = (crud.CSVHandler.isValidCredential(username, password));
@@ -84,8 +72,8 @@ public class Login {
 		}
 		return isValid;
 	}
-	
-	public boolean loginUserOne(String username, String password){
+
+	public boolean loginUserOne(String username, String password) {
 		boolean isValid;
 		try {
 			isValid = (crud.CSVHandler.isValidCredential(username, password));
@@ -94,14 +82,14 @@ public class Login {
 			e.printStackTrace();
 			isValid = false;
 		}
-		if(isValid){
+		if (isValid) {
 			User thisUser = new User(username);
 			setUserOne(thisUser);
 		}
 		return isValid;
 	}
-	
-	public boolean loginUserTwo(String username, String password){
+
+	public boolean loginUserTwo(String username, String password) {
 		boolean isValid;
 		try {
 			isValid = (crud.CSVHandler.isValidCredential(username, password));
@@ -110,7 +98,7 @@ public class Login {
 			e.printStackTrace();
 			isValid = false;
 		}
-		if(isValid){
+		if (isValid) {
 			User thisUser = new User(username);
 			setUserTwo(thisUser);
 		}
