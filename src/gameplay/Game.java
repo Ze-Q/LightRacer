@@ -5,17 +5,11 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
-import java.io.File;
-
 import gameplay.Keyboard;
 import gameplay.Level;
 import gameplay.Player;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.JFrame;
-
 import accounts.Login;
 import accounts.Statistics;
 import GUI.GamePanel;
