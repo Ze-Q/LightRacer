@@ -13,6 +13,9 @@ class IntroPanel {
 	private JButton createAccount;
 	private JButton exit;
 
+    /**
+     * IntroPanel class contains introductory panel that displays when user first launches the program
+     */
 	public IntroPanel() {
 		
 		mainPanel.setLayout(null);
@@ -48,7 +51,6 @@ class IntroPanel {
 		exit.setBounds(400, 450, size.width, size.height);
 		
 		exit.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				MainWindow.sound.backgroundClip.stop();
 				Window win = SwingUtilities.getWindowAncestor(mainPanel);
@@ -56,14 +58,25 @@ class IntroPanel {
 			}
 		});
 	}
+	
+	/**
+ 	* Adds ActionListener to login JButton, changes displayed card to LoginPanelOne or LoginPanelTwo
+ 	*/
 	public void addLoginBtnActionListener(ActionListener listener) {
 		login.addActionListener(listener);
 	}
 
+	/**
+ 	* Adds ActionListener to createAccount JButton, changes displayed card to CreateAccountPanel
+ 	*/
 	public void addCreateAccBtnActionListener(ActionListener listener) {
 		createAccount.addActionListener(listener);
 	}
 	
+	/**
+ 	* Returns the main component of this JPanel
+ 	* @return Main Component of JPanel
+ 	*/
 	public JComponent getMainComponent() {
 		return mainPanel;
 	}
