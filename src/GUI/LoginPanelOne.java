@@ -119,6 +119,7 @@ public class LoginPanelOne {
 					password1.setEditable(false);
 					loginObject.loginUserOne(enteredUsername, enteredPassword);
 					actionLabel.setText("Welcome " + loginObject.getUserNameOne() + "!");
+					actionLabel.paintImmediately(actionLabel.getVisibleRect());
 					sound.playSound(sound.successClip);
 					cont.doClick();
 				}

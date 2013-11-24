@@ -23,6 +23,11 @@ public class Pause {
 	private Game game;
 	private Sound sound = new Sound();
 	
+	/**
+	 * Pause class handles pause logic
+	 * Constructor takes the following parameters:
+	 * @param game				required to resume game run loop
+	 */
 	public Pause(Game game) {
 		this.game = game;
 		JButton button = new JButton("Press to Resume");

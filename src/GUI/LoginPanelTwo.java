@@ -118,6 +118,7 @@ public class LoginPanelTwo {
 					password2.setEditable(false);
 					loginObject.loginUserTwo(enteredUsername, enteredPassword);
 					actionLabel.setText("Welcome " + loginObject.getUserNameTwo() + "!");
+					actionLabel.paintImmediately(actionLabel.getVisibleRect());
 					sound.playSound(sound.successClip);
 					cont.doClick();
 				}
