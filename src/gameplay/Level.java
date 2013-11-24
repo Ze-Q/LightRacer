@@ -13,9 +13,17 @@ public class Level {
 
 	private int width, height;
 	private BufferedImage[] maps;
-
+	private String mapsPath = "./res/maps";
 	public int[][] pixels;
 	
+	/**
+	 * Level class, loads maps from a specified folder and stores the selected map in an int 2d array. 
+	 * Takes 2 parameters as input - integers for width and height
+	 * Main variables:
+	 * @param width				width of the level
+	 * @param height			height of the level
+	 * @param pixels			2d array of integers, represents pixels of level
+	 */
 	public Level (int w, int h) {
 		this.width = w;
 		this.height = h;
@@ -23,7 +31,7 @@ public class Level {
 		File[] mapFiles;
 		File dir;
 		try {
-			dir = new File("./res/maps");
+			dir = new File(mapsPath);
 			mapFiles = dir.listFiles();
 			int mapsFound = mapFiles.length;
 			//preload all maps
@@ -37,9 +45,7 @@ public class Level {
 	}
 
 
-	/* Default map layout :
-	 * Fill the pixels matrix with solid color #131717
-	 * Fill the border pixels with a different color #FFFFFF */
+	// Default map layout
 	@SuppressWarnings("unused")
 	private void defaultMapLayout() {
 		for(int y = 0; y < height; y++) {
@@ -54,7 +60,10 @@ public class Level {
 		}
 	}
 	
-	//draws the appropriate map depending on index
+	/**
+	 * Set level according to index that was passed to the method
+	 * @param mapIndex				integer respresenting map number to load
+	 *  */
 	public void setLevel(int mapIndex) {
 		BufferedImage image = maps[mapIndex];
 		for(int y = 0; y < height; y++) {
@@ -68,7 +77,9 @@ public class Level {
 		
 	}
 
-	/* Clear the map by filling it with black color */
+	/**
+	 * Set all pixels to 0 - blank black map
+	 */
 	public void clear() {
 		for(int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++){
@@ -77,7 +88,12 @@ public class Level {
 		}
 	}
 	
-	/* Update player positions and check for collisions */
+	/**
+	 * Handles player position updates and collision checking
+	 * @param game				Game object, required if collision was detected to handle end of round
+	 * @param player1			Player 1 object, required to update player positions
+	 * @param player2			Player 2 object, required to update player positions
+	 */
 	public void update(Game game, Player player1, Player player2) {
 		for (int i = 1; i <= player1.velocity; i++) {
 			//Next position for both players is same => draw
