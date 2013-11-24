@@ -114,6 +114,7 @@ class HelpPanel {
 
 	/**
  	* Adds ActionListener to back JButton, changes displayed card to MainPanel
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addBackBtnActionListener(ActionListener listener) {
 		   back.addActionListener(listener);

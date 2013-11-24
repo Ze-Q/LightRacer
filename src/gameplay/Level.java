@@ -7,7 +7,9 @@ import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 
-
+/**
+ * Author Dzmitry Murzich
+ *  */
 public class Level {
 
 
@@ -46,7 +48,6 @@ public class Level {
 
 
 	// Default map layout
-	@SuppressWarnings("unused")
 	private void defaultMapLayout() {
 		for(int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++){

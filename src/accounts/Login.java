@@ -108,10 +108,10 @@ public class Login {
 	}
 
 	/**
-	 * This method checks whenther an username and password are valid
-	 * @param username
-	 * @param password
-	 * @return
+	 * This method checks whether an username and password are valid
+	 * @param username				the username entered by the user
+	 * @param password				the password entered by the password
+	 * @return isValid				whether the useranme and password is a valid combination
 	 */
 	public boolean isValidUserInfo(String username, String password) {
 		boolean isValid = false;

@@ -3,6 +3,9 @@ package gameplay;
 import gameplay.Tuple;
 import gameplay.Level;
 
+/**
+ * Author Dzmitry Murzich
+ *  */
 public class Player {
 
 	private int xPos, yPos;

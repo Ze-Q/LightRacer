@@ -62,6 +62,10 @@ class StatsPanel {
 		title.setBounds(385, 25, 200, 100);
 	}
 	
+	/**
+ 	* This method updates both JTables to reflect the current stats
+ 	*/
+	
 	public void updateStatsPanel() {
 		//update versus table
 		user1 = Login.getInstance().getUserOne();
@@ -130,6 +134,7 @@ class StatsPanel {
 
 	/**
  	* Adds ActionListener to back JButton, changes displayed card to MainPanel
+ 	* @param listener	contains action to be taken by button
  	*/
 	public void addBackBtnActionListener(ActionListener listener) {
 		   back.addActionListener(listener);

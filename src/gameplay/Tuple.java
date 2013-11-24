@@ -1,5 +1,9 @@
 package gameplay;
 
+
+/**
+ * Author Dzmitry Murzich
+ *  */
 public class Tuple {
 
 	public final int color; 

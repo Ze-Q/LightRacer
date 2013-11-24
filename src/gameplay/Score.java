@@ -1,5 +1,9 @@
 package gameplay;
 
+
+/**
+ * Author Dzmitry Murzich
+ *  */
 public class Score {
 	
 	public int p1 = 0;

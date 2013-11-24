@@ -74,6 +74,7 @@ class MainPanel {
 	
 	/**
  	* Adds ActionListener to newGame JButton, changes displayed card to GamePanel
+	* @param listener        contains action to be taken by button
  	*/
 	public void addNewGameBtnActionListener(ActionListener listener) {
 		newGame.addActionListener(listener);
@@ -81,6 +82,7 @@ class MainPanel {
 	
 	/**
  	* Adds ActionListener to stats JButton, changes displayed card to StatsPanel
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addStatsBtnActionListener(ActionListener listener) {
 		stats.addActionListener(listener);
@@ -88,6 +90,7 @@ class MainPanel {
 	
 	/**
  	* Adds ActionListener to help JButton, changes displayed card to HelpPanel
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addHelpBtnActionListener(ActionListener listener) {
 		help.addActionListener(listener);
@@ -95,6 +98,7 @@ class MainPanel {
 	
 	/**
  	* Adds ActionListener to logout JButton, changes displayed card to LogoutPanel
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addLogoutBtnActionListener(ActionListener listener) {
 		logout.addActionListener(listener);

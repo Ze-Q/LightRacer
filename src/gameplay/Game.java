@@ -17,6 +17,7 @@ import GUI.MainWindow;
 import GUI.Sound;
 
 /**
+<<<<<<< HEAD
  * Game class contains the main game loop and displays the game window
  * Main parameters:
  * @param WIDTH				width of the game window
@@ -27,6 +28,7 @@ import GUI.Sound;
  * @param key				Keyboard object handling user input
  * @param sound				Sound object handling sound output
  * */
+
 public class Game extends Canvas implements Runnable {
 
         private static final long serialVersionUID = 1L;
@@ -122,7 +124,7 @@ public class Game extends Canvas implements Runnable {
 
 
         
-        	@SuppressWarnings("static-access")
+        	
         	/**
          	* Main game loop, handles logic related to calls to methods responsible for variable updates and rendering
          	*/
@@ -148,7 +150,6 @@ public class Game extends Canvas implements Runnable {
                         			try {
                         				resume = false;
                         				sound.ingameClip.stop();
-                        				@SuppressWarnings("unused")
 										Pause pause = new Pause(this);
                         				while (!resume) {
                         					thread.sleep(10);

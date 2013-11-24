@@ -10,22 +10,22 @@ import javax.sound.sampled.Clip;
 public class Sound {
 
 	
-	public final String GREENSOUND = "./res/raw/greenround.wav";
-	public final String REDSOUND = "./res/raw/redround.wav";
-    public final String BLUESOUND = "./res/raw/blueround.wav";
-    public final String YELLOWSOUND = "./res/raw/yellowround.wav";
-    public final String COUNTDOWNSOUND = "./res/raw/countdown.wav";
-    public final String GREENWONSOUND = "./res/raw/greenwon.wav";
-    public final String REDWONSOUND = "./res/raw/redwon.wav";
-    public final String BLUEWONSOUND = "./res/raw/bluewon.wav";
-    public final String YELLOWWONSOUND = "./res/raw/yellowwon.wav";
-    public final String DRAWSOUND = "./res/raw/draw.wav";
-	public final String INGAMESOUND = "./res/raw/ingame.wav";
-	public final String SUCCESSSOUND = "./res/raw/success.wav";
-	public final String ERRORSOUND = "./res/raw/error.wav";
-	public final String BACKSOUND = "./res/raw/back.wav";
-	public final String GAMESOUND = "./res/raw/startgame.wav";
-	public final String BACKGROUNDSOUND = "./res/raw/background.wav";
+	private final String GREENSOUND = "./res/raw/greenround.wav";
+	private final String REDSOUND = "./res/raw/redround.wav";
+    private final String BLUESOUND = "./res/raw/blueround.wav";
+    private final String YELLOWSOUND = "./res/raw/yellowround.wav";
+    private final String COUNTDOWNSOUND = "./res/raw/countdown.wav";
+    private final String GREENWONSOUND = "./res/raw/greenwon.wav";
+    private final String REDWONSOUND = "./res/raw/redwon.wav";
+    private final String BLUEWONSOUND = "./res/raw/bluewon.wav";
+    private final String YELLOWWONSOUND = "./res/raw/yellowwon.wav";
+    private final String DRAWSOUND = "./res/raw/draw.wav";
+	private final String INGAMESOUND = "./res/raw/ingame.wav";
+	private final String SUCCESSSOUND = "./res/raw/success.wav";
+	private final String ERRORSOUND = "./res/raw/error.wav";
+	private final String BACKSOUND = "./res/raw/back.wav";
+	private final String GAMESOUND = "./res/raw/startgame.wav";
+	private final String BACKGROUNDSOUND = "./res/raw/background.wav";
 	public Clip greenClip;
 	public Clip redClip;
 	public Clip blueClip;
@@ -41,10 +41,13 @@ public class Sound {
 	public Clip errorClip;
 	public Clip backClip;
 	public Clip gameClip;
-	public static Clip backgroundClip;
+	public Clip backgroundClip;
 
 	private AudioInputStream audioInputStream;
 	
+    /**
+     * Sound class contains all the music Clips which will be used in the program
+     */
 	public Sound() {
 		try {
 			audioInputStream = AudioSystem.getAudioInputStream(new File(GREENSOUND));
@@ -100,6 +103,10 @@ public class Sound {
 		}
 	}
 	
+    /**
+     * This method plays a clip and pauses the program execution until clip has finished playing
+     * @param clip			Clip object that will be played
+     */
     public void playSound(Clip clip) {
 		clip.setFramePosition(0);
 		clip.start();
@@ -109,6 +116,10 @@ public class Sound {
 		clip.stop();
 	}
     
+    /**
+     * This method plays a clip at the end of each round announcing the winner
+     * @param winner		String which contains the winner of the round
+     */
     public void announceRoundWinner(String winner) {
     	if (winner.equals("Red")) {
     		playSound(redClip);
@@ -127,6 +138,10 @@ public class Sound {
     	}
     }
     
+    /**
+     * This method plays a clip at the end of each match announcing the winner
+     * @param winner		String which contains the winner of the match
+     */
     public void announceGameWinner(String winner) {
     	if (winner.equals("Red")) {
     		playSound(redWonClip);

@@ -47,13 +47,6 @@ public class MainWindow {
 	
     /**
      * MainWindow class contains the main JFrame which will display each panel and change between menus
-     * Main parameters:
-     * @param WIDTH				width of the window
-     * @param HEIGHT			height of the window
-     * @param gamePanel			GamePanel changes displayed score
-     * @param mainWindow		parent JPanel from which others will be displayed
-     * @param score				Score object handling current score to display
-     * @param sound				Sound object handling sound output
      */
 	public MainWindow() {
 		

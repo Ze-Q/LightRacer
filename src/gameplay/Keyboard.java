@@ -3,6 +3,9 @@ package gameplay;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+/**
+ * Author Dzmitry Murzich
+ *  */
 public class Keyboard implements KeyListener {
 	
 	

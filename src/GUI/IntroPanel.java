@@ -61,6 +61,7 @@ class IntroPanel {
 	
 	/**
  	* Adds ActionListener to login JButton, changes displayed card to LoginPanelOne or LoginPanelTwo
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addLoginBtnActionListener(ActionListener listener) {
 		login.addActionListener(listener);
@@ -68,6 +69,7 @@ class IntroPanel {
 
 	/**
  	* Adds ActionListener to createAccount JButton, changes displayed card to CreateAccountPanel
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addCreateAccBtnActionListener(ActionListener listener) {
 		createAccount.addActionListener(listener);
