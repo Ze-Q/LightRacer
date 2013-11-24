@@ -26,11 +26,6 @@ public class CreateAccountPanel {
 
     /**
      * This class contains the panel in which a user can create a new account
-     * Main parameters:
-     * @param password			stores the input password
-     * @param username			stores the input username
-     * @param actionLabel		displays error message if creation was unsuccessful and success message if creation was successful
-     * @param sound				Sound object handling sound output
      */
 	public CreateAccountPanel() {
 		
@@ -115,6 +110,7 @@ public class CreateAccountPanel {
 
 	/**
  	* Adds ActionListener to back JButton, changes displayed card to IntroPanel
+ 	* @param listener        contains action to be taken by button
  	*/
 	public void addBackBtnActionListener(ActionListener listener) {
 		back.addActionListener(listener);
