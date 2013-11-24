@@ -63,7 +63,7 @@ class MainPanel {
 		exit.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				MainWindow.backgroundClip.stop();
+				MainWindow.sound.backgroundClip.stop();
 				Window win = SwingUtilities.getWindowAncestor(mainPanel);
 				win.dispose();
 			}
