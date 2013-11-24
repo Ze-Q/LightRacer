@@ -7,7 +7,9 @@ import java.util.Arrays;
 
 import javax.imageio.ImageIO;
 
-
+/**
+ * Author Dzmitry Murzich
+ *  */
 public class Level {
 
 

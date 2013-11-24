@@ -16,7 +16,9 @@ import GUI.GamePanel;
 import GUI.MainWindow;
 import GUI.Sound;
 
-
+/**
+ * Author Dzmitry Murzich
+ *  */
 public class Game extends Canvas implements Runnable {
 
         private static final long serialVersionUID = 1L;

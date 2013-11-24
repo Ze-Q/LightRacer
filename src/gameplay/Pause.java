@@ -11,7 +11,9 @@ import javax.swing.JFrame;
 
 import GUI.Sound;
 
-
+/**
+ * Author Dzmitry Murzich
+ *  */
 public class Pause {
 		
 	private JFrame frame = new JFrame();
