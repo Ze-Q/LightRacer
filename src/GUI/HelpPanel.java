@@ -16,6 +16,9 @@ class HelpPanel {
 	private JButton about;
 	private JButton back;
 
+    /**
+     * This panel contains information that will help new players familiarize themselves with the game
+     */
 	public HelpPanel() {
 		
 		mainPanel.setLayout(null);
@@ -109,10 +112,17 @@ class HelpPanel {
 		});
 	}
 
+	/**
+ 	* Adds ActionListener to back JButton, changes displayed card to MainPanel
+ 	*/
 	public void addBackBtnActionListener(ActionListener listener) {
 		   back.addActionListener(listener);
 	}
 	
+	/**
+ 	* Returns the main component of this JPanel
+ 	* @return Main Component of JPanel
+ 	*/
 	public JComponent getMainComponent() {
 	   return mainPanel;
 	}
