@@ -26,7 +26,7 @@ public class CSVHandler {
 	 */
 	public static boolean isValidCredential(String username, String password)
 			throws IOException {
-		File dir = new File("./res");
+		File dir = new File("./res/data");
 		File userCSV = new File(dir, "userCSV.csv");
 		if (!userCSV.exists()) {
 			return false;
@@ -55,7 +55,7 @@ public class CSVHandler {
 	 * @throws IOException
 	 */
 	public static boolean isExist(String username) throws IOException {
-		File dir = new File("./res");
+		File dir = new File("./res/data");
 		File userCSV = new File(dir, "userCSV.csv");
 		if (!userCSV.exists()) {
 			return false;
@@ -84,7 +84,7 @@ public class CSVHandler {
 		String data = username + "," + password;
 		try {
 
-			File dir = new File("./res");
+			File dir = new File("./res/data");
 			File userCSV = new File(dir, "userCSV.csv");
 
 			// check whether userCSV already exists, if not then create
