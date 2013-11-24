@@ -226,7 +226,7 @@ public class Game extends Canvas implements Runnable {
                 sound.announceRoundWinner(result);
                 if (MainWindow.score.getP1() == 2) {
                 	sound.announceGameWinner(player1.getColor());
-    				MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
+    			MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
                 	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserOne().getUsername() +  " has won!</h1> </html>");
                 	curPanel.title.setBounds(350, 25, 400, 100);
                 	curPanel.set.setVisible(false);
@@ -240,7 +240,7 @@ public class Game extends Canvas implements Runnable {
                 
                 else if (MainWindow.score.getP2() == 2) {
                 	sound.announceGameWinner(player2.getColor());
-    				MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
+    			MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
                 	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserTwo().getUsername() +  " has won!</h1> </html>");
                 	curPanel.title.setBounds(350, 25, 400, 100);
                 	curPanel.actionLabel.setText("");
@@ -255,10 +255,9 @@ public class Game extends Canvas implements Runnable {
                 
                 else {
                 	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserTwo().getUsername() + " " + MainWindow.score.getP1() + " - " +  MainWindow.score.getP2() + " " + Login.getInstance().getUserTwo().getUsername() + "</h1> </html>");
-                	curPanel.mainPanel.remove(curPanel.title);
-                	curPanel.mainPanel.add(curPanel.title);
+                	curPanel.title.paintImmediately(curPanel.title.getVisibleRect());
                 }
-				MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
+		MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
                 stop();
         }
 
