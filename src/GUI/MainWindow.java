@@ -93,6 +93,7 @@ public class MainWindow {
 				LoginPanelOne.username1.setText("");
 				LoginPanelOne.password1.setText("");
 				LoginPanelOne.actionLabel.setText("");
+				LoginPanelOne.actionLabel.paintImmediately(LoginPanelOne.actionLabel.getVisibleRect());
 				if(loginObject.userTwoLogin()){
 					cardlayout.show(mainWindow, MAIN);
 				}
@@ -116,6 +117,7 @@ public class MainWindow {
 				LoginPanelTwo.username2.setText("");
 				LoginPanelTwo.password2.setText("");
 				LoginPanelTwo.actionLabel.setText("");
+				LoginPanelTwo.actionLabel.paintImmediately(LoginPanelTwo.actionLabel.getVisibleRect());
 				cardlayout.show(mainWindow, MAIN);
 			}
 		});
