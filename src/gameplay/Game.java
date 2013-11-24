@@ -52,6 +52,25 @@ public class Game extends Canvas implements Runnable {
         public Score curScore;
         public GamePanel curPanel;
 
+        /**
+         * Game class contains the main game loop and displays the game window
+         * Main parameters:
+         * @param WIDTH				width of the game window
+         * @param HEIGHT			height of the game window
+         * @param FPS				updates and frames drawn per second
+         * @param image				BufferedImage containing current snapshot of the game
+         * @param level				Level object containing map logic 
+         * @param key				Keyboard object handling user input
+         * @param sound				Sound object handling sound output
+         *
+         * Takes the following parameters in the constructor:
+         * @param gamePanel 			GamePanel object from MainWindow, used to update various panel parameters
+         * @param score				Score object from MainWindow, used to keep track of player scores
+         * @param player1Color			integer representing player1 color, set by user in GamePanel 
+         * @param player2Color 			integer representing player2 color, set by user in GamePanel
+         * @param speed				integer representing speed setting, set by user in GamePanel
+         * @param mapNumber			integer representing map setting, set by user in GamePanel
+         * */
         public Game(GamePanel gamePanel , Score score, int player1Color, int player2Color, int speed, int mapNumber) {
         	
         		this.player1Color = player1Color;
@@ -108,8 +127,11 @@ public class Game extends Canvas implements Runnable {
 
 
 
-        //Main game loop
-        @SuppressWarnings("static-access")
+        
+        	@SuppressWarnings("static-access")
+        	/**
+         	* Main game loop, handles logic related to calls to methods responsible for variable updates and rendering
+         	*/
 		public void run() {
                 int frames = 0;
                 int updates = 0;
@@ -185,7 +207,9 @@ public class Game extends Canvas implements Runnable {
         }
 
 
-        //Called 25 times a second
+        /**
+       	* Updates BufferedImage that stores level snapshot and renders it to screen
+        */
         public void render() {
                 BufferStrategy strategy = getBufferStrategy();
                 if (strategy == null) {
@@ -212,7 +236,10 @@ public class Game extends Canvas implements Runnable {
                 strategy.show();
         }
         
-        //Called when collision is detected
+        /**
+         * Handles logic and operations for when end of round conditions are met
+         * @param result 		String containing result of the round
+         */
         public void endRound(String result) {
                 String roundResult;
                 if (result.equals("Draw")) {
