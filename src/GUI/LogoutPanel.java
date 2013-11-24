@@ -4,8 +4,6 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import accounts.Login;
-
 class LogoutPanel {
 	
 	private JPanel mainPanel = new JPanel();
@@ -15,6 +13,12 @@ class LogoutPanel {
 	private JButton both;
 	private JButton cancel;
 
+    /**
+     * This class contains the panel in which a user can login as player one
+     * Main parameters:
+     * @param playerOne			stores player one username and displays a button
+     * @param playerTwo			stores player two username and displays a button
+     */
 	public LogoutPanel() {
 		
 		mainPanel.setLayout(null);
@@ -57,22 +61,39 @@ class LogoutPanel {
 		
 		
 	}
+	
+	/**
+ 	* Adds ActionListener to playerOne JButton, logs out player one and changes displayed card to LoginPanelOne
+ 	*/
 	public void addPlayerOneActionListener(ActionListener listener) {
 		playerOne.addActionListener(listener);
 	}
 
+	/**
+ 	* Adds ActionListener to playerTwo JButton, logs out player two and changes displayed card to LoginPanelTwo
+ 	*/
 	public void addPlayerTwoActionListener(ActionListener listener) {
 		playerTwo.addActionListener(listener);
 	}
 	
+	/**
+ 	* Adds ActionListener to both JButton, logs out both players and changes displayed card to LoginPanelOne
+ 	*/
 	public void addBothActionListener(ActionListener listener) {
 		both.addActionListener(listener);
 	}
 	
+	/**
+ 	* Adds ActionListener to cancel JButton, changes displayed card to MainPanel
+ 	*/
 	public void addCancelActionListener(ActionListener listener) {
 		cancel.addActionListener(listener);
 	}
 	
+	/**
+ 	* Returns the main component of this JPanel
+ 	* @return Main Component of JPanel
+ 	*/
 	public JComponent getMainComponent() {
 		return mainPanel;
 	}
