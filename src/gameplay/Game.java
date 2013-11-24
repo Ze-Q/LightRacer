@@ -122,7 +122,7 @@ public class Game extends Canvas implements Runnable {
 
 
         
-        	@SuppressWarnings("static-access")
+        	
         	/**
          	* Main game loop, handles logic related to calls to methods responsible for variable updates and rendering
          	*/
@@ -148,7 +148,6 @@ public class Game extends Canvas implements Runnable {
                         			try {
                         				resume = false;
                         				sound.ingameClip.stop();
-                        				@SuppressWarnings("unused")
 										Pause pause = new Pause(this);
                         				while (!resume) {
                         					thread.sleep(10);

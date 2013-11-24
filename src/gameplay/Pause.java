@@ -34,7 +34,6 @@ public class Pause {
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		frame.addWindowListener(new WindowAdapter() {
-			@Override
 			public void windowClosing(WindowEvent e) {
 				sound.playSound(sound.successClip);
 				resume();
@@ -46,7 +45,6 @@ public class Pause {
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		button.addActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.successClip);
 				resume();
