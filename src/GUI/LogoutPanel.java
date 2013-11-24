@@ -14,8 +14,7 @@ class LogoutPanel {
 	private JButton cancel;
 
     /**
-     * This class contains the panel in which a user can login as player one
-     * Main parameters:
+     * This class contains the panel in which the users can logout
      */
 	public LogoutPanel() {
 		
