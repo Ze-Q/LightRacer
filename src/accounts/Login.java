@@ -33,14 +33,6 @@ public class Login {
 		this.userTwo = user;
 	}
 
-	public void setUserNameOne(String username) {
-		userOne.setUsername(username);
-	}
-
-	public void setUserNameTwo(String username) {
-		userTwo.setUsername(username);
-	}
-
 	public String getUserNameOne() {
 		return userOne.getUsername();
 	}
