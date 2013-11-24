@@ -31,7 +31,6 @@ public class MainWindow {
 	
 	private CardLayout cardlayout = new CardLayout();
 	private JPanel mainWindow = new JPanel(cardlayout);
-
 	
 	private IntroPanel introPanel = new IntroPanel();
 	private CreateAccountPanel createAccountPanel = new CreateAccountPanel();
@@ -46,6 +45,16 @@ public class MainWindow {
 	public static Sound sound = new Sound();
 	public static Score score = new Score();
 	
+    /**
+     * MainWindow class contains the main JFrame which will display each panel and change between menus
+     * Main parameters:
+     * @param WIDTH				width of the window
+     * @param HEIGHT			height of the window
+     * @param gamePanel			GamePanel changes displayed score
+     * @param mainWindow		parent JPanel from which others will be displayed
+     * @param score				Score object handling current score to display
+     * @param sound				Sound object handling sound output
+     */
 	public MainWindow() {
 		
 		mainWindow.add(introPanel.getMainComponent(), INTRO);
@@ -59,7 +68,6 @@ public class MainWindow {
 		mainWindow.add(logoutPanel.getMainComponent(), LOGOUT);
 		
 		introPanel.addLoginBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.successClip);
 				if(loginObject.userOneLogin()){
@@ -72,7 +80,6 @@ public class MainWindow {
 		});
 		
 		introPanel.addCreateAccBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.successClip);
 				cardlayout.show(mainWindow, CRACC);
@@ -80,7 +87,6 @@ public class MainWindow {
 		});
 				
 		createAccountPanel.addBackBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.backClip);
 				cardlayout.show(mainWindow, INTRO);
@@ -88,7 +94,6 @@ public class MainWindow {
 		});
 		
 		loginPanel1.addContinueBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				LoginPanelOne.username1.setText("");
 				LoginPanelOne.password1.setText("");
@@ -104,7 +109,6 @@ public class MainWindow {
 		});
 		
 		loginPanel1.addBackBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.backClip);
 				cardlayout.show(mainWindow, INTRO);
@@ -112,7 +116,6 @@ public class MainWindow {
 		});
 		
 		loginPanel2.addContinueBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				LoginPanelTwo.username2.setText("");
 				LoginPanelTwo.password2.setText("");
@@ -123,7 +126,6 @@ public class MainWindow {
 		});
 		
 		loginPanel2.addBackBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.backClip);
 				if(loginObject.userOneLogin()){
@@ -137,7 +139,6 @@ public class MainWindow {
 		});
 
 		mainPanel.addNewGameBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.successClip);
 				cardlayout.show(mainWindow, GAME);
@@ -149,7 +150,6 @@ public class MainWindow {
 		});
 		
 		mainPanel.addStatsBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.successClip);
 				cardlayout.show(mainWindow, STATS);
@@ -158,7 +158,6 @@ public class MainWindow {
 		});
 		
 		mainPanel.addHelpBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.successClip);
 				cardlayout.show(mainWindow, HELP);
@@ -166,7 +165,6 @@ public class MainWindow {
 		});
 				
 		mainPanel.addLogoutBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.successClip);
 				LogoutPanel.playerOne.setText(loginObject.getUserNameOne());
@@ -176,8 +174,6 @@ public class MainWindow {
 		});
 		
 		logoutPanel.addPlayerOneActionListener(new ActionListener() {
-			@Override
-			
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.successClip);
 				User newUser = null;
@@ -189,7 +185,6 @@ public class MainWindow {
 		});
 		
 		logoutPanel.addPlayerTwoActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.successClip);
 				User newUser = null;
@@ -201,7 +196,6 @@ public class MainWindow {
 		});
 		
 		logoutPanel.addCancelActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.backClip);
 				cardlayout.show(mainWindow, MAIN);
@@ -210,7 +204,6 @@ public class MainWindow {
 		
 		
 		logoutPanel.addBothActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.successClip);
 				User newUser = null;
@@ -225,7 +218,6 @@ public class MainWindow {
 		});
 		
 		gamePanel.addStartBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.backgroundClip.stop();
 				sound.playSound(sound.gameClip);
@@ -234,7 +226,6 @@ public class MainWindow {
 		});
 
 		gamePanel.addAbortBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.backClip);
 				gamePanel.speed.setText("");
@@ -248,7 +239,6 @@ public class MainWindow {
 		});
 		
 		gamePanel.addRetBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.backClip);
 				gamePanel.speed.setText("");
@@ -262,7 +252,6 @@ public class MainWindow {
 		});
 		
 		statsPanel.addBackBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.backClip);
 				cardlayout.show(mainWindow, MAIN);
@@ -270,7 +259,6 @@ public class MainWindow {
 		});
 		
 		helpPanel.addBackBtnActionListener(new ActionListener() {
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.backClip);
 				cardlayout.show(mainWindow, MAIN);
@@ -278,11 +266,17 @@ public class MainWindow {
 		});
 	}
 	
-
+	/**
+ 	* Returns the main component of this JPanel
+ 	* @return Main Component of JPanel
+ 	*/
 	private JComponent getMainComponent() {
 		return mainWindow;
 	}
 
+	/**
+ 	* Initializes the GUI, creates and displays the parent frame and starts background music playback
+ 	*/
 	private static void createAndShowUI() {
 		JFrame frame = new JFrame("Light Racer");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -294,7 +288,9 @@ public class MainWindow {
 		sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
 	}
 	
-
+	/**
+ 	* Starts the program, calls createAndShowGUI()
+ 	*/
 	public static void main(String[] args) {
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
