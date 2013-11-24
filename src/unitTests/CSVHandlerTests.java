@@ -16,7 +16,6 @@ import java.io.IOException;
 import org.junit.Test;
 
 import crud.CSVHandler;
-import accounts.User;
 
 public class CSVHandlerTests {
 
@@ -84,7 +83,7 @@ public class CSVHandlerTests {
 				"testIsValidPasswordWithUnalidPasswordWithLengthLessThan8 failed, this is a unvalid password!",
 				message.contains("Password minimum length is 8.<br>"));
 	}
-	
+
 	@Test
 	public void testIsValidPasswordWithNoDigit() {
 		String password = "abc";
@@ -93,32 +92,81 @@ public class CSVHandlerTests {
 				"testIsValidPasswordWithNoDigit failed, this is a unvalid password!",
 				message.contains("Password must contain at least one digit.<br>"));
 	}
-	
+
 	@Test
-	public void testIsValidPasswordWithNoLower() {
+	public void testIsValidPasswordWithNoLowerCase() {
 		String password = "ABC";
 		String message = CSVHandler.isValidPassword(password);
 		assertTrue(
-				"testIsValidPasswordWithNoLower failed, this is a unvalid password!",
+				"testIsValidPasswordWithNoLowerCase failed, this is a unvalid password!",
 				message.contains("Password must contain at least one lowercase character.<br>"));
 	}
 
 	@Test
-	public void testValidateCredential() {
-
+	public void testIsValidPasswordWithNoUpperCase() {
+		String password = "abc";
+		String message = CSVHandler.isValidPassword(password);
+		assertTrue(
+				"testIsValidPasswordWithNoUpperCase failed, this is a unvalid password!",
+				message.contains("Password must contain at least one uppercase character.<br>"));
 	}
 
 	@Test
-	public void testCheckPasswordLength() {
-
+	public void testIsValidPasswordWithNoNonAlphaNumeric() {
+		String password = "abc";
+		String message = CSVHandler.isValidPassword(password);
+		assertTrue(
+				"testIsValidPasswordWithNoNonAlphaNumeric failed, this is a unvalid password!",
+				message.contains("Password must contain at least one non-alphanumeric character.<br>"));
 	}
 
 	/**
 	 * Test CRUD operation for login
+	 * 
+	 * @throws IOException
 	 */
 
 	@Test
-	public void testIsValidCredential() {
-
+	public void testIsValidCredentialWithUnvalidUsernameUnvalidPassword() throws IOException {
+		String username = "ECSE";
+		String password = "Test";
+		boolean isValid = CSVHandler.isValidCredential(username, password);
+		assertTrue(
+				"testIsValidCredentialWithUnvalidUsernameUnvalidPassword failed, this is a unvalid username!",
+				!isValid);
 	}
+
+	@Test
+	public void testIsValidCredentialWithValidUsernameUnvalidPassword()
+			throws IOException {
+		String username = "Demo01";
+		String password = "Test";
+		boolean isValid = CSVHandler.isValidCredential(username, password);
+		assertTrue(
+				"testIsValidCredentialWithUnvalidPassword failed, this is a unvalid password!",
+				!isValid);
+	}
+	
+	@Test
+	public void testIsValidCredentialWithUnvalidUsernameValidPassword()
+			throws IOException {
+		String username = "ECSE";
+		String password = "Dem@Us3R01";
+		boolean isValid = CSVHandler.isValidCredential(username, password);
+		assertTrue(
+				"testIsValidCredentialWithUnvalidPassword failed, this is a unvalid username!",
+				!isValid);
+	}
+	
+	@Test
+	public void testIsValidCredentialWithValidUsernameValidPassword()
+			throws IOException {
+		String username = "Demo01";
+		String password = "Dem@Us3R01";
+		boolean isValid = CSVHandler.isValidCredential(username, password);
+		assertTrue(
+				"testIsValidCredentialWithUnvalidPassword failed, this is a valid username/password!",
+				isValid);
+	}
+
 }
