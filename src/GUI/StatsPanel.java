@@ -24,6 +24,9 @@ class StatsPanel {
 	User user1;
 	User user2;
 	
+    /**
+     * This panel displays two JTables with statistics of the players records
+     */
 	public StatsPanel() {
 		
 		mainPanel.setLayout(null);
@@ -120,10 +123,17 @@ class StatsPanel {
 		return versusTable;
 	}
 
+	/**
+ 	* Adds ActionListener to back JButton, changes displayed card to MainPanel
+ 	*/
 	public void addBackBtnActionListener(ActionListener listener) {
 		   back.addActionListener(listener);
 	}
 	
+	/**
+ 	* Returns the main component of this JPanel
+ 	* @return Main Component of JPanel
+ 	*/
 	public JComponent getMainComponent() {
 	   return mainPanel;
 	}
