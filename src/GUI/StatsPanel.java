@@ -25,12 +25,11 @@ class StatsPanel {
 	private JTable versusTable;
 	private boolean isVersusTableInitialized=false;
 	private boolean isTopTenTableInitialized=false;
-	
-	User user1;
-	User user2;
+	private User user1;
+	private User user2;
 	
     /**
-     * This panel displays two JTables with statistics of the players records
+     * This panel displays two JTables with statistics of the players records.
      */
 	public StatsPanel() {
 		
@@ -63,9 +62,8 @@ class StatsPanel {
 	}
 	
 	/**
- 	* This method updates both JTables to reflect the current stats
+ 	* This method updates both JTables to reflect the current stats (with the currents Users)
  	*/
-	
 	public void updateStatsPanel() {
 		//update versus table
 		user1 = Login.getInstance().getUserOne();
@@ -133,8 +131,8 @@ class StatsPanel {
 	}
 
 	/**
- 	* Adds ActionListener to back JButton, changes displayed card to MainPanel
- 	* @param listener	contains action to be taken by button
+ 	* Adds ActionListener to the back JButton, changes displayed card to MainPanel.
+ 	* @param listener contains action to be taken by button.
  	*/
 	public void addBackBtnActionListener(ActionListener listener) {
 		   back.addActionListener(listener);
@@ -142,7 +140,7 @@ class StatsPanel {
 	
 	/**
  	* Returns the main component of this JPanel
- 	* @return Main Component of JPanel
+ 	* @return Return the main Component(a JPanel) of JPanel
  	*/
 	public JComponent getMainComponent() {
 	   return mainPanel;
