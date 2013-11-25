@@ -14,22 +14,34 @@ public class Statistics {
 	private Statistics() {
 	}
 	
+	/**
+	 * The getter for singleton design, it makes sure that there is only one instance of this object.
+	 * @return return the only instance of the Statistics object
+	 */
 	public static Statistics getInstance() { 
         return INSTANCE;
     }
 	
-	//read stats.csv to prepare for stats inquiries
+	/**
+	 * Read stats.csv to prepare for stats inquiries.
+	 */
 	public void readStatsFile() {
 		statsFileSystem.readStatsFromFile();
 	}
 	
-	//must write to file before closing the game
+	/**
+	 * Write the stats info in memory to the file.
+	 */
 	public void updateStatsFile() {
 		statsFileSystem.writeStatsToFile();
 	}
 		
 	
-	//read from stats.csv for versus records, and update the user objects' corresponding fields
+	/**
+	 * Read from stats.csv for versus records, and update the user objects' corresponding fields.
+	 * @param user1 Takes in an User object which corresponds to user1.
+	 * @param user2 Takes in an User object which corresponds to user2.
+	 */
 	public void readVersusFromFile(User user1, User user2) {
 		String oneOverTwo = statsFileSystem.searchForVersus(user1.getUsername(), user2.getUsername());
 		String twoOverOne = statsFileSystem.searchForVersus(user2.getUsername(), user1.getUsername());
@@ -37,17 +49,29 @@ public class Statistics {
 		user2.setVersusWins(Integer.parseInt(twoOverOne));
 	}
 	
-	//update the statsArray, where all the info is still temporarily stored in memory
+	/**
+	 * Update the statsArray, where all the info is still temporarily stored in memory.
+	 * This method extracts the versus records from the User objects and update them in the statsArray.
+	 * 
+	 * @param user1 Takes in an User object which corresponds to user1.
+	 * @param user2 Takes in an User object which corresponds to user2.
+	 */
 	public void updateStats (User user1, User user2) {
 		statsFileSystem.updateRecords(user1.getUsername(), user1.getVersusWins(), user2.getUsername(), user2.getVersusWins());
 	}
 	
-	//add a new user to the statsArray with the corresponding 0's
+	/**
+	 * add a new user to the statsArray with the corresponding 0's
+	 * @param user Takes in an User object which corresponds to the new user.
+	 */
 	public void addNewUser(User user) {
 		statsFileSystem.addNewUserToArray (user.getUsername());
 	}
 	
-	//get the top ten players as a list of User
+	/**
+	 * This method gets the top ten players (with the highest number of wins) as a list of User.
+	 * @return This method returns an array of size ten, which contains the top ten players.
+	 */
 	public User[] getTopTen() {
 		String[] usernames = getUsernamesAsArray();
 		int[] totalWins = getTotalWinsAsArray();
