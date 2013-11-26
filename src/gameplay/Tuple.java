@@ -2,14 +2,17 @@ package gameplay;
 
 
 /**
- * Author Dzmitry Murzich
+ * Tuple class used to store integers for color and glow of a player.
+ * @author Dzmitry Murzich
+ * @version 1.0
  *  */
 public class Tuple {
 
 	public final int color; 
 	public final int glow; 
 
-	/** Tuple class used to store integers for color and glow
+	/**
+	 * Tuple class used to store integers for color and glow of a player.
 	 * @param color		integer representing color
 	 * @param glow		integer representing glow
 	 */ 

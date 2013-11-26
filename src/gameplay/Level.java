@@ -8,7 +8,9 @@ import java.util.Arrays;
 import javax.imageio.ImageIO;
 
 /**
- * Author Dzmitry Murzich
+ * Level class, loads maps from a specified folder and stores the selected map in an int 2d array. 
+ * @author Dzmitry Murzich
+ * @version 1.0
  *  */
 public class Level {
 
@@ -16,15 +18,14 @@ public class Level {
 	private int width, height;
 	private BufferedImage[] maps;
 	private String mapsPath = "./res/image";
+	
+	/**	2D array of integers, represents pixels of level */
 	public int[][] pixels;
 	
 	/**
 	 * Level class, loads maps from a specified folder and stores the selected map in an int 2d array. 
-	 * Takes 2 parameters as input - integers for width and height
-	 * Main variables:
-	 * @param width				width of the level
-	 * @param height			height of the level
-	 * @param pixels			2d array of integers, represents pixels of level
+	 * @param w				width of the level
+	 * @param h				height of the level
 	 */
 	public Level (int w, int h) {
 		this.width = w;
@@ -62,8 +63,8 @@ public class Level {
 	}
 	
 	/**
-	 * Set level according to index that was passed to the method
-	 * @param mapIndex				integer respresenting map number to load
+	 * Set level according to index that was passed to the method.
+	 * @param mapIndex		Integer representing map number to load
 	 *  */
 	public void setLevel(int mapIndex) {
 		BufferedImage image = maps[mapIndex];
@@ -79,7 +80,7 @@ public class Level {
 	}
 
 	/**
-	 * Set all pixels to 0 - blank black map
+	 * Set all pixels to 0 - blank black map.
 	 */
 	public void clear() {
 		for(int y = 0; y < height; y++) {
@@ -90,7 +91,7 @@ public class Level {
 	}
 	
 	/**
-	 * Handles player position updates and collision checking
+	 * Handles player position updates and collision checking.
 	 * @param game				Game object, required if collision was detected to handle end of round
 	 * @param player1			Player 1 object, required to update player positions
 	 * @param player2			Player 2 object, required to update player positions
@@ -109,13 +110,13 @@ public class Level {
 			//Next position for player1 is a collision => player2 wins
 			else if (pixels[player1.getNextPos()[0]][player1.getNextPos()[1]] != -16777216
 						|| isOutOfBounds(player1)) {
-				game.curScore.p2Won();	
+				game.curScore.player2Won();	
 				game.endRound(player2.getColor());
 			}
 			//Next position for player2 is a collision => player1 wins
 			else if (pixels[player2.getNextPos()[0]][player2.getNextPos()[1]] != -16777216
 						|| isOutOfBounds(player2)) {
-				game.curScore.p1Won();
+				game.curScore.player1Won();
 				game.endRound(player1.getColor());
 			}
 			else {

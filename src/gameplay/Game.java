@@ -17,18 +17,10 @@ import GUI.MainWindow;
 import GUI.Sound;
 
 /**
-<<<<<<< HEAD
- * Game class contains the main game loop and displays the game window
- * Main parameters:
- * @param WIDTH				width of the game window
- * @param HEIGHT			height of the game window
- * @param FPS				updates and frames drawn per second
- * @param image				BufferedImage containing current snapshot of the game
- * @param level				Level object containing map logic 
- * @param key				Keyboard object handling user input
- * @param sound				Sound object handling sound output
- * */
-
+ * Game class contains the main game loop and displays the game window.
+ * @author Dzmitry Murzich
+ * @version 1.0
+ */
 public class Game extends Canvas implements Runnable {
 
         private static final long serialVersionUID = 1L;
@@ -53,19 +45,23 @@ public class Game extends Canvas implements Runnable {
         
         private static Sound sound = new Sound();
         
+        /** Boolean used for keeping track of pausing while in-game.  */
         public boolean resume;
+        /** Keyboard object, handles everything related to user input  */
         public Keyboard key;
+        /** Score object, contains current score between 2 players	*/
         public Score curScore;
+        /** GamePanel object, panel that is presented to the user when he/she is trying to create a new game */
         public GamePanel curPanel;
 
         /**
-         * Takes the following parameters in the constructor:
-         * @param gamePanel 			GamePanel object from MainWindow, used to update various panel parameters
+         * Game class contains the main game loop and displays the game window.
+         * @param gamePanel 		GamePanel object from MainWindow, used to update various panel parameters
          * @param score				Score object from MainWindow, used to keep track of player scores
-         * @param player1Color			integer representing player1 color, set by user in GamePanel 
-         * @param player2Color 			integer representing player2 color, set by user in GamePanel
-         * @param speed				integer representing speed setting, set by user in GamePanel
-         * @param mapNumber			integer representing map setting, set by user in GamePanel
+         * @param player1Color		Integer representing player1 color, set by user in GamePanel 
+         * @param player2Color 		Integer representing player2 color, set by user in GamePanel
+         * @param speed				Integer representing speed setting, set by user in GamePanel
+         * @param mapNumber			Integer representing map setting, set by user in GamePanel
          */
         public Game(GamePanel gamePanel , Score score, int player1Color, int player2Color, int speed, int mapNumber) {
         	
@@ -121,13 +117,11 @@ public class Game extends Canvas implements Runnable {
             }          
         }
 
-
-
         
         	
-        	/**
-         	* Main game loop, handles logic related to calls to methods responsible for variable updates and rendering
-         	*/
+       	/**
+       	* Main game loop, handles logic related to calls to methods responsible for variable updates and rendering.
+       	*/
 		public void run() {
                 int frames = 0;
                 int updates = 0;
@@ -203,7 +197,7 @@ public class Game extends Canvas implements Runnable {
 
 
         /**
-       	* Updates BufferedImage that stores level snapshot and renders it to screen
+       	* Updates BufferedImage that stores level snapshot and renders it to screen.
         */
         public void render() {
                 BufferStrategy strategy = getBufferStrategy();
@@ -232,8 +226,8 @@ public class Game extends Canvas implements Runnable {
         }
         
         /**
-         * Handles logic and operations for when end of round conditions are met
-         * @param result 		String containing result of the round
+         * Handles logic and operations for when end of round conditions are met.
+         * @param result 		String containing result of the round.
          */
         public void endRound(String result) {
                 String roundResult;
@@ -246,40 +240,43 @@ public class Game extends Canvas implements Runnable {
                 sound.ingameClip.stop();
                 frame.setTitle(TITLE + " | " + roundResult);
                 sound.announceRoundWinner(result);
-                if (MainWindow.score.getP1() == 2) {
+                //player 1 reached match winning condition - game is over
+                if (MainWindow.score.getPlayer1Score() == 2) {
                 	sound.announceGameWinner(player1.getColor());
-    			MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
+                	MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
                 	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserOne().getUsername() +  " has won!</h1> </html>");
                 	curPanel.title.setBounds(350, 25, 400, 100);
                 	curPanel.set.setVisible(false);
                 	curPanel.abort.setVisible(false);
                 	curPanel.ret.setVisible(true);
-                	
+                	//update statistics
                 	Login.getInstance().getUserOne().increaseVersusWins();
                 	Statistics.getInstance().updateStats(Login.getInstance().getUserOne(), Login.getInstance().getUserTwo());
                 	Statistics.getInstance().updateStatsFile();
                 }
-                
-                else if (MainWindow.score.getP2() == 2) {
+                //player 2 reached match winning condition - game is over
+                else if (MainWindow.score.getPlayer2Score() == 2) {
                 	sound.announceGameWinner(player2.getColor());
-    			MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
+                	MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
                 	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserTwo().getUsername() +  " has won!</h1> </html>");
                 	curPanel.title.setBounds(350, 25, 400, 100);
                 	curPanel.actionLabel.setText("");
                 	curPanel.set.setVisible(false);
                 	curPanel.abort.setVisible(false);
                 	curPanel.ret.setVisible(true);
-                	
+                	//update statistics
                 	Login.getInstance().getUserTwo().increaseVersusWins();
                 	Statistics.getInstance().updateStats(Login.getInstance().getUserOne(), Login.getInstance().getUserTwo());
                 	Statistics.getInstance().updateStatsFile();
                 }
-                
+                //none of the players won 2 rounds yet
                 else {
-                	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserOne().getUsername() + " " + MainWindow.score.getP1() + " - " +  MainWindow.score.getP2() + " " + Login.getInstance().getUserTwo().getUsername() + "</h1> </html>");
+                	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserOne().getUsername() + " " +
+                							MainWindow.score.getPlayer1Score() + " - " +  MainWindow.score.getPlayer2Score() + " " + 
+                							Login.getInstance().getUserTwo().getUsername() + "</h1> </html>");
                 	curPanel.title.paintImmediately(curPanel.title.getVisibleRect());
                 }
-		MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
+                MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
                 stop();
         }
 

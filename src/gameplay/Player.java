@@ -4,7 +4,9 @@ import gameplay.Tuple;
 import gameplay.Level;
 
 /**
- * Author Dzmitry Murzich
+ * Player class contains parameters related to players - position, color, direction, speed - and helper methods related to player logic 
+ * @author Dzmitry Murzich
+ * @version 1.0
  *  */
 public class Player {
 
@@ -163,7 +165,6 @@ public class Player {
 	/** 
 	 * Updates player position in Level object
 	 * @param level				required to update player position in Level object
-	 * @see Level
 	 */
 	public void update(Level level) {
 		//move
@@ -174,7 +175,7 @@ public class Player {
 	}
 	
 	/**
-	 * Returns player color as a String
+	 * Returns player color
 	 * @return	String representing player color
 	 */
 	public String getColor() {
@@ -194,6 +195,11 @@ public class Player {
 		return color;
 	}
 	
+	
+	/** 
+	 * Calculates and returns the next position of a player
+	 * @return Next position of a player as an array of 2 integers of form [x, y]
+	 */
 	public int[] getNextPos() {
 		int[] nextPos = new int[2];
 		nextPos[0] = this.xPos;

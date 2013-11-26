@@ -12,7 +12,9 @@ import javax.swing.JFrame;
 import GUI.Sound;
 
 /**
- * Author Dzmitry Murzich
+ * Pause class handles pause logic.
+ * @author Dzmitry Murzich
+ * @version 1.0
  *  */
 public class Pause {
 		
@@ -21,9 +23,8 @@ public class Pause {
 	private Sound sound = new Sound();
 	
 	/**
-	 * Pause class handles pause logic
-	 * Constructor takes the following parameters:
-	 * @param game				required to resume game run loop
+	 * Pause class handles pause logic.
+	 * @param game	 Game object that contains currently running game, required to resume game run loop.
 	 */
 	public Pause(Game game) {
 		this.game = game;
@@ -35,6 +36,7 @@ public class Pause {
 		frame.setSize(200,100);
 		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		//check if window is being closed
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				sound.playSound(sound.successClip);
@@ -46,6 +48,7 @@ public class Pause {
 		frame.setTitle("Paused");
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
+		//check if button was clicked
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sound.playSound(sound.successClip);

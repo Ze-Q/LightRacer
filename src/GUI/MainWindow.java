@@ -225,8 +225,8 @@ public class MainWindow {
 				gamePanel.actionLabel.setText("");
 				gamePanel.ret.setVisible(false);
 				gamePanel.title.setText("<html> <h1></h1> </html>");
-				score.p1 = 0;
-				score.p2 = 0;
+				score.setPlayer1Score(0);
+				score.setPlayer2Score(0);
 				cardlayout.show(mainWindow, MAIN);
 			}
 		});
@@ -238,8 +238,8 @@ public class MainWindow {
 				gamePanel.actionLabel.setText("");
 				gamePanel.ret.setVisible(false);
 				gamePanel.title.setText("<html> <h1></h1> </html>");
-				score.p1 = 0;
-				score.p2 = 0;
+				score.setPlayer1Score(0);
+				score.setPlayer2Score(0);
 				cardlayout.show(mainWindow, MAIN);
 			}
 		});
