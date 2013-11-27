@@ -74,6 +74,7 @@ class MainPanel {
 				MainWindow.sound.backgroundClip.stop();
 				Window win = SwingUtilities.getWindowAncestor(mainPanel);
 				win.dispose();
+				System.exit(0);
 			}
 		});
 	}
