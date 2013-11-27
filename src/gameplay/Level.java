@@ -126,8 +126,12 @@ public class Level {
 		}
 	}
 	
-	//checks if the next player position is out of map bounds
-	private boolean isOutOfBounds(Player player) {
+	/**
+	 * Checks if the next player position is out of map bounds.
+	 * @param player	Player object that is checked for being out of bounds.
+	 * @return boolean representing whether the player is out of bounds or not.
+	 */
+	public boolean isOutOfBounds(Player player) {
 		boolean outOfBounds = false;
 		if (player.getNextPos()[0] < 2 || player.getNextPos()[0] > this.width - 2) {
 			outOfBounds = true;
