@@ -1,7 +1,7 @@
 package accounts;
 
 /**
- * 
+ * The User class is responsible to contain the info of one User.
  * @author Ze
  *
  */

@@ -10,9 +10,9 @@ import accounts.Statistics;
 import accounts.User;
 
 /**
- * 
+ * StatsPanel display the screen that contains the versus records and top ten records.
  * @author Ze
- *
+ *	@version 1.0
  */
 class StatsPanel {
 	private JPanel mainPanel = new JPanel();

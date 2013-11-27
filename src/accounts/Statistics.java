@@ -3,9 +3,9 @@ package accounts;
 import crud.StatsFileSystem;
 
 /**
- * 
+ * Statistics keep track of the battle records of all users.
  * @author Ze
- *
+ *	@version 1.0
  */
 public class Statistics {
 	private static final Statistics INSTANCE = new Statistics();

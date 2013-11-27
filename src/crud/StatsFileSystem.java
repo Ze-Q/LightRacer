@@ -2,9 +2,9 @@ package crud;
 import java.io.*;
 
 /**
- * 
+ * StatsFileSystem contains methods to interact with the CSV file which contains the stats info.
  * @author Ze
- *
+ *	@version 1.0
  */
 public class StatsFileSystem {
 
