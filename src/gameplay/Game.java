@@ -241,7 +241,7 @@ public class Game extends Canvas implements Runnable {
                 frame.setTitle(TITLE + " | " + roundResult);
                 sound.announceRoundWinner(result);
                 //player 1 reached match winning condition - game is over
-                if (MainWindow.score.getPlayer1Score() == 2) {
+                if (curScore.getPlayer1Score() == 2) {
                 	sound.announceGameWinner(player1.getColor());
                 	MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
                 	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserOne().getUsername() +  " has won!</h1> </html>");
@@ -255,7 +255,7 @@ public class Game extends Canvas implements Runnable {
                 	Statistics.getInstance().updateStatsFile();
                 }
                 //player 2 reached match winning condition - game is over
-                else if (MainWindow.score.getPlayer2Score() == 2) {
+                else if (curScore.getPlayer2Score() == 2) {
                 	sound.announceGameWinner(player2.getColor());
                 	MainWindow.sound.backgroundClip.loop(Clip.LOOP_CONTINUOUSLY);
                 	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserTwo().getUsername() +  " has won!</h1> </html>");
@@ -272,7 +272,7 @@ public class Game extends Canvas implements Runnable {
                 //none of the players won 2 rounds yet
                 else {
                 	curPanel.title.setText("<html> <h1>" + Login.getInstance().getUserOne().getUsername() + " " +
-                							MainWindow.score.getPlayer1Score() + " - " +  MainWindow.score.getPlayer2Score() + " " + 
+                							curScore.getPlayer1Score() + " - " +  curScore.getPlayer2Score() + " " + 
                 							Login.getInstance().getUserTwo().getUsername() + "</h1> </html>");
                 	curPanel.title.paintImmediately(curPanel.title.getVisibleRect());
                 }

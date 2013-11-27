@@ -4,6 +4,11 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * This panel displays information that will help new players familiarize themselves with the game.
+ * @author Alonso Medina
+ * @version 1.0
+ */
 class HelpPanel {
 	
 	private JPanel mainPanel = new JPanel();
@@ -17,7 +22,7 @@ class HelpPanel {
 	private JButton back;
 
     /**
-     * This panel contains information that will help new players familiarize themselves with the game
+     * This panel displays information that will help new players familiarize themselves with the game.
      */
 	public HelpPanel() {
 		
@@ -113,16 +118,16 @@ class HelpPanel {
 	}
 
 	/**
- 	* Adds ActionListener to back JButton, changes displayed card to MainPanel
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to back JButton, changes displayed card to MainPanel.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addBackBtnActionListener(ActionListener listener) {
 		   back.addActionListener(listener);
 	}
 	
 	/**
- 	* Returns the main component of this JPanel
- 	* @return Main Component of JPanel
+ 	* Returns the main component of this JPanel.
+ 	* @return Main Component of JPanel.
  	*/
 	public JComponent getMainComponent() {
 	   return mainPanel;

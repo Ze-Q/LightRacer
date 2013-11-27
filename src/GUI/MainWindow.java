@@ -1,22 +1,23 @@
 package GUI;
 
+import gameplay.Game;
 import gameplay.Score;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 import accounts.Login;
 import accounts.User;
 
+/**
+ * MainWindow class contains the main frame which is used to display all the menu screens. 
+ * @author Alonso Medina
+ * @version 1.0
+ */
 public class MainWindow {
-	public static final int WIDTH = 900;
-	public static final int HEIGHT = WIDTH * 9 / 16 ;
-	
+		
 	private Login loginObject = Login.getInstance(); 
 	
 	private static final String INTRO = "intro";
@@ -37,16 +38,17 @@ public class MainWindow {
 	private LoginPanelOne loginPanel1 = new LoginPanelOne();
 	private LoginPanelTwo loginPanel2 = new LoginPanelTwo();
 	private MainPanel mainPanel = new MainPanel();
-	public GamePanel gamePanel = new GamePanel();
+	private GamePanel gamePanel = new GamePanel();
 	private StatsPanel statsPanel = new StatsPanel();
 	private HelpPanel helpPanel = new HelpPanel();
 	private LogoutPanel logoutPanel = new LogoutPanel();
 	
+	/** Sound object used to play background music and button sounds. */
 	public static Sound sound = new Sound();
-	public static Score score = new Score();
+	private Score score = new Score();
 	
     /**
-     * MainWindow class contains the main JFrame which will display each panel and change between menus
+     *  MainWindow class contains the main JFrame which will display each panel and change between menus. 
      */
 	public MainWindow() {
 		
@@ -214,7 +216,7 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				sound.backgroundClip.stop();
 				sound.playSound(sound.gameClip);
-				gameplay.Game startGame = new gameplay.Game(gamePanel,score, gamePanel.p1color, gamePanel.p2color, gamePanel.sp, gamePanel.mapNumber);
+				Game startGame = new Game(gamePanel,score, gamePanel.p1color, gamePanel.p2color, gamePanel.sp, gamePanel.mapNumber);
 			}
 		});
 
@@ -260,15 +262,15 @@ public class MainWindow {
 	}
 	
 	/**
- 	* Returns the main component of this JPanel
- 	* @return Main Component of JPanel
+ 	* Returns the main component of this JPanel.
+ 	* @return Main Component of JPanel.
  	*/
 	private JComponent getMainComponent() {
 		return mainWindow;
 	}
 
 	/**
- 	* Initializes the GUI, creates and displays the parent frame and starts background music playback
+ 	* Initializes the GUI, creates and displays the parent frame and starts background music playback.
  	*/
 	private static void createAndShowUI() {
 		JFrame frame = new JFrame("Light Racer");
@@ -282,7 +284,7 @@ public class MainWindow {
 	}
 	
 	/**
- 	* Starts the program, calls createAndShowGUI()
+ 	* Starts the program, calls createAndShowGUI().
  	*/
 	public static void main(String[] args) {
 		java.awt.EventQueue.invokeLater(new Runnable() {

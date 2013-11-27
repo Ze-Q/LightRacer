@@ -4,7 +4,13 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * This panel contains the main menu with access to GamePanel, HelpPanel, StatsPanel and LogoutPanel as well as exiting the program entirely.
+ * @author Alonso Medina
+ * @version 1.0
+ */
 class MainPanel {
+	
 	private JPanel mainPanel = new JPanel();
 	private JLabel title = new JLabel("<html> <h1>Main Menu</h1> </html>");
 	private JButton newGame;
@@ -14,7 +20,7 @@ class MainPanel {
 	private JButton exit;
 
 	/**
-	 * This panel contains the main menu with access to GamePanel, HelpPanel, StatsPanel and LogoutPanel as well as exiting the program entirely
+	 * This panel contains the main menu with access to GamePanel, HelpPanel, StatsPanel and LogoutPanel as well as exiting the program entirely.
 	 */
 	public MainPanel() {
 		
@@ -73,40 +79,40 @@ class MainPanel {
 	}
 	
 	/**
- 	* Adds ActionListener to newGame JButton, changes displayed card to GamePanel
-	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to newGame JButton, changes displayed card to GamePanel.
+	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addNewGameBtnActionListener(ActionListener listener) {
 		newGame.addActionListener(listener);
 	}
 	
 	/**
- 	* Adds ActionListener to stats JButton, changes displayed card to StatsPanel
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to stats JButton, changes displayed card to StatsPanel.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addStatsBtnActionListener(ActionListener listener) {
 		stats.addActionListener(listener);
 	}
 	
 	/**
- 	* Adds ActionListener to help JButton, changes displayed card to HelpPanel
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to help JButton, changes displayed card to HelpPanel.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addHelpBtnActionListener(ActionListener listener) {
 		help.addActionListener(listener);
 	}
 	
 	/**
- 	* Adds ActionListener to logout JButton, changes displayed card to LogoutPanel
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to logout JButton, changes displayed card to LogoutPanel.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addLogoutBtnActionListener(ActionListener listener) {
 		logout.addActionListener(listener);
 	}
 	
 	/**
- 	* Returns the main component of this JPanel
- 	* @return Main Component of JPanel
+ 	* Returns the main component of this JPanel.
+ 	* @return Main Component of JPanel.
  	*/
 	public JComponent getMainComponent() {
 		return mainPanel;

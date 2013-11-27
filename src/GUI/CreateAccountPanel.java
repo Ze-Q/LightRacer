@@ -8,15 +8,21 @@ import java.awt.event.*;
 import java.io.IOException;
 import javax.swing.*;
 
-public class CreateAccountPanel {
+/**
+ * This class contains the panel in which a user can create a new account.
+ * @author Alonso Medina
+ * @version 1.0
+ */
+class CreateAccountPanel {
+	
 	private JPanel mainPanel = new JPanel();
 	private JLabel title = new JLabel("<html> <h1>Create Account</h1> </html>");
 
 	private String usernameField = "Username";
 	private String passwordField = "Password";
-	protected JPasswordField password = new JPasswordField(10);
-	protected JTextField username = new JTextField(10);
-	protected JLabel actionLabel;
+	private JPasswordField password = new JPasswordField(10);
+	private JTextField username = new JTextField(10);
+	private JLabel actionLabel;
 	private JButton createAccount;
 	private JButton back;
 	private JLabel textFieldLabel;
@@ -25,7 +31,7 @@ public class CreateAccountPanel {
 	private Sound sound = new Sound();
 
     /**
-     * This class contains the panel in which a user can create a new account
+     * This class contains the panel in which a user can create a new account.
      */
 	public CreateAccountPanel() {
 		
@@ -109,16 +115,16 @@ public class CreateAccountPanel {
 	}
 
 	/**
- 	* Adds ActionListener to back JButton, changes displayed card to IntroPanel
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to back JButton, changes displayed card to IntroPanel.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addBackBtnActionListener(ActionListener listener) {
 		back.addActionListener(listener);
 	}
 	
 	/**
- 	* Returns the main component of this JPanel
- 	* @return Main Component of JPanel
+ 	* Returns the main component of this JPanel.
+ 	* @return Main Component of JPanel.
  	*/
 	public JComponent getMainComponent() {
 		return mainPanel;

@@ -3,18 +3,24 @@ package GUI;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
+/**
+ * LogoutPanel class contains the panel in which the users can logout.
+ * @author Alonso Medina
+ * @version 1.0
+ */
 class LogoutPanel {
 	
 	private JPanel mainPanel = new JPanel();
 	private JLabel title = new JLabel("<html> <h1>Choose player(s) to logout</h1> </html>");
+	/** JButton object which is used to logout player one */
 	protected static JButton playerOne;
+	/** JButton object which is used to logout player two */
 	protected static JButton playerTwo;
 	private JButton both;
 	private JButton cancel;
 
     /**
-     * This class contains the panel in which the users can logout
+     * This class contains the panel in which the users can logout.
      */
 	public LogoutPanel() {
 		
@@ -60,40 +66,40 @@ class LogoutPanel {
 	}
 	
 	/**
- 	* Adds ActionListener to playerOne JButton, logs out player one and changes displayed card to LoginPanelOne
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to playerOne JButton, logs out player one and changes displayed card to LoginPanelOne.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addPlayerOneActionListener(ActionListener listener) {
 		playerOne.addActionListener(listener);
 	}
 
 	/**
- 	* Adds ActionListener to playerTwo JButton, logs out player two and changes displayed card to LoginPanelTwo
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to playerTwo JButton, logs out player two and changes displayed card to LoginPanelTwo.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addPlayerTwoActionListener(ActionListener listener) {
 		playerTwo.addActionListener(listener);
 	}
 	
 	/**
- 	* Adds ActionListener to both JButton, logs out both players and changes displayed card to LoginPanelOne
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to both JButton, logs out both players and changes displayed card to LoginPanelOne.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addBothActionListener(ActionListener listener) {
 		both.addActionListener(listener);
 	}
 	
 	/**
- 	* Adds ActionListener to cancel JButton, changes displayed card to MainPanel
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to cancel JButton, changes displayed card to MainPanel.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addCancelActionListener(ActionListener listener) {
 		cancel.addActionListener(listener);
 	}
 	
 	/**
- 	* Returns the main component of this JPanel
- 	* @return Main Component of JPanel
+ 	* Returns the main component of this JPanel.
+ 	* @return Main Component of JPanel.
  	*/
 	public JComponent getMainComponent() {
 		return mainPanel;

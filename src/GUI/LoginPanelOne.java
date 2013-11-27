@@ -5,15 +5,22 @@ import accounts.Login;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-public class LoginPanelOne {
+/**
+ * This class contains the panel in which a user can login as player one.
+ * @author Alonso Medina
+ * @version 1.0
+ */
+class LoginPanelOne {
 	
 	private JPanel mainPanel = new JPanel();
 	private JLabel title = new JLabel("<html> <h1>Login Player 1</h1></html>");	
 	private String usernameField = "Username";
 	private String passwordField = "Password";
+	/** JPasswordField object used to store the password of player one. */
    	protected static JPasswordField password1 = new JPasswordField(10);
+	/** JTextField object used to store the username of player one. */
     protected static JTextField username1 = new JTextField(10);
+	/** JLabel object used to display error messages or welcome message. */
     protected static JLabel actionLabel;
     private JButton cont;
     private JButton login;
@@ -26,7 +33,7 @@ public class LoginPanelOne {
     private Login loginObject = Login.getInstance(); 
 	
     /**
-     * This class contains the panel in which a user can login as player one
+     * This class contains the panel in which a user can login as player one.
      */
     public LoginPanelOne() {
 
@@ -117,24 +124,24 @@ public class LoginPanelOne {
     }
 	
 	/**
- 	* Adds ActionListener to cont JButton, changes displayed card to LoginPanelTwo or MainPanel if player two is logged in
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to cont JButton, changes displayed card to LoginPanelTwo or MainPanel if player two is logged in.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addContinueBtnActionListener(ActionListener listener) {
 		cont.addActionListener(listener);
 	}
 
 	/**
- 	* Adds ActionListener to back JButton, changes displayed card to IntroPanel
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to back JButton, changes displayed card to IntroPanel.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addBackBtnActionListener(ActionListener listener) {
 		back.addActionListener(listener);
 	}
 
 	/**
- 	* Returns the main component of this JPanel
- 	* @return Main Component of JPanel
+ 	* Returns the main component of this JPanel.
+ 	* @return Main Component of JPanel.
  	*/
 	public JComponent getMainComponent() {
 		return mainPanel;

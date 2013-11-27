@@ -1,6 +1,7 @@
 package gameplay;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,6 +31,10 @@ public class Pause {
 		this.game = game;
 		JButton button = new JButton("Press to Resume");
 		button.setSize(100,100);
+		button.setForeground(Color.WHITE);
+		button.setBackground(Color.DARK_GRAY);
+		button.setOpaque(true);
+		button.setBorderPainted(false);
 		button.setFont(new Font("Dialog", 1, 15));
 		frame.setLayout(new BorderLayout());
 		frame.add(button, BorderLayout.CENTER);

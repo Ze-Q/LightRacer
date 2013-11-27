@@ -5,14 +5,22 @@ import java.awt.event.*;
 import javax.swing.*;
 import accounts.Login;
 
-public class LoginPanelTwo {
+/**
+ * This class contains the panel in which a user can login as player two.
+ * @author Alonso Medina
+ * @version 1.0
+ */
+class LoginPanelTwo {
 	
 	private JPanel mainPanel = new JPanel();
 	private JLabel title = new JLabel("<html> <h1>Login Player 2</h1></html>");
 	private String usernameField = "Username";
 	private String passwordField = "Password";
+	/** JPasswordField object used to store the password of player two. */
 	protected static JPasswordField password2 = new JPasswordField(10);
+	/** JTextField object used to store the username of player two. */
 	protected static JTextField username2 = new JTextField(10);
+	/** JLabel object used to display error messages or welcome message. */
 	protected static JLabel actionLabel;
 	private JButton cont;
 	private JButton login;
@@ -25,7 +33,7 @@ public class LoginPanelTwo {
 	private Login loginObject = Login.getInstance();
 
     /**
-     * This class contains the panel in which a user can login as player two
+     * This class contains the panel in which a user can login as player two.
      */
 	public LoginPanelTwo() {
 
@@ -116,24 +124,24 @@ public class LoginPanelTwo {
 	}
 
 	/**
- 	* Adds ActionListener to cont JButton, changes displayed card to MainPanel
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to cont JButton, changes displayed card to MainPanel.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addContinueBtnActionListener(ActionListener listener) {
 		cont.addActionListener(listener);
 	}
 
 	/**
- 	* Adds ActionListener to back JButton, changes displayed card to IntroPanel
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to back JButton, changes displayed card to IntroPanel.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addBackBtnActionListener(ActionListener listener) {
 		back.addActionListener(listener);
 	}
 
 	/**
- 	* Returns the main component of this JPanel
- 	* @return Main Component of JPanel
+ 	* Returns the main component of this JPanel.
+ 	* @return Main Component of JPanel.
  	*/
 	public JComponent getMainComponent() {
 		return mainPanel;

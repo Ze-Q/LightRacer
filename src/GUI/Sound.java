@@ -6,10 +6,13 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 
-
+/**
+ * Sound class contains all the music Clips which will be used in the program.
+ * @author Dzmitry Murzich
+ * @version 1.0
+ */
 public class Sound {
 
-	
 	private final String GREENSOUND = "./res/raw/greenround.wav";
 	private final String REDSOUND = "./res/raw/redround.wav";
     private final String BLUESOUND = "./res/raw/blueround.wav";
@@ -26,27 +29,43 @@ public class Sound {
 	private final String BACKSOUND = "./res/raw/back.wav";
 	private final String GAMESOUND = "./res/raw/startgame.wav";
 	private final String BACKGROUNDSOUND = "./res/raw/background.wav";
+	/** Clip object that stores green.wav. */
 	public Clip greenClip;
+	/** Clip object that stores red.wav. */
 	public Clip redClip;
+	/** Clip object that stores blue.wav. */
 	public Clip blueClip;
+	/** Clip object that stores yellow.wav. */
 	public Clip yellowClip;
+	/** Clip object that countdown.wav */
 	public Clip countdownClip;
+	/** Clip object that stores greenwon.wav */
 	public Clip greenWonClip;
+	/** Clip object that stores redwon.wav. */
 	public Clip redWonClip;
+	/** Clip object that stores bluewon.wav. */
 	public Clip blueWonClip;
+	/** Clip object that stores yellowwon.wav. */
 	public Clip yellowWonClip;
+	/** Clip object that stores draw.wav. */
 	public Clip drawClip;
+	/** Clip object that stores ingame.wav. */
 	public Clip ingameClip;
+	/** Clip object that stores success.wav. */
 	public Clip successClip;
+	/** Clip object that stores error.wav. */
 	public Clip errorClip;
+	/** Clip object that stores back.wav. */
 	public Clip backClip;
+	/** Clip object that stores startgame.wav. */
 	public Clip gameClip;
+	/** Clip object that stores background.wav. */
 	public Clip backgroundClip;
 
 	private AudioInputStream audioInputStream;
 	
     /**
-     * Sound class contains all the music Clips which will be used in the program
+     * Sound class contains all the music Clips which will be used in the program.
      */
 	public Sound() {
 		try {
@@ -104,8 +123,8 @@ public class Sound {
 	}
 	
     /**
-     * This method plays a clip and pauses the program execution until clip has finished playing
-     * @param clip			Clip object that will be played
+     * This method plays a clip and pauses the program execution until clip has finished playing.
+     * @param clip			Clip object that will be played.
      */
     public void playSound(Clip clip) {
 		clip.setFramePosition(0);
@@ -117,8 +136,8 @@ public class Sound {
 	}
     
     /**
-     * This method plays a clip at the end of each round announcing the winner
-     * @param winner		String which contains the winner of the round
+     * This method plays a clip at the end of each round announcing the winner.
+     * @param winner		String which contains the winner of the round.
      */
     public void announceRoundWinner(String winner) {
     	if (winner.equals("Red")) {
@@ -139,8 +158,8 @@ public class Sound {
     }
     
     /**
-     * This method plays a clip at the end of each match announcing the winner
-     * @param winner		String which contains the winner of the match
+     * This method plays a clip at the end of each match announcing the winner.
+     * @param winner		String which contains the winner of the match.
      */
     public void announceGameWinner(String winner) {
     	if (winner.equals("Red")) {

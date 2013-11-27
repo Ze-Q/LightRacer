@@ -6,14 +6,23 @@ import java.awt.event.*;
 import java.io.File;
 import javax.swing.*;
 
+/**
+ * GamePanel class contains the menu which will display all the game options to the players and starts a new game round.
+ * @author Alonso Medina
+ * @version 1.0
+ */
 public class GamePanel {
-	public JPanel mainPanel = new JPanel();
-
-	public int p1color;
-	public int p2color;
-	public int sp;
-	public int mapNumber;
 	
+	private JPanel mainPanel = new JPanel();
+	/** Int used to store the selected color for player one. */
+	public int p1color;
+	/** Int used to store the selected color for player two. */
+	public int p2color;
+	/** Int used to store the selected speed for this round. */
+	public int sp;
+	/** Int used to store the selected map for this round. */
+	public int mapNumber;
+	/** JLabel object which displays the current score. */
 	public JLabel title = new JLabel("<html> <h1></h1> </html>");
 	private JLabel mapLabel;
 	private DefaultComboBoxModel map;
@@ -26,22 +35,27 @@ public class GamePanel {
 	private JComboBox player2Color;
 	private JLabel speedLabel;
 	protected JTextField speed;
+	/** JButton object which verifies the selected settings are valid and then automatically calls start otherwise displays an error. */
 	public JButton set;
+	/** JButton object which is automatically called by set if settings are valid, creates a new Game object based on the selected settings. */
 	public JButton start;
+	/** JButton object which aborts the current match. */
 	public JButton abort;
+	/** JButton object displayed at the end of the match, changes panel to MainPanel. */
 	public JButton ret;
+	/** JLabel object which is used to display error messages or verification message. */
 	public JLabel actionLabel;
 	
 	private Sound sound = new Sound();
 
     /**
-     * GamePanel class contains the menu which will display all the game options to the players and starts a new game round
+     * GamePanel class contains the menu which will display all the game options to the players and starts a new game round.
      */
 	public GamePanel() {
 		
 		mainPanel.setLayout(null);
 
-		speedLabel = new JLabel("Set Speed (3-10)" + ": ");
+		speedLabel = new JLabel("Set Speed (1-10)" + ": ");
 		speedLabel.setLabelFor(speed);
 		speedLabel.setForeground(Color.WHITE);
 		mapLabel = new JLabel("Choose map" + ": ");
@@ -155,7 +169,7 @@ public class GamePanel {
 					actionLabel.setBounds(385, 250, 400, 75);
 					actionLabel.setForeground(Color.RED);
 				}
-				else if(spd > 10 || spd < 3){
+				else if(spd > 10 || spd < 1){
 					sound.playSound(sound.errorClip);
 					actionLabel.setText("Invalid speed.");
 					actionLabel.setBounds(410, 250, 400, 75);
@@ -186,11 +200,11 @@ public class GamePanel {
 					if(colorPlayer2.equals("Yellow")){
 						p2color = Player.YELLOW;
 					}
-					sp = spd;
+					sp = spd + 2;
 					mapNumber = Character.getNumericValue((chosenMap.charAt(3)));
 					actionLabel.setForeground(Color.WHITE);
 					actionLabel.setBounds(400, 275, 400, 75);
-					actionLabel.setText("<html>" + "Map: " + chosenMap + "<br>" +  "Speed: " + sp + "<br>" + "Player 1:" + colorPlayer1 + "<br>" + "Player 2:" + colorPlayer2 + "</html>");
+					actionLabel.setText("<html>" + "Map: " + chosenMap + "<br>" +  "Speed: " + spd + "<br>" + "Player 1:" + colorPlayer1 + "<br>" + "Player 2:" + colorPlayer2 + "</html>");
 					actionLabel.paintImmediately(actionLabel.getVisibleRect());
 					start.doClick();
 				}
@@ -200,32 +214,32 @@ public class GamePanel {
 	}
 
 	/**
- 	* Adds ActionListener to abort JButton, discards the stats for the current match and changes displayed card to MainPanel
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to abort JButton, discards the stats for the current match and changes displayed card to MainPanels
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addAbortBtnActionListener(ActionListener listener) {
 		   abort.addActionListener(listener);
 	}
 	
 	/**
- 	* Adds ActionListener to start JButton, creates a new Game() object with the desired settings
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to start JButton, creates a new Game() object with the desired settings.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addStartBtnActionListener(ActionListener listener) {
 		   start.addActionListener(listener);
 	}
 	
 	/**
- 	* Adds ActionListener to ret JButton, changes displayed card to MainPanel
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to ret JButton, changes displayed card to MainPanel.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addRetBtnActionListener(ActionListener listener) {
 		   ret.addActionListener(listener);
 	}
 	
 	/**
- 	* Returns the main component of this JPanel
- 	* @return Main Component of JPanel
+ 	* Returns the main component of this JPanel.
+ 	* @return Main Component of JPanel.
  	*/
 	public JComponent getMainComponent() {
 	   return mainPanel;

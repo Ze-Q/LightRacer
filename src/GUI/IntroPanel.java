@@ -4,9 +4,16 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+/**
+ * IntroPanel class contains introductory panel that displays when user first launches the program.
+ * @author Alonso Medina
+ * @version 1.0
+ */
 class IntroPanel {
 	
-	private static final Dimension MAIN_SIZE = new Dimension(MainWindow.WIDTH, MainWindow.HEIGHT);
+    private final static int WIDTH = 900;
+    private final static int HEIGHT = WIDTH * 9 / 16 ;
+	private static final Dimension MAIN_SIZE = new Dimension(WIDTH, HEIGHT);
 	private JPanel mainPanel = new JPanel();
 	private JLabel title = new JLabel("<html> <h1>Light Racer</h1> </html>");
 	private JButton login;
@@ -14,7 +21,7 @@ class IntroPanel {
 	private JButton exit;
 
     /**
-     * IntroPanel class contains introductory panel that displays when user first launches the program
+     * IntroPanel class contains introductory panel that displays when user first launches the program.
      */
 	public IntroPanel() {
 		
@@ -60,24 +67,24 @@ class IntroPanel {
 	}
 	
 	/**
- 	* Adds ActionListener to login JButton, changes displayed card to LoginPanelOne or LoginPanelTwo
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to login JButton, changes displayed card to LoginPanelOne or LoginPanelTwo.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addLoginBtnActionListener(ActionListener listener) {
 		login.addActionListener(listener);
 	}
 
 	/**
- 	* Adds ActionListener to createAccount JButton, changes displayed card to CreateAccountPanel
- 	* @param listener        contains action to be taken by button
+ 	* Adds ActionListener to createAccount JButton, changes displayed card to CreateAccountPanel.
+ 	* @param listener        ActionListener object that contains action to be taken by button.
  	*/
 	public void addCreateAccBtnActionListener(ActionListener listener) {
 		createAccount.addActionListener(listener);
 	}
 	
 	/**
- 	* Returns the main component of this JPanel
- 	* @return Main Component of JPanel
+ 	* Returns the main component of this JPanel.
+ 	* @return Main Component of JPanel.
  	*/
 	public JComponent getMainComponent() {
 		return mainPanel;
