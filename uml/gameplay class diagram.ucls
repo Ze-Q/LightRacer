@@ -3,7 +3,7 @@
   realizations="true" associations="true" dependencies="true" nesting-relationships="true">  
   <class id="1" language="java" name="gameplay.Keyboard" project="team-9" file="/team-9/src/gameplay/Keyboard.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="590" y="698"/>    
+    <position height="-1" width="-1" x="635" y="361"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -12,7 +12,7 @@
   </class>  
   <class id="2" language="java" name="gameplay.Player" project="team-9" file="/team-9/src/gameplay/Player.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="-56" y="517"/>    
+    <position height="-1" width="-1" x="1" y="160"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="gameplay.Score" project="team-9" file="/team-9/src/gameplay/Score.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="536" y="1026"/>    
+    <position height="-1" width="-1" x="610" y="709"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="gameplay.Game" project="team-9" file="/team-9/src/gameplay/Game.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="512" width="231" x="163" y="42"/>    
+    <position height="-1" width="-1" x="283" y="132"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="gameplay.Tuple" project="team-9" file="/team-9/src/gameplay/Tuple.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="58" y="1121"/>    
+    <position height="-1" width="-1" x="32" y="782"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="gameplay.Pause" project="team-9" file="/team-9/src/gameplay/Pause.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="551" y="59"/>    
+    <position height="-1" width="-1" x="595" y="31"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="gameplay.Level" project="team-9" file="/team-9/src/gameplay/Level.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="214" y="776"/>    
+    <position height="-1" width="-1" x="352" y="780"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" accessors="true" 
       visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -65,145 +65,132 @@
     </display>  
   </class>  
   <association id="8">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="9" name="key">        
-        <position height="18" width="30" x="431" y="548"/>      
-      </attribute>      
-      <multiplicity id="10" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="11">    
-    <bendpoint x="576" y="291"/>    
-    <end type="SOURCE" refId="6"/>    
-    <end type="TARGET" refId="1"/>  
-  </dependency>  
-  <association id="12">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="13" name="GREENPLAYERCOLORS">        
-        <position height="18" width="153" x="-178" y="1086"/>      
-      </attribute>      
-      <multiplicity id="14" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <dependency id="15">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="3"/>  
-  </dependency>  
-  <association id="16">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="17" name="player2">        
-        <position height="18" width="49" x="33" y="398"/>      
-      </attribute>      
-      <multiplicity id="18" minimum="0" maximum="1">        
-        <position height="16" width="25" x="34" y="423"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="19">    
-    <bendpoint x="-141" y="1083"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="20" name="tColor">        
-        <position height="18" width="41" x="3" y="957"/>      
-      </attribute>      
-      <multiplicity id="21" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="22">    
     <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="23" name="game">        
-        <position height="18" width="39" x="427" y="176"/>      
-      </attribute>      
-      <multiplicity id="24" minimum="0" maximum="1"/>    
+      <attribute id="9" name="game"/>      
+      <multiplicity id="10" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="25">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <association id="26">    
-    <bendpoint x="352" y="594"/>    
-    <bendpoint x="440" y="834"/>    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="27" name="curScore"/>      
-      <multiplicity id="28" minimum="0" maximum="1"/>    
+  <association id="11">    
+    <bendpoint x="63" y="504"/>    
+    <bendpoint x="102" y="618"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="12" name="BLUEPLAYERCOLORS">        
+        <position height="18" width="142" x="-124" y="671"/>      
+      </attribute>      
+      <multiplicity id="13" minimum="0" maximum="1"/>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="29">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
-  <association id="30">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="31" name="player1">        
-        <position height="18" width="49" x="69" y="468"/>      
+  <association id="14">    
+    <bendpoint x="-47" y="497"/>    
+    <bendpoint x="-55" y="668"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="15" name="REDPLAYERCOLORS">        
+        <position height="18" width="136" x="94" y="702"/>      
       </attribute>      
-      <multiplicity id="32" minimum="0" maximum="1"/>    
+      <multiplicity id="16" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="17">    
+    <bendpoint x="127" y="104"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="18" name="player2">        
+        <position height="18" width="49" x="86" y="90"/>      
+      </attribute>      
+      <multiplicity id="19" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="33">    
-    <end type="SOURCE" refId="7"/>    
-    <end type="TARGET" refId="4"/>  
-  </dependency>  
-  <association id="34">    
-    <bendpoint x="172" y="594"/>    
+  <association id="20">    
+    <bendpoint x="-2" y="567"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="21" name="YELLOWPLAYERCOLORS">        
+        <position height="18" width="160" x="-213" y="708"/>      
+      </attribute>      
+      <multiplicity id="22" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="23">    
+    <bendpoint x="491" y="554"/>    
     <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="35" name="level"/>      
-      <multiplicity id="36" minimum="0" maximum="1"/>    
+      <attribute id="24" name="curScore"/>      
+      <multiplicity id="25" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="26">    
+    <bendpoint x="112" y="520"/>    
+    <bendpoint x="147" y="699"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="27" name="GREENPLAYERCOLORS">        
+        <position height="18" width="153" x="10" y="627"/>      
+      </attribute>      
+      <multiplicity id="28" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="29">    
+    <bendpoint x="-100" y="498"/>    
+    <bendpoint x="-93" y="677"/>    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="30" name="tColor">        
+        <position height="18" width="41" x="-16" y="608"/>      
+      </attribute>      
+      <multiplicity id="31" minimum="0" maximum="1">        
+        <position height="16" width="25" x="-53" y="730"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="32">    
+    <bendpoint x="128" y="179"/>    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="33" name="player1"/>      
+      <multiplicity id="34" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="35">    
+    <end type="SOURCE" refId="6"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="36">    
+    <bendpoint x="164" y="597"/>    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <association id="37">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="38" name="key"/>      
+      <multiplicity id="39" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="40">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="41" name="level"/>      
+      <multiplicity id="42" minimum="0" maximum="1"/>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="37">    
-    <end type="SOURCE" refId="4"/>    
-    <end type="TARGET" refId="6"/>  
+  <dependency id="43">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="3"/>  
   </dependency>  
-  <association id="38">    
-    <bendpoint x="84" y="896"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="39" name="YELLOWPLAYERCOLORS">        
-        <position height="18" width="160" x="-102" y="920"/>      
-      </attribute>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="41">    
-    <bendpoint x="-83" y="1022"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="42" name="BLUEPLAYERCOLORS">        
-        <position height="18" width="142" x="-135" y="1032"/>      
-      </attribute>      
-      <multiplicity id="43" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="44">    
-    <bendpoint x="-44" y="964"/>    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="45" name="REDPLAYERCOLORS">        
-        <position height="18" width="136" x="88" y="998"/>      
-      </attribute>      
-      <multiplicity id="46" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    
