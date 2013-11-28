@@ -9,7 +9,7 @@ import crud.StatsFileSystem;
 import accounts.Statistics;
 import accounts.User;
 
-
+//integration test between Statistics and StatsFileSystem
 public class StatsTests {
 
 	public void generateTestArray() {
@@ -48,40 +48,6 @@ public class StatsTests {
 	StatsFileSystem statsFileSystem = StatsFileSystem.getInstance();
 	Statistics statistics = Statistics.getInstance();
 	
-	//Tests for StatsFileSystem
-	//@Test
-	public void readFile() throws IOException {
-		statsFileSystem.readStatsFromFile();
-		statsFileSystem.printStatsArray();
-	}
-	
-	//@Test
-	public void writeTest() throws IOException {
-		generateTestArray();
-		boolean doesStatsExist = statsFileSystem.writeStatsToFile();
-		assertTrue("Created the file!", doesStatsExist);
-	}
-	
-	//@Test
-	public void testStatsArray() {
-		generateTestArray();
-		statsFileSystem.printStatsArray();
-	}
-	
-	//@Test
-	public void testUpdateVersusRecords() {
-		User user1 = new User("A");
-		User user2 = new User("D");
-		
-		statsFileSystem.readStatsFromFile();
-		statsFileSystem.printStatsArray();
-		statistics.readVersusFromFile(user1, user2);
-		
-		System.out.println(user1.getUsername() +" won "+user1.getVersusWins() + " times against " + user2.getUsername());
-		System.out.println(user2.getUsername() +" won "+user2.getVersusWins() + " times against " + user1.getUsername());
-	}
-	
-	//Tests for Statistics
 	//@Test
 	public void testUpdateStatsFile() {
 		User user1 = new User("A");
