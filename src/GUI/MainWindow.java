@@ -33,6 +33,7 @@ public class MainWindow {
 	private CardLayout cardlayout = new CardLayout();
 	private JPanel mainWindow = new JPanel(cardlayout);
 	
+	//initialize menu panels
 	private IntroPanel introPanel = new IntroPanel();
 	private CreateAccountPanel createAccountPanel = new CreateAccountPanel();
 	private LoginPanelOne loginPanel1 = new LoginPanelOne();
@@ -52,6 +53,7 @@ public class MainWindow {
      */
 	public MainWindow() {
 		
+		//add panels to frame
 		mainWindow.add(introPanel.getMainComponent(), INTRO);
 		mainWindow.add(createAccountPanel.getMainComponent(), CRACC);
 		mainWindow.add(loginPanel1.getMainComponent(), LOGIN);

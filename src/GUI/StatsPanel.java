@@ -33,6 +33,7 @@ class StatsPanel {
      */
 	public StatsPanel() {
 		
+		//initialize and format components
 		mainPanel.setLayout(null);
 		topTenTitle = new JLabel("Top Ten Records");
 		topTenTitle.setForeground(Color.WHITE);
@@ -47,6 +48,7 @@ class StatsPanel {
 		back.setBorderPainted(false);
 		title.setForeground(Color.WHITE);
 		
+		//add components to panel
 		mainPanel.add(title);
 		mainPanel.add(topTenTitle);
 		mainPanel.add(versusTitle);
@@ -54,6 +56,7 @@ class StatsPanel {
 	    mainPanel.setOpaque(true);
 	    mainPanel.setBackground(Color.BLACK);
 		
+	    //set the location in layout for all components
 		Dimension size = new Dimension(100,25);
 		topTenTitle.setBounds(150, 140, 200,25);
 		versusTitle.setBounds(600, 140, 200, 25);

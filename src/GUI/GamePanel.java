@@ -55,6 +55,7 @@ public class GamePanel {
 		
 		mainPanel.setLayout(null);
 
+		//initialize and format components
 		speedLabel = new JLabel("Set Speed (1-10)" + ": ");
 		speedLabel.setLabelFor(speed);
 		speedLabel.setForeground(Color.WHITE);
@@ -118,6 +119,7 @@ public class GamePanel {
 		ret.setBorderPainted(false);
 		title.setForeground(Color.WHITE);
 
+		//add components to panel
 		mainPanel.add(title);
 		mainPanel.add(start);
 		mainPanel.add(abort);
@@ -135,6 +137,7 @@ public class GamePanel {
 	    mainPanel.setOpaque(true);
 	    mainPanel.setBackground(Color.BLACK);
 
+	    //set the location in layout for all components
 		Dimension size = new Dimension(100,25);	
 		title.setBounds(340, 25, 400, 100);
 		abort.setBounds(375, 450, 150, size.height);
@@ -151,6 +154,7 @@ public class GamePanel {
 		actionLabel.setBounds(400, 275, 400, 75);
 		ret.setBounds(375, 450, 150+40, size.height);
 		
+		//this method verifies the validity of the selected settings
 		set.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -158,23 +162,27 @@ public class GamePanel {
 				String colorPlayer2 = player2Color.getSelectedItem().toString();
 				String chosenMap = maps.getSelectedItem().toString();
 				int spd;
+				//verify speed is an integer
 				try {
 					spd = Integer.parseInt(speed.getText());
 				} catch (Exception ex) {
 					spd = -1;
 				}
+				//verify different colors
 				if(colorPlayer1.equals(colorPlayer2)){
 					sound.playSound(sound.errorClip);
 					actionLabel.setText("Choose different colors.");
 					actionLabel.setBounds(385, 250, 400, 75);
 					actionLabel.setForeground(Color.RED);
 				}
+				//verify valid speed
 				else if(spd > 10 || spd < 1){
 					sound.playSound(sound.errorClip);
 					actionLabel.setText("Invalid speed.");
 					actionLabel.setBounds(410, 250, 400, 75);
 					actionLabel.setForeground(Color.RED);
 				}
+				//if all settings are valid, stores in relevant variables, displays selected settings back to the user as confirmation and automatically start game
 				else { 
 					if(colorPlayer1.equals("Red")){
 						p1color = Player.RED;

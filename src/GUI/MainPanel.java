@@ -24,6 +24,7 @@ class MainPanel {
 	 */
 	public MainPanel() {
 		
+		//initialize and format components
 		mainPanel.setLayout(null);
 		newGame = new JButton("New Game");
 		newGame.setForeground(Color.WHITE);
@@ -52,6 +53,7 @@ class MainPanel {
 		help.setBorderPainted(false);
 		title.setForeground(Color.WHITE);
 		
+		//add components to panel
 		mainPanel.add(title);
 		mainPanel.add(newGame);
 		mainPanel.add(logout);
@@ -61,6 +63,7 @@ class MainPanel {
 	    mainPanel.setOpaque(true);
 	    mainPanel.setBackground(Color.BLACK);
 		
+	    //set the location in layout for all components
 		Dimension size = new Dimension(100,25);
 		title.setBounds(385, 25, 200, 100);
 		newGame.setBounds(400-5, 175, size.width+10, size.height);
@@ -69,6 +72,7 @@ class MainPanel {
 		logout.setBounds(400, 325, size.width, size.height);
 		exit.setBounds(400, 450, size.width, size.height);
 		
+		//quit program
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				MainWindow.sound.backgroundClip.stop();

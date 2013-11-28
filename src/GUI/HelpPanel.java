@@ -28,6 +28,7 @@ class HelpPanel {
 		
 		mainPanel.setLayout(null);
 		
+		//initialize and format components
 		back = new JButton("Return to Main Menu");
 		back.setForeground(Color.WHITE);
 		back.setBackground(Color.DARK_GRAY);
@@ -57,7 +58,7 @@ class HelpPanel {
 		about.setBorderPainted(false);
 		title.setForeground(Color.WHITE);
 
-		
+		//add components to panel
 		mainPanel.add(title);
 		mainPanel.add(back);
 		mainPanel.add(actionLabel);
@@ -68,6 +69,7 @@ class HelpPanel {
 	    mainPanel.setOpaque(true);
 	    mainPanel.setBackground(Color.BLACK);
 		
+	    //set the location in layout for all components
 		Dimension size = new Dimension(100,25);
 		back.setBounds(350, 450, 200, size.height);
 		title.setBounds(410, 25, 200, 100);

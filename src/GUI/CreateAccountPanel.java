@@ -11,6 +11,7 @@ import javax.swing.*;
 /**
  * This class contains the panel in which a user can create a new account.
  * @author Alonso Medina
+ * @author Cheng Gong
  * @version 1.0
  */
 class CreateAccountPanel {
@@ -37,6 +38,7 @@ class CreateAccountPanel {
 		
 		mainPanel.setLayout(null);
 		
+		//initialize and format components
 		createAccount = new JButton("Create New Account");
 		createAccount.setForeground(Color.WHITE);
 		createAccount.setBackground(Color.DARK_GRAY);
@@ -57,6 +59,7 @@ class CreateAccountPanel {
 		actionLabel.setForeground(Color.WHITE);
 		title.setForeground(Color.WHITE);
 
+		//add components to panel
 		mainPanel.add(title);
 		mainPanel.add(createAccount);
 		mainPanel.add(back);
@@ -68,6 +71,7 @@ class CreateAccountPanel {
 	    mainPanel.setOpaque(true);
 	    mainPanel.setBackground(Color.BLACK);
 
+	    //set the location in layout for all components
 		Dimension size = new Dimension(100, 25);
 		title.setBounds(370, 25, 200, 100);
 		createAccount.setBounds(350, 400, 200, size.height);
@@ -85,9 +89,10 @@ class CreateAccountPanel {
 				String enteredUsername = username.getText();
 				String enteredPassword = new String(password.getPassword());
 
-				boolean success = CreateAccount.addUser(enteredUsername,
-						enteredPassword);
+				//call to CreateAccount class in accounts package
+				boolean success = CreateAccount.addUser(enteredUsername, enteredPassword);
 
+				//check for relevant errors and display error message
 				if (!success) {
 					actionLabel.setForeground(Color.RED);
 					sound.playSound(sound.errorClip);
@@ -99,9 +104,9 @@ class CreateAccountPanel {
 						errorMessage = errorMessage + CSVHandler.isValidPassword(enteredPassword);
 						actionLabel.setText("<html>" + errorMessage + "</html>");
 					} catch (IOException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
+				//display success message
 				} else {
 					actionLabel.setForeground(Color.WHITE);
 					actionLabel.setBounds(355, 225, 400, 175);

@@ -25,6 +25,7 @@ class IntroPanel {
      */
 	public IntroPanel() {
 		
+		//initialize and format components
 		mainPanel.setLayout(null);
 		login = new JButton("Login");
 		login.setForeground(Color.WHITE);
@@ -43,6 +44,7 @@ class IntroPanel {
 		exit.setBorderPainted(false);
 		title.setForeground(Color.WHITE);
 
+		//add components to panel
 		mainPanel.add(title);
 		mainPanel.add(login);
 		mainPanel.add(createAccount);
@@ -51,6 +53,7 @@ class IntroPanel {
 	    mainPanel.setOpaque(true);
 	    mainPanel.setBackground(Color.BLACK);
 		
+	    //set the location in layout for all components
 		Dimension size = new Dimension(100,25);
 		title.setBounds(385, 25, 200, 100);
 		login.setBounds(400, 200, size.width, size.height);

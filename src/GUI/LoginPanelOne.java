@@ -8,6 +8,7 @@ import javax.swing.*;
 /**
  * This class contains the panel in which a user can login as player one.
  * @author Alonso Medina
+ * @author Cheng Gong
  * @version 1.0
  */
 class LoginPanelOne {
@@ -39,6 +40,7 @@ class LoginPanelOne {
 
         mainPanel.setLayout(null);
         
+		//initialize and format components
         login = new JButton("Login");
 		login.setForeground(Color.WHITE);
 		login.setBackground(Color.DARK_GRAY);
@@ -65,6 +67,7 @@ class LoginPanelOne {
 		actionLabel.setForeground(Color.WHITE);
 		title.setForeground(Color.WHITE);
         
+		//add components to panel
 		mainPanel.add(title);
 		mainPanel.add(login);
 		mainPanel.add(back);
@@ -78,6 +81,7 @@ class LoginPanelOne {
 	    mainPanel.setOpaque(true);
 	    mainPanel.setBackground(Color.BLACK);
 
+	    //set the location in layout for all components
 		Dimension size = new Dimension(100,25);
 		title.setBounds(375, 50, 200, 50);
 		login.setBounds(400, 350, size.width, size.height);
@@ -95,19 +99,26 @@ class LoginPanelOne {
 
 				String enteredUsername = username1.getText();
 				String enteredPassword = new String (password1.getPassword());
+				
+				//verify user info
 				boolean success = loginObject.isValidUserInfo(enteredUsername, enteredPassword);
+				//verify if user is logged in
 				boolean loggedIn = loginObject.checkLogedin(enteredUsername);
+				
+				//display error message
 				if(!success){
 					actionLabel.setForeground(Color.RED);
 					sound.playSound(sound.errorClip);
 					actionLabel.setText("Unsuccessful Login.");
 					actionLabel.setBounds(395, 250, 200, 25);
 				}
+				//display already logged in message
 				else if(loggedIn){
 					actionLabel.setForeground(Color.RED);
 					sound.playSound(sound.errorClip);
 					actionLabel.setText(enteredUsername + ", you are already logged in!");
 				}
+				//display welcome message
 				else {
 					actionLabel.setForeground(Color.WHITE);
 					actionLabel.setBounds(400, 250, 200, 25);
