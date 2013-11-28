@@ -13,6 +13,7 @@ Platforms: The software was written and tested on the following platforms:
 	Windows 7 x64, Oracle Java Virtual Machine SE 7 [1.7.0_09], Eclipse IDE for Java Developers
 
 Third-party libraries:
+	- No third party library is needed to run the project. JUnit was used to test the project.
 	- JUnit 4: http://www.junit.org/
 	- Installation instructions: https://github.com/junit-team/junit/wiki/Download-and-Install 
 
