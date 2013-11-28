@@ -10,9 +10,9 @@ import accounts.Statistics;
 import accounts.User;
 
 //integration test between Statistics and StatsFileSystem
-public class StatsTests {
+public class StatisticsTests {
 
-	public void generateTestArray() {
+	private void generateTestArray() {
 		StatsFileSystem statsFileSystem = StatsFileSystem.getInstance();	
 		statsFileSystem.getStatsArray()[0][1]="Z";
 		statsFileSystem.getStatsArray()[0][2]="A";
@@ -45,63 +45,63 @@ public class StatsTests {
 		statsFileSystem.getStatsArray()[4][4]="0";
 	}
 	
+	private void cleanUpArray(){
+		for(int i=0; i<statsFileSystem.getStatsArray().length; i++) {
+			for(int j=0; j<statsFileSystem.getStatsArray().length; j++) {
+				statsFileSystem.getStatsArray()[i][j]=null;
+			}
+		}
+		statsFileSystem.getStatsArray()[0][0]="0";
+	}
+	
 	StatsFileSystem statsFileSystem = StatsFileSystem.getInstance();
 	Statistics statistics = Statistics.getInstance();
 	
-	//@Test
-	public void testUpdateStatsFile() {
-		User user1 = new User("A");
-		User user2 = new User("D");
+	@Test
+	public void testReadVersus() {
+		User user1 = new User("Z");
+		User user2 = new User("A");
 		
-		statistics.readStatsFile();
-		statsFileSystem.printStatsArray();
+		cleanUpArray();
+		generateTestArray();
 		statistics.readVersusFromFile(user1, user2);
-		user1.increaseVersusWins();
-		user2.increaseVersusWins();
+		assertEquals(user1.getVersusWins(),2);
+		assertEquals(user2.getVersusWins(),5);
+	}
+	
+	
+	@Test
+	public void testUpdateStats() {
+		User user1 = new User("Z");
+		User user2 = new User("A");
 		
+		cleanUpArray();
+		generateTestArray();
+		user1.setVersusWins(20);
+		user2.setVersusWins(50);
 		statistics.updateStats(user1, user2);
-		statistics.updateStatsFile();
-		statistics.readStatsFile();
-		statsFileSystem.printStatsArray();
+		assertEquals(statsFileSystem.getStatsArray()[1][2],"20");
+		assertEquals(statsFileSystem.getStatsArray()[2][1],"50");
 	}
 	
-	
-	//@Test
-	public void testAddNewUser() {
-		User user1 = new User("F");
-		statistics.readStatsFile();
-		statsFileSystem.printStatsArray();
-		statistics.addNewUser(user1);
-		statistics.updateStatsFile();
-		
-		statsFileSystem.readStatsFromFile();
-		statsFileSystem.printStatsArray();
-	}
-	
-	//@Test
+	@Test
 	public void testAddNewUserToBlankFile() {
 		User user1 = new User("J");
-		User user2 = new User("K");
-		User user3 = new User("L");
-		statistics.readStatsFile();
-		statsFileSystem.printStatsArray();
+		cleanUpArray();
+		generateTestArray();
 		statistics.addNewUser(user1);
-		statistics.addNewUser(user2);
-		statistics.addNewUser(user3);
-		statistics.updateStatsFile();
-		
-		statistics.readStatsFile();
-		statsFileSystem.printStatsArray();
+		assertEquals(statsFileSystem.getStatsArray()[5][0],"J");
 	}
 	
-	//@Test
+	@Test
 	public void testTopTen() {
-		statistics.readStatsFile();
-		statsFileSystem.printStatsArray();
-		
-		User temp = new User("test");
-		temp.printUserList(statistics.getTopTen());
-		
+		cleanUpArray();
+		generateTestArray();
+		User[] topTen=statistics.getTopTen();
+		assertEquals(topTen[0].getUsername(),"C");
+		assertEquals(topTen[1].getUsername(),"A");
+		assertEquals(topTen[2].getUsername(),"D");
+		assertEquals(topTen[3].getUsername(),"Z");
 	}
 	
 }
