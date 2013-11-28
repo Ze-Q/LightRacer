@@ -119,7 +119,7 @@ public class StatsFileSystem {
 	public boolean writeStatsToFile() {
 		try{
 			
-			File dir = new File ("./res");
+			File dir = new File ("./res/data");
 			File statsCSV = new File(dir, "stats.csv");
 		
 			//check whether userCSV already exists, if not then create userCSV.csv
