@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>doc/High Level Description.pdf</name>
+			<type>1</type>
+			<location>//campus.mcgill.ca/EMF/SWE/amedin2/My Documents/High Level Description.pdf</location>
+		</link>
+	</linkedResources>
 </projectDescription>

@@ -2,7 +2,7 @@ package accounts;
 
 import java.io.IOException;
 /**
- * 
+ * This class contains all the methods used to verify login.
  * @author Cheng Gong
  *
  */
