@@ -42,17 +42,6 @@ public class AccountCRUDIntegrationTest {
 						+ "is unvalid", !success);
 	}
 	
-	@Test
-	public void testCreateAccountWithValidUsernameValidPassword() {
-		String username = "Ze";
-		String password = "Dem@Us3R01";
-		boolean success = CreateAccount.addUser(username, password);
-		assertTrue(
-				"testCreateAccountWithValidUsernameUnValidPassword failed! "
-						+ "Username: " + username + "Password: " + password
-						+ "are valid", success);
-	}
-	
 	private Login loginObject = Login.getInstance();
 	@Test
 	public void testIsValidUserInfoWithUnvalidUsernameUnvalidPassword() {
@@ -105,13 +94,6 @@ public class AccountCRUDIntegrationTest {
 	@Test
 	public void testCheckLogedinForLoginedUserOne() {
 		String username = "Demo01";
-		boolean isLoggedin = loginObject.checkLogedin(username);
-		assertTrue("testCheckLogedinForLoginedUserTwo failed! " + username+ " is logged in!",isLoggedin);
-	}
-	
-	@Test
-	public void testCheckLogedinForLoginedUserTwo() {
-		String username = "Demo02";
 		boolean isLoggedin = loginObject.checkLogedin(username);
 		assertTrue("testCheckLogedinForLoginedUserTwo failed! " + username+ " is logged in!",isLoggedin);
 	}
